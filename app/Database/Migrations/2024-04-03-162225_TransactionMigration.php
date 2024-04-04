@@ -1,0 +1,43 @@
+<?php
+
+namespace App\Database\Migrations;
+
+use CodeIgniter\Database\Migration;
+
+class TransactionMigration extends Migration
+{
+    public function up()
+    {
+        $this->forge->addField([
+            'id' => [
+                'type' => 'BINARY',
+                'constraint' => 16
+            ],
+            'user_id' => [
+                'type' => 'BINARY',
+                'constraint' => 16
+            ],
+            'kode_transaksi' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255
+            ],
+            'status' => [
+                'type' => 'ENUM',
+                'constraint' => ['pending', 'process', 'success']
+            ],
+            'total_bayar' => [
+                'type' => 'DOUBLE',
+            ],
+            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
+        ]);
+        $this->forge->addPrimaryKey('id');
+        $this->forge->addForeignKey('user_id', 'users', 'id');
+        $this->forge->addUniqueKey('kode_transaksi');
+        $this->forge->createTable('transactions', TRUE);
+    }
+
+    public function down()
+    {
+        $this->forge->dropTable('transactions', TRUE);
+    }
+}
