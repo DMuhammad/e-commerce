@@ -11,6 +11,8 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/extensions/simple-datatables/style.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/compiled/css/table-datatable.css') ?>">
+
+    <link rel="stylesheet" href="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.css') ?>">
 </head>
 
 <body>
@@ -30,13 +32,12 @@
         </div>
     </div>
 
-    <script src="<?= base_url('assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') ?>"></script>
     <script src="<?= base_url('assets/compiled/js/app.js') ?>"></script>
-    <script src="<?= base_url('assets/static/js/pages/dashboard.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') ?>"></script>
 
     <script src="<?= base_url('assets/extensions/simple-datatables/umd/simple-datatables.js') ?>"></script>
-    <script src="<?= base_url('assets/static/js/pages/simple-datatables.js') ?>"></script>
 
+    <script src="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.js') ?>"></script>
 </body>
 
 </html>
