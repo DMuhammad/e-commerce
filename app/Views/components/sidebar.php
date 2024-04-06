@@ -32,7 +32,7 @@
                             <a href="/dashboard/categories" class="submenu-link">Categories</a>
                         </li>
                         <li class="submenu-item">
-                            <a href="/dashboard/categories" class="submenu-link">Products</a>
+                            <a href="/dashboard/products" class="submenu-link">Products</a>
                         </li>
                     </ul>
                 </li>
