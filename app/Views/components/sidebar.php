@@ -45,9 +45,9 @@
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="/dashboard/records" class="sidebar-link">
-                        <i class="bi bi-clipboard2-data-fill"></i>                        
-                        <span>Records</span>
+                    <a href="/dashboard/reports" class="sidebar-link">
+                        <i class="bi bi-clipboard2-data-fill"></i>
+                        <span>Reports</span>
                     </a>
                 </li>
 
