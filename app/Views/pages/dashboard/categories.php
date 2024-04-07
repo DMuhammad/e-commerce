@@ -43,80 +43,58 @@
                         </div>
                     </div>
                 </div>
-
             </div>
 
             <div class="card-body">
-                <table class="table table-striped" id="table1">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Name</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>1</td>
-                            <td>Tube</td>
-                            <td>
-                                <div class="d-none d-md-inline">
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#edit" class="btn btn-warning p-1">
+                <div class="table-responsive">
+                    <table id="table2" class="display nowrap table table-striped" width="100%">
+                        <thead>
+                            <tr>
+                                <th>No</th>
+                                <th>Name</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>Tube</td>
+                                <td>
+                                    <a href="#" data-bs-toggle="modal" data-bs-target="#edit" class="btn btn-warning btn-sm">
                                         <i class="bi bi-pencil-square"></i>
                                     </a>
-                                    <a href="#" class="btn btn-danger p-1 delete-item">
+                                    <a href="#" class="btn btn-danger btn-sm delete-item">
                                         <i class="bi bi-trash"></i>
                                     </a>
-                                </div>
-                                <div class="d-inline d-md-none text-center">
-                                    <div class="dropdown">
-                                        <a href="#" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                            <i class="bi bi-three-dots-vertical"></i>
-                                        </a>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li>
-                                                <a class="dropdown-item" href="#" data-bs-toggle="modal" data-bs-target="#edit">
-                                                    <i class="bi bi-pencil-square"></i>
-                                                    Edit
-                                                </a>
-                                            </li>
-                                            <li>
-                                                <a class="dropdown-item delete-item" href="#">
-                                                    <i class="bi bi-trash"></i>
-                                                    Delete
-                                                </a>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
-                        <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
-                            <div class="modal-dialog modal-lg modal-dialog-centered">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h5 class="modal-title" id="exampleModalLabel">Form Edit Category</h5>
-                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                    </div>
-                                    <div class="modal-body">
-                                        <form method="post">
-                                            <div class="form-body">
-                                                <div class="col-md-12 form-group">
-                                                    <label for="name">Category Name</label>
-                                                    <input type="int" id="name" class="form-control" name="name" required>
+                                </td>
+                            </tr>
+                            <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-lg modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel">Form Edit Category</h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <form method="post">
+                                                <div class="form-body">
+                                                    <div class="col-md-12 form-group">
+                                                        <label for="name">Name</label>
+                                                        <input type="int" id="name" class="form-control" name="name" required>
+                                                    </div>
+                                                    <div class="col-sm-12 d-flex justify-content-end">
+                                                        <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                                    </div>
                                                 </div>
-                                                <div class="col-sm-12 d-flex justify-content-end">
-                                                    <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                                </div>
-                                            </div>
-                                        </form>
+                                            </form>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <!-- else { echo "<tr><td colspan='3' class='text-center'>Tidak ada data partai.</td></tr>"; } -->
-                    </tbody>
-                </table>
+                        </tbody>
+                    </table>
+                </div>
+
             </div>
 
             <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="tambahLabel" aria-hidden="true">
@@ -130,7 +108,7 @@
                             <form method="post">
                                 <div class="form-body">
                                     <div class="col-md-12 form-group">
-                                        <label for="name">Category Name</label>
+                                        <label for="name">Name</label>
                                         <input type="int" id="name" class="form-control" name="name" required>
                                     </div>
                                     <div class="col-sm-12 d-flex justify-content-end">
@@ -147,7 +125,6 @@
 </div>
 
 <script>
-    // delete confirmation
     const deleteButtons = document.querySelectorAll('.delete-item');
 
     deleteButtons.forEach(button => {
