@@ -50,6 +50,7 @@
                     <table id="table2" class="display nowrap table table-striped" width="100%">
                         <thead>
                             <tr>
+                                <th>No</th>
                                 <th data-priority="1">Name</th>
                                 <th data-priority="2">Category</th>
                                 <th>Detail</th>
@@ -61,6 +62,7 @@
                         </thead>
                         <tbody>
                             <tr>
+                                <td>1</td>
                                 <td>Product 1</td>
                                 <td>Category 1</td>
                                 <td><?= word_limiter('Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptate.', 5) ?></td>
