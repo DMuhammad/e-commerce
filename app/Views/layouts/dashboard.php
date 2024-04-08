@@ -22,6 +22,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/extensions/filepond/filepond.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/compiled/css/filepond.css') ?>">
+
+    <link rel="stylesheet" href="<?= base_url('assets/compiled/css/chat-application.css') ?>">
 </head>
 
 <body>
@@ -52,7 +54,6 @@
     <script src="<?= base_url('assets/extensions/datatables.net/js/dataTables.responsive.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/datatables.net-bs5/js/responsive.bootstrap5.js') ?>"></script>
-
     <script src="<?= base_url('assets/static/js/pages/datatables.js') ?>"></script>
 
     <script src="<?= base_url('assets/extensions/choices.js/public/assets/scripts/choices.min.js') ?>"></script>
@@ -66,6 +67,7 @@
 
     <script src="<?= base_url('assets/extensions/filepond/filepond.js') ?>"></script>
     <script src="<?= base_url('assets/static/js/pages/filepond.js') ?>"></script>
+
 </body>
 
 </html>

@@ -38,6 +38,13 @@
                 </li>
 
                 <li class="sidebar-item">
+                    <a href="/dashboard/chat" class="sidebar-link">
+                        <i class="bi bi-chat-dots"></i>
+                        <span>Chat</span>
+                    </a>
+                </li>
+
+                <li class="sidebar-item">
                     <a href="/dashboard/transactions" class="sidebar-link">
                         <i class="bi bi-credit-card"></i>
                         <span>Transactions</span>
