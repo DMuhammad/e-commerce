@@ -1,5 +1,3 @@
-<?php $load_table = true; ?>
-
 <?= $this->extend('layouts/dashboard'); ?>
 
 <?= $this->section('content'); ?>
