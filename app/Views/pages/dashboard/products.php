@@ -147,6 +147,10 @@
                                                         <div class="summernote"></div>
                                                     </div>
                                                     <div class="col-md-12 form-group">
+                                                        <label for="stock">Stock</label>
+                                                        <input type="int" id="stock" class="form-control" name="stock" required>
+                                                    </div>
+                                                    <div class="col-md-12 form-group">
                                                         <label for="variant">Variant</label>
                                                         <input type="text" id="variant" class="form-control" name="variant" required>
                                                     </div>
@@ -156,7 +160,7 @@
                                                     </div>
                                                     <div class="col-md-12 form-group">
                                                         <label for="images">Images</label>
-                                                        <input type="file" class="multiple-files-filepond" multiple />
+                                                        <input type="file" class="multiple-files-filepond" name="images" multiple />
                                                     </div>
                                                     <div class="col-sm-12 d-flex justify-content-end">
                                                         <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
@@ -207,7 +211,7 @@
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label for="images">Images</label>
-                                        <input type="file" class="multiple-files-filepond" multiple />
+                                        <input type="file" class="multiple-files-filepond" name="images" multiple />
                                     </div>
                                     <div class="col-sm-12 d-flex justify-content-end">
                                         <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
