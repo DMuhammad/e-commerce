@@ -1,12 +1,15 @@
 FilePond.registerPlugin(
   FilePondPluginImagePreview,
   FilePondPluginFileValidateSize,
-  FilePondPluginFileValidateType
+  FilePondPluginFileValidateType,
+  FilePondPluginImageExifOrientation
 );
 
 const multipleFilesFilePond = document.querySelectorAll(
   ".multiple-files-filepond"
 );
+
+const logoFilePond = document.querySelector(".logo-filepond");
 
 multipleFilesFilePond.forEach((filePond) => {
   FilePond.create(filePond, {
@@ -24,4 +27,19 @@ multipleFilesFilePond.forEach((filePond) => {
     maxFileSize: "2MB",
     labelMaxFileSizeExceeded: "File is too large",
   });
+});
+
+// kecilkan ukuran input file pond
+
+FilePond.create(logoFilePond, {
+  labelIdle: `Drag & Drop your picture or <span class="filepond--label-action">Browse</span>`,
+  allowImagePreview: true,
+  imagePreviewHeight: 50,
+  storeAsFile: true,
+  required: true,
+  stylePanelLayout: "compact circle",
+  styleLoadIndicatorPosition: "center bottom",
+  styleButtonRemoveItemPosition: "center bottom",
+  acceptedFileTypes: ["image/png", "image/jpg", "image/jpeg"],
+  labelFileTypeNotAllowed: "Only PNG, JPG, JPEG files are allowed",
 });
