@@ -15,3 +15,7 @@ $routes->get('/dashboard/products', 'ProductController::index');
 $routes->get('/dashboard/transactions', 'TransactionController::index');
 
 $routes->get('/dashboard/chat', 'ChatController::index');
+
+$routes->get('/dashboard/company-profile', 'CompanyProfileController::index');
+
+$routes->get('/dashboard/reports', 'ReportController::index');
