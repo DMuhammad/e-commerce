@@ -24,6 +24,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/compiled/css/filepond.css') ?>">
 
     <link rel="stylesheet" href="<?= base_url('assets/compiled/css/chat-application.css') ?>">
+
+    <link rel="stylesheet" href="<?= base_url('assets/extensions/daterangepicker/daterangepicker.css') ?>">
 </head>
 
 <body>
@@ -64,10 +66,13 @@
     <script src="<?= base_url('assets/extensions/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js') ?>"></script>
 
     <script src="<?= base_url('assets/extensions/filepond/filepond.js') ?>"></script>
     <script src="<?= base_url('assets/static/js/pages/filepond.js') ?>"></script>
 
+    <script src="<?= base_url('assets/extensions/daterangepicker/moment.min.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/daterangepicker/daterangepicker.js') ?>"></script>s
 </body>
 
 </html>
