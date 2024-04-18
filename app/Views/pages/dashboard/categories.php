@@ -54,41 +54,49 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Tube</td>
-                                <td>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#edit" class="btn btn-warning btn-sm">
-                                        <i class="bi bi-pencil-square"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger btn-sm delete-item">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
-                            <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Form Edit Category</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form method="post">
-                                                <div class="form-body">
-                                                    <div class="col-md-12 form-group">
-                                                        <label for="name">Name</label>
-                                                        <input type="int" id="name" class="form-control" name="name" required>
+                            <?php
+                            $no = 1;
+                            foreach ($categories as $category) { ?>
+                                <tr>
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $category->nama_kategori ?></td>
+                                    <td>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#edit<?= $category->id ?>" class="btn btn-warning btn-sm">
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                        <div class="modal fade" id="edit<?= $category->id ?>" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Form Edit Category</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                    <div class="col-sm-12 d-flex justify-content-end">
-                                                        <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                                    <div class="modal-body">
+                                                        <form method="post" action="<?= base_url('/category/update/') . $category->id ?>">
+                                                            <div class="form-body">
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="name">Name</label>
+                                                                    <input type="text" id="name" class="form-control" name="name" required value="<?= $category->nama_kategori ?>">
+                                                                </div>
+                                                                <div class="col-sm-12 d-flex justify-content-end">
+                                                                    <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
+                                        <form action="<?= base_url('/category/delete/') . $category->id ?>" method="post" class="form-delete d-inline-block">
+                                            <button type="submit" class="btn btn-danger btn-sm delete-item">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            <?php
+                            }
+                            ?>
                         </tbody>
                     </table>
                 </div>
@@ -103,11 +111,11 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="post">
+                            <form method="post" action="<?= base_url('/category/create') ?>">
                                 <div class="form-body">
                                     <div class="col-md-12 form-group">
                                         <label for="name">Name</label>
-                                        <input type="int" id="name" class="form-control" name="name" required>
+                                        <input type="text" id="name" class="form-control" name="name" required>
                                     </div>
                                     <div class="col-sm-12 d-flex justify-content-end">
                                         <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
@@ -121,31 +129,5 @@
         </div>
     </section>
 </div>
-
-<script>
-    const deleteButtons = document.querySelectorAll('.delete-item');
-
-    deleteButtons.forEach(button => {
-        button.addEventListener('click', () => {
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-                }
-            })
-        });
-    });
-</script>
 
 <?= $this->endSection(); ?>

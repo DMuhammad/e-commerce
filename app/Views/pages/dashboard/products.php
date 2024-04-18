@@ -54,6 +54,7 @@
                                 <th data-priority="1">Name</th>
                                 <th data-priority="2">Category</th>
                                 <th>Detail</th>
+                                <th>Stok</th>
                                 <th>Variant</th>
                                 <th>Price</th>
                                 <th>Images</th>
@@ -61,27 +62,92 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>Product 1</td>
-                                <td>Category 1</td>
-                                <td><?= word_limiter('Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, voluptate.', 5) ?></td>
-                                <td>Variant 1, Variant 2, Variant 3</td>
-                                <td>Rp. 100.000</td>
-                                <td>
-                                    <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#images">
-                                        <i class="bi bi-images"></i>
-                                    </a>
-                                </td>
-                                <td>
-                                    <a href="#" data-bs-toggle="modal" data-bs-target="#edit" class="btn btn-warning btn-sm">
-                                        <i class="bi bi-pencil"></i>
-                                    </a>
-                                    <a href="#" class="btn btn-danger btn-sm delete-item">
-                                        <i class="bi bi-trash"></i>
-                                    </a>
-                                </td>
-                            </tr>
+                            <?php
+                            $no = 1;
+                            foreach ($products as $product) { ?>
+                                <tr>
+                                    <td> <?= $no++ ?> </td>
+                                    <td> <?= $product->nama_produk ?> </td>
+                                    <td> <?= $product->nama_kategori ?> </td>
+                                    <td><?= word_limiter($product->detail, 5) ?></td>
+                                    <td> <?= $product->stok ?> </td>
+                                    <td> <?= $product->variant ?> </td>
+                                    <td>Rp. <?= $product->harga ?></td>
+                                    <td>
+                                        <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#images">
+                                            <i class="bi bi-images"></i>
+                                        </a>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#edit<?= $product->id ?>" class="btn btn-warning btn-sm">
+                                            <i class="bi bi-pencil"></i>
+                                        </a>
+                                        <div class="modal fade" id="edit<?= $product->id ?>" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Form Edit Product</h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('/product/update/') . $product->id ?>">
+                                                            <div class="form-body">
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="name">Name</label>
+                                                                    <input type="text" id="name" class="form-control" name="name" required value="<?= $product->nama_produk ?>">
+                                                                </div>
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="category">Category</label>
+                                                                    <select class="form-control" name="category" id="category" required>
+                                                                        <?php
+                                                                        foreach ($categories as $category) { ?>
+                                                                            <option value="<?= $category->id ?>" selected="<?= $category->id == $product->category_id ? true : false ?>"><?= $category->nama_kategori ?></option>
+                                                                        <?php
+                                                                        }
+                                                                        ?>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="detail">Detail Product</label>
+                                                                    <textarea name="detail" class="summernote-product"></textarea>
+                                                                </div>
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="stock">Stock</label>
+                                                                    <input type="int" id="stock" class="form-control" name="stock" required value="<?= $product->stok ?>">
+                                                                </div>
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="variant">Variant</label>
+                                                                    <input type="text" id="variant" class="form-control variant-product" name="variant" required value="<?= $product->variant ?>">
+                                                                </div>
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="price">Price</label>
+                                                                    <input type="text" id="price" class="form-control price-product" name="price" placeholder="Rp 100.000" required value="<?= $product->harga ?>">
+                                                                </div>
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="images">Images</label>
+                                                                    <input type="file" class="multiple-files-filepond" name="images[]" multiple />
+                                                                </div>
+                                                                <div class="col-sm-12 d-flex justify-content-end">
+                                                                    <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <form action="<?= base_url('/product/delete/') . $product->id ?>" method="post" class="form-delete d-inline-block">
+                                            <button type="submit" class="btn btn-danger btn-sm delete-item">
+                                                <i class="bi bi-trash"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+
+                            <?php
+                            }
+                            ?>
 
                             <div class="modal fade text-center" id="images" tabindex="-1" aria-labelledby="imagesLabel" aria-hidden="true">
                                 <div class="modal-dialog modal-dialog-centered">
@@ -122,56 +188,6 @@
                                 </div>
                             </div>
 
-                            <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-lg modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Form Edit Product</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data">
-                                                <div class="form-body">
-                                                    <div class="col-md-12 form-group">
-                                                        <label for="name">Name</label>
-                                                        <input type="text" id="name" class="form-control" name="name" required>
-                                                    </div>
-                                                    <div class="col-md-12 form-group">
-                                                        <label for="category">Category</label>
-                                                        <select class="form-control" name="category" id="category" required>
-                                                            <option value="" disabled selected>--Select Category--</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="col-md-12 form-group">
-                                                        <label for="detail">Detail Product</label>
-                                                        <div class="summernote"></div>
-                                                    </div>
-                                                    <div class="col-md-12 form-group">
-                                                        <label for="stock">Stock</label>
-                                                        <input type="int" id="stock" class="form-control" name="stock" required>
-                                                    </div>
-                                                    <div class="col-md-12 form-group">
-                                                        <label for="variant">Variant</label>
-                                                        <input type="text" id="variant" class="form-control" name="variant" required>
-                                                    </div>
-                                                    <div class="col-md-12 form-group">
-                                                        <label for="price">Price</label>
-                                                        <input type="int" id="price" class="form-control" name="price" placeholder="Rp 100.000" required>
-                                                    </div>
-                                                    <div class="col-md-12 form-group">
-                                                        <label for="images">Images</label>
-                                                        <input type="file" class="multiple-files-filepond" name="images" multiple />
-                                                    </div>
-                                                    <div class="col-sm-12 d-flex justify-content-end">
-                                                        <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                                    </div>
-                                                </div>
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
                         </tbody>
                     </table>
                 </div>
@@ -185,7 +201,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data">
+                            <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('/product/create') ?>">
                                 <div class="form-body">
                                     <div class="col-md-12 form-group">
                                         <label for="name">Name</label>
@@ -195,23 +211,33 @@
                                         <label for="category">Category</label>
                                         <select class="form-control" name="category" id="category" required>
                                             <option value="" disabled selected>--Select Category--</option>
+                                            <?php
+                                            foreach ($categories as $category) { ?>
+                                                <option value="<?= $category->id ?>"><?= $category->nama_kategori ?></option>
+                                            <?php
+                                            }
+                                            ?>
                                         </select>
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label for="detail">Detail Product</label>
-                                        <div class="summernote"></div>
+                                        <textarea name="detail" class="summernote-product"></textarea>
+                                    </div>
+                                    <div class="col-md-12 form-group">
+                                        <label for="stock">Stock</label>
+                                        <input type="int" id="stock" class="form-control" name="stock" required>
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label for="variant">Variant</label>
-                                        <input type="text" id="variant" class="form-control" name="variant" required>
+                                        <input type="text" id="variant" class="form-control variant-product" name="variant" required>
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label for="price">Price</label>
-                                        <input type="int" id="price" class="form-control" name="price" placeholder="Rp 100.000" required>
+                                        <input type="text" id="price" class="form-control price-product" name="price" placeholder="Rp 100.000" required>
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label for="images">Images</label>
-                                        <input type="file" class="multiple-files-filepond" name="images" multiple />
+                                        <input type="file" class="multiple-files-filepond" name="images[]" multiple />
                                     </div>
                                     <div class="col-sm-12 d-flex justify-content-end">
                                         <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
@@ -225,61 +251,5 @@
         </div>
     </section>
 </div>
-
-
-<script>
-    document.addEventListener('DOMContentLoaded', function() {
-        const deleteButtons = document.querySelectorAll('.delete-item');
-        deleteButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                Swal.fire({
-                    title: 'Are you sure?',
-                    text: "You won't be able to revert this!",
-                    icon: 'warning',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Yes, delete it!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        Swal.fire(
-                            'Deleted!',
-                            'Your file has been deleted.',
-                            'success'
-                        )
-                    }
-                })
-            });
-        });
-
-        const variant = document.querySelector('#variant');
-        const choices = new Choices(variant, {
-            removeItemButton: true,
-            duplicateItemsAllowed: false,
-            editItems: true,
-            allowHTML: true,
-        })
-
-        const rupiahToNumeric = (rupiah) => {
-            const numericString = rupiah.replace(/[^\d]/g, '');
-            const numericValue = parseFloat(numericString);
-
-            return numericValue;
-        }
-
-        document.getElementById('price').addEventListener('input', function() {
-            let input = this.value;
-            var numericValue = rupiahToNumeric(input);
-            this.value = "Rp. " + numericValue.toLocaleString('id-ID')
-
-            if (isNaN(numericValue)) {
-                this.value = "Rp. 0";
-            }
-        });
-    });
-</script>
-
-
-
 
 <?= $this->endSection(); ?>
