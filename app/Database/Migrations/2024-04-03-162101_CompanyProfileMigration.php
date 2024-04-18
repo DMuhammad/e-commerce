@@ -13,6 +13,10 @@ class CompanyProfileMigration extends Migration
                 'type' => 'BINARY',
                 'constraint' => 16,
             ],
+            'nama' => [
+                'type' => 'VARCHAR',
+                'constraint' => 255
+            ],
             'deskripsi' => [
                 'type' => 'TEXT',
             ],
@@ -20,10 +24,21 @@ class CompanyProfileMigration extends Migration
                 'type' => 'BLOB'
             ],
             'alamat' => [
+                'type' => 'TEXT',
+            ],
+            'email' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255
             ],
             'kontak' => [
+                'type' => 'VARCHAR',
+                'constraint' => 100
+            ],
+            'bank' => [
+                'type' => 'ENUM',
+                'constraint' => ["BCA", "BNI", "BRI", "BSI"],
+            ],
+            'no_rek' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100
             ],

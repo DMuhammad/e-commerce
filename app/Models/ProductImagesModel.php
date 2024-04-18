@@ -8,11 +8,11 @@ class ProductImagesModel extends Model
 {
     protected $table            = 'productimages';
     protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['product_id', 'nama'];
+    protected $allowedFields    = ['id', 'product_id', 'image'];
 
     protected bool $allowEmptyInserts = false;
 

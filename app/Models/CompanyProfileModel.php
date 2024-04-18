@@ -8,11 +8,11 @@ class CompanyProfileModel extends Model
 {
     protected $table            = 'companyprofiles';
     protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['deskripsi', 'image', 'alamat', 'kontak'];
+    protected $allowedFields    = ['id', 'nama', 'deskripsi', 'image', 'alamat', 'email', 'kontak', 'bank', 'no_rek'];
 
     protected bool $allowEmptyInserts = false;
 

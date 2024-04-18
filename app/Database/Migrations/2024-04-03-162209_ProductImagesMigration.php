@@ -17,13 +17,13 @@ class ProductImagesMigration extends Migration
                 'type' => 'BINARY',
                 'constraint' => 16
             ],
-            'nama' => [
+            'image' => [
                 'type' => 'blob'
             ],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('product_id', 'products', 'id');
+        $this->forge->addForeignKey('product_id', 'products', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('productimages', TRUE);
     }
 

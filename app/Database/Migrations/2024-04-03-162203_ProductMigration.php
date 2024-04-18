@@ -13,7 +13,7 @@ class ProductMigration extends Migration
                 'type' => 'BINARY',
                 'constraint' => 16
             ],
-            'nama' => [
+            'nama_produk' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255
             ],
@@ -23,6 +23,9 @@ class ProductMigration extends Migration
             ],
             'detail' => [
                 'type' => 'TEXT'
+            ],
+            'stok' => [
+                'type' => 'INT'
             ],
             'variant' => [
                 'type' => 'VARCHAR',
@@ -35,7 +38,7 @@ class ProductMigration extends Migration
             'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('category_id', 'categories', 'id');
+        $this->forge->addForeignKey('category_id', 'categories', 'id', 'CASCADE', 'CASCADE');
         $this->forge->createTable('products', TRUE);
     }
 

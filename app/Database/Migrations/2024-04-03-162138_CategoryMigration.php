@@ -13,7 +13,7 @@ class CategoryMigration extends Migration
                 'type' => 'BINARY',
                 'constraint' => 16
             ],
-            'nama' => [
+            'nama_kategori' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255
             ],
@@ -21,7 +21,7 @@ class CategoryMigration extends Migration
             'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->addUniqueKey('nama');
+        $this->forge->addUniqueKey('nama_kategori');
         $this->forge->createTable('categories', TRUE);
     }
 
