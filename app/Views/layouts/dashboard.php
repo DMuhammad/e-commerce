@@ -72,7 +72,77 @@
     <script src="<?= base_url('assets/static/js/pages/filepond.js') ?>"></script>
 
     <script src="<?= base_url('assets/extensions/daterangepicker/moment.min.js') ?>"></script>
-    <script src="<?= base_url('assets/extensions/daterangepicker/daterangepicker.js') ?>"></script>s
+    <script src="<?= base_url('assets/extensions/daterangepicker/daterangepicker.js') ?>"></script>
+
+    <script>
+        $('.summernote-product').summernote({
+            toolbar: [
+                ['style', ['style']],
+                ['font', ['bold', 'underline', 'clear']],
+                ['fontname', ['fontname']],
+                ['para', ['ul', 'ol', 'paragraph']],
+                ['view', ['help']],
+            ]
+        })
+    </script>
+
+    <script>
+        const variants = $('.variant-product')
+        for (let index = 0; index < variants.length; index++) {
+            const variant = variants[index];
+            const choices = new Choices(variant, {
+                delimiter: ', ',
+                removeItemButton: true,
+                duplicateItemsAllowed: false,
+                editItems: true,
+                allowHTML: true,
+            })
+        }
+    </script>
+
+    <script>
+        const rupiahToNumeric = (rupiah) => {
+            const numericString = rupiah.replace(/[^\d]/g, '');
+            const numericValue = parseFloat(numericString);
+
+            return numericValue;
+        }
+
+        $('.price-product').on('input', function() {
+            const input = $(this).val()
+            const numericValue = rupiahToNumeric(input)
+            $(this).val(`Rp. ${numericValue.toLocaleString('id-ID')}`)
+
+            if (isNaN(numericValue)) {
+                $(this).val('Rp. 0')
+            }
+        })
+    </script>
+
+    <script>
+        $('.delete-item').click(function(e) {
+            const form = $(this).closest("form");
+            e.preventDefault();
+            Swal.fire({
+                title: 'Are you sure?',
+                text: "You won't be able to revert this!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes, delete it!'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire(
+                        'Deleted!',
+                        'Your file has been deleted.',
+                        'success'
+                    )
+                    form.submit()
+                }
+            })
+        })
+    </script>
 </body>
 
 </html>
