@@ -26,33 +26,33 @@
 
                     <ul class="submenu">
                         <li class="submenu-item">
-                            <a href="/dashboard/company-profile" class="submenu-link">Company Profile</a>
+                            <a href="/company-profile" class="submenu-link">Company Profile</a>
                         </li>
                         <li class="submenu-item">
-                            <a href="/dashboard/categories" class="submenu-link">Categories</a>
+                            <a href="/categories" class="submenu-link">Categories</a>
                         </li>
                         <li class="submenu-item">
-                            <a href="/dashboard/products" class="submenu-link">Products</a>
+                            <a href="/products" class="submenu-link">Products</a>
                         </li>
                     </ul>
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="/dashboard/chat" class="sidebar-link">
+                    <a href="/chat" class="sidebar-link">
                         <i class="bi bi-chat-dots"></i>
                         <span>Chat</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="/dashboard/transactions" class="sidebar-link">
+                    <a href="/transactions" class="sidebar-link">
                         <i class="bi bi-credit-card"></i>
                         <span>Transactions</span>
                     </a>
                 </li>
 
                 <li class="sidebar-item">
-                    <a href="/dashboard/reports" class="sidebar-link">
+                    <a href="/reports" class="sidebar-link">
                         <i class="bi bi-clipboard2-data-fill"></i>
                         <span>Reports</span>
                     </a>
