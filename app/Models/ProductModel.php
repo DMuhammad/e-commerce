@@ -21,14 +21,4 @@ class ProductModel extends Model
     protected $dateFormat    = 'datetime';
     protected $createdField  = 'created_at';
     protected $updatedField  = 'updated_at';
-
-    function getAll()
-    {
-        $builder = $this->db->table('products');
-        $builder->select('products.*, categories.nama_kategori');
-        $builder->join('categories', 'categories.id = products.category_id');
-        $query = $builder->get();
-
-        return $query->getResult();
-    }
 }

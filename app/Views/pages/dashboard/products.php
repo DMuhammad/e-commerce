@@ -74,9 +74,43 @@
                                     <td> <?= $product->variant ?> </td>
                                     <td>Rp. <?= $product->harga ?></td>
                                     <td>
-                                        <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#images">
+                                    <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#imagesModal<?= $product->id ?>">
                                             <i class="bi bi-images"></i>
                                         </a>
+                                        <div class="modal fade text-center" id="imagesModal<?= $product->id ?>" tabindex="-1" aria-labelledby="imagesLabel" aria-hidden="true">
+                                <div class="modal-dialog modal-dialog-centered">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title" id="exampleModalLabel"><?= $product->nama_produk ?></h5>
+                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                        </div>
+                                        <div class="modal-body">
+                                        <div id="carouselProductImages<?= $product->id ?>" class="carousel slide" data-bs-ride="carousel">
+                                        <div class="carousel-indicators">
+                                            <?php foreach ($product->images as $index => $image) { ?>
+                                                <button type="button" data-bs-target="#carouselProductImages<?= $product->id ?>" data-bs-slide-to="<?= $index ?>" class="<?= $index == 0 ? 'active' : '' ?>" aria-label="Slide <?= $index + 1 ?>"></button>
+                                            <?php } ?>
+                                        </div>
+                                                <div class="carousel-inner">
+                                                <?php foreach ($product->images as $index => $image) { ?>
+                                                    <div class="carousel-item <?= $index == 0 ? 'active' : '' ?>">
+                                                        <img src="<?= base_url('img-product/' . $image->image) ?>" class="w-100" alt="...">
+                                                    </div>
+                                                <?php } ?>
+                                                </div>
+                                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductImages<?= $product->id ?>" data-bs-slide="prev">
+                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Previous</span>
+                                                </button>
+                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselProductImages<?= $product->id ?>" data-bs-slide="next">
+                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                                    <span class="visually-hidden">Next</span>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                                     </td>
                                     <td>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#edit<?= $product->id ?>" class="btn btn-warning btn-sm">
@@ -90,7 +124,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('/product/update/') . $product->id ?>">
+                                                        <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('products/update/') . $product->id ?>">
                                                             <div class="form-body">
                                                                 <div class="col-md-12 form-group">
                                                                     <label for="name">Name</label>
@@ -127,6 +161,7 @@
                                                                     <label for="images">Images</label>
                                                                     <input type="file" class="multiple-files-filepond" name="images[]" multiple />
                                                                 </div>
+                                                                <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                                                 <div class="col-sm-12 d-flex justify-content-end">
                                                                     <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
                                                                 </div>
@@ -137,7 +172,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <form action="<?= base_url('/product/delete/') . $product->id ?>" method="post" class="form-delete d-inline-block">
+                                        <form action="<?= base_url('products/delete/') . $product->id ?>" method="post" class="form-delete d-inline-block">
+                                            <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                             <button type="submit" class="btn btn-danger btn-sm delete-item">
                                                 <i class="bi bi-trash"></i>
                                             </button>
@@ -149,44 +185,7 @@
                             }
                             ?>
 
-                            <div class="modal fade text-center" id="images" tabindex="-1" aria-labelledby="imagesLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Nama Produk</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <div id="carouselProductImages" class="carousel slide" data-bs-ride="carousel">
-                                                <div class="carousel-indicators">
-                                                    <button type="button" data-bs-target="#carouselProductImages" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                                                    <button type="button" data-bs-target="#carouselProductImages" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                                                    <button type="button" data-bs-target="#carouselProductImages" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                                                </div>
-                                                <div class="carousel-inner">
-                                                    <div class="carousel-item active">
-                                                        <img src="<?= base_url('assets/compiled/jpg/1.jpg') ?>" class=" w-100" alt="...">
-                                                    </div>
-                                                    <div class="carousel-item">
-                                                        <img src="<?= base_url('assets/compiled/jpg/2.jpg') ?>" class=" w-100" alt="...">
-                                                    </div>
-                                                    <div class="carousel-item">
-                                                        <img src="<?= base_url('assets/compiled/jpg/3.jpg') ?>" class=" w-100" alt="...">
-                                                    </div>
-                                                </div>
-                                                <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductImages" data-bs-slide="prev">
-                                                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Previous</span>
-                                                </button>
-                                                <button class="carousel-control-next" type="button" data-bs-target="#carouselProductImages" data-bs-slide="next">
-                                                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                                    <span class="visually-hidden">Next</span>
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            
 
                         </tbody>
                     </table>
@@ -201,7 +200,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('/product/create') ?>">
+                            <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('products/create') ?>">
                                 <div class="form-body">
                                     <div class="col-md-12 form-group">
                                         <label for="name">Name</label>
@@ -239,6 +238,7 @@
                                         <label for="images">Images</label>
                                         <input type="file" class="multiple-files-filepond" name="images[]" multiple />
                                     </div>
+                                    <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                     <div class="col-sm-12 d-flex justify-content-end">
                                         <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
                                     </div>

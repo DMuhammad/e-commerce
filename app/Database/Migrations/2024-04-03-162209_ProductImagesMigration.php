@@ -18,9 +18,11 @@ class ProductImagesMigration extends Migration
                 'constraint' => 16
             ],
             'image' => [
-                'type' => 'blob'
+                'type' => 'VARCHAR',
+                'constraint' => 255
             ],
-            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
+            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
+            'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('product_id', 'products', 'id', 'CASCADE', 'CASCADE');

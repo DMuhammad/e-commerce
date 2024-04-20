@@ -24,8 +24,17 @@ class ProductController extends BaseController
 
     public function index()
     {
+        $data['products'] = $this->products->select('products.*, categories.nama_kategori')
+        ->join('categories', 'categories.id = products.category_id')
+        ->findAll();
+
+        foreach ($data['products'] as $key => $product) {
+            $data['products'][$key]->images = $this->productImages->select('image')
+            ->where('product_id', $product->id)
+            ->findAll();
+        }
+
         $data['categories'] = $this->categories->findAll();
-        $data['products'] = $this->products->getAll();
 
         return view('pages/dashboard/products', $data);
     }
@@ -44,12 +53,19 @@ class ProductController extends BaseController
 
         $images = $this->request->getFileMultiple('images');
 
-        for ($i = 0; $i < count($images); $i++) {
-            $res = $this->request->getFile('images.' . $i)->store('product_image/');
+        // Check if the product folder exists, if not create it
+        if (!is_dir(ROOTPATH . 'public/img-product')) {
+            mkdir(ROOTPATH . 'public/img-product', 0777, TRUE);
+        }
+
+        foreach ($images as $image) {
+            $imageName = $image->getRandomName();
+            $image->move(ROOTPATH . 'public/img-product', $imageName);
+
             $this->productImages->insert([
                 'id' => Uuid::uuid4(),
                 'product_id' => $this->products->getInsertID(),
-                'image' => $res
+                'image' => $imageName
             ]);
         }
 

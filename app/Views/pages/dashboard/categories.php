@@ -72,12 +72,13 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form method="post" action="<?= base_url('/category/update/') . $category->id ?>">
+                                                        <form method="post" action="<?= base_url('categories/update/') . $category->id ?>">
                                                             <div class="form-body">
                                                                 <div class="col-md-12 form-group">
                                                                     <label for="name">Name</label>
                                                                     <input type="text" id="name" class="form-control" name="name" required value="<?= $category->nama_kategori ?>">
                                                                 </div>
+                                                                <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                                                 <div class="col-sm-12 d-flex justify-content-end">
                                                                     <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
                                                                 </div>
@@ -87,7 +88,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <form action="<?= base_url('/category/delete/') . $category->id ?>" method="post" class="form-delete d-inline-block">
+                                        <form action="<?= base_url('categories/delete/') . $category->id ?>" method="POST" class="form-delete d-inline-block">
+                                            <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />    
                                             <button type="submit" class="btn btn-danger btn-sm delete-item">
                                                 <i class="bi bi-trash"></i>
                                             </button>
@@ -111,12 +113,13 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="<?= base_url('/category/create') ?>">
+                            <form method="post" action="<?= base_url('categories/create') ?>">
                                 <div class="form-body">
                                     <div class="col-md-12 form-group">
                                         <label for="name">Name</label>
                                         <input type="text" id="name" class="form-control" name="name" required>
                                     </div>
+                                    <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                     <div class="col-sm-12 d-flex justify-content-end">
                                         <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
                                     </div>
