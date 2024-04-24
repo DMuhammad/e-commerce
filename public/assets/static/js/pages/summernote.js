@@ -18,3 +18,13 @@ $("#hint").summernote({
     },
   },
 });
+
+$(".summernote-product").summernote({
+  toolbar: [
+    ["style", ["style"]],
+    ["font", ["bold", "underline", "clear"]],
+    ["fontname", ["fontname"]],
+    ["para", ["ul", "ol", "paragraph"]],
+    ["view", ["help"]],
+  ],
+});

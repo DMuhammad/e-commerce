@@ -46,59 +46,46 @@
     </div>
 
     <script src="<?= base_url('assets/compiled/js/app.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/jquery/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') ?>"></script>
 
+    <!-- Sweetalert / Swalfire -->
     <script src="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.js') ?>"></script>
+    <script src="<?= base_url('assets/static/js/pages/swalfire.js') ?>"></script>
 
-    <script src="<?= base_url('assets/extensions/jquery/jquery.min.js') ?>"></script>
-
+    <!-- Datatables -->
     <script src="<?= base_url('assets/extensions/datatables.net/js/dataTables.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/datatables.net/js/dataTables.responsive.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/datatables.net-bs5/js/responsive.bootstrap5.js') ?>"></script>
     <script src="<?= base_url('assets/static/js/pages/datatables.js') ?>"></script>
 
+    <!-- Choices -->
     <script src="<?= base_url('assets/extensions/choices.js/public/assets/scripts/choices.min.js') ?>"></script>
+    <script src="<?= base_url('assets/static/js/pages/choices.js') ?>"></script>
 
+    <!-- Summernote -->
     <script src="<?= base_url('assets/extensions/summernote/summernote-lite.min.js') ?>"></script>
     <script src="<?= base_url('assets/static/js/pages/summernote.js') ?>"></script>
 
+    <!-- Filepond -->
     <script src="<?= base_url('assets/extensions/filepond-plugin-file-validate-size/filepond-plugin-file-validate-size.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/filepond-plugin-file-validate-type/filepond-plugin-file-validate-type.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js') ?>"></script>
-
     <script src="<?= base_url('assets/extensions/filepond/filepond.js') ?>"></script>
     <script src="<?= base_url('assets/static/js/pages/filepond.js') ?>"></script>
 
+    <!-- Datepicker -->
     <script src="<?= base_url('assets/extensions/daterangepicker/moment.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/daterangepicker/daterangepicker.js') ?>"></script>
 
-    <script>
-        $('.summernote-product').summernote({
-            toolbar: [
-                ['style', ['style']],
-                ['font', ['bold', 'underline', 'clear']],
-                ['fontname', ['fontname']],
-                ['para', ['ul', 'ol', 'paragraph']],
-                ['view', ['help']],
-            ]
-        })
-    </script>
+    <!-- Scrollbar -->
+    <script src="<?= base_url('assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') ?>"></script>
 
-    <script>
-        const variants = $('.variant-product')
-        for (let index = 0; index < variants.length; index++) {
-            const variant = variants[index];
-            const choices = new Choices(variant, {
-                delimiter: ', ',
-                removeItemButton: true,
-                duplicateItemsAllowed: false,
-                editItems: true,
-                allowHTML: true,
-            })
-        }
-    </script>
+    <!-- ChartJS -->
+    <script src="<?= base_url('assets/extensions/chart.js/chart.umd.js') ?>"></script>
+    <script src="<?= base_url('assets/static/js/pages/ui-chartjs.js') ?>"></script>
 
     <script>
         const rupiahToNumeric = (rupiah) => {
@@ -116,31 +103,6 @@
             if (isNaN(numericValue)) {
                 $(this).val('Rp. 0')
             }
-        })
-    </script>
-
-    <script>
-        $('.delete-item').click(function(e) {
-            const form = $(this).closest("form");
-            e.preventDefault();
-            Swal.fire({
-                title: 'Are you sure?',
-                text: "You won't be able to revert this!",
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes, delete it!'
-            }).then((result) => {
-                if (result.isConfirmed) {
-                    Swal.fire(
-                        'Deleted!',
-                        'Your file has been deleted.',
-                        'success'
-                    )
-                    form.submit()
-                }
-            })
         })
     </script>
 </body>

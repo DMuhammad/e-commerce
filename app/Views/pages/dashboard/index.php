@@ -87,7 +87,8 @@
                             <h4>Profile Visit</h4>
                         </div>
                         <div class="card-body">
-                            <div id="chart-profile-visit"></div>
+                            <!-- <div id="chart-profile-visit"></div> -->
+                            <canvas id="bar"></canvas>
                         </div>
                     </div>
                 </div>
@@ -263,6 +264,13 @@
                 </div>
                 <div class="card-body">
                     <div id="chart-visitors-profile"></div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body" style="position: relative; height: 50vh; width: 75vw;">
+                    <canvas id="line"></canvas>
                 </div>
             </div>
         </div>

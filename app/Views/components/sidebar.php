@@ -1,10 +1,10 @@
 <div id="sidebar">
     <div class="sidebar-wrapper active">
         <div class="sidebar-header position-relative">
-            <div class="d-flex justify-content-between align-items-center">
-                <div class="logo">
-                    <a href="index.html"><img src="./assets/compiled/svg/logo.svg" alt="Logo" srcset="" /></a>
-                </div>
+            <div class="container-fluid">
+                <a href="/dashboard">
+                    <img class="w-100 h-100" src="./assets/static/images/logo/company-logo.png" alt="Logo" />
+                </a>
             </div>
         </div>
         <div class="sidebar-menu">
