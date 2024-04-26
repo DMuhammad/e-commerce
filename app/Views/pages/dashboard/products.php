@@ -184,14 +184,10 @@
                             <?php
                             }
                             ?>
-
-                            
-
                         </tbody>
                     </table>
                 </div>
             </div>
-
             <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="tambahLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">

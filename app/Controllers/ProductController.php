@@ -6,6 +6,7 @@ use App\Models\CategoryModel;
 use App\Models\ProductImagesModel;
 use App\Models\ProductModel;
 use Ramsey\Uuid\Uuid;
+use Exception;
 
 class ProductController extends BaseController
 {
@@ -24,18 +25,20 @@ class ProductController extends BaseController
 
     public function index()
     {
-        $data['products'] = $this->products->select('products.*, categories.nama_kategori')
+        $products = $this->products->select('products.*, categories.nama_kategori')
         ->join('categories', 'categories.id = products.category_id')
         ->findAll();
 
-        foreach ($data['products'] as $key => $product) {
-            $data['products'][$key]->images = $this->productImages->select('image')
+        foreach ($products as $key => $product) {
+            $products[$key]->images = $this->productImages->select('image')
             ->where('product_id', $product->id)
             ->findAll();
         }
-
-        $data['categories'] = $this->categories->findAll();
-
+        $data = [
+            'user' => session()->get('nama_lengkap'),
+            'products' => $products,
+            'categories' => $this->categories->findAll(),
+        ];
         return view('pages/dashboard/products', $data);
     }
 
@@ -80,8 +83,31 @@ class ProductController extends BaseController
 
     public function delete($id)
     {
-        $this->products->delete($id);
+    // Delete the product
+    $this->products->delete($id);
 
-        return redirect()->back();
+    // Get the images where 'product_id' is the same as the id request
+    $images = $this->productImages->where('product_id', $id)->findAll();
+
+    // Delete each image file using CodeIgniter's File helper
+    $file = \Config\Services::file();
+
+    foreach ($images as $imageproduct) {
+        $filePath = ROOTPATH . 'public/img-product/' . $imageproduct->image;
+        if (file_exists($filePath)) {
+        try {
+            // Attempt to delete the file using the File helper
+            $file->delete($filePath);
+        } catch (Exception $e) {
+            // Log the error or handle it gracefully
+            log_message('error', 'Error deleting image file: ' . $e->getMessage());
+        }
+        }
+    }
+
+    // Delete the image records from the 'productImages' table
+    $this->productImages->where('product_id', $id)->delete();
+
+    return redirect()->back();
     }
 }

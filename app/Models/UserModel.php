@@ -34,7 +34,7 @@ class UserModel extends Model
         $user = $this->where('email', $data['email'])->first();
 
         if ($user && password_verify($data['password'], $user->password)) {
-            return [$user->nama_lengkap, $user->id];
+            return [$user->nama_lengkap, $user->id, $user->role];
         } else {
             return false;
         }

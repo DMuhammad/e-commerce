@@ -16,7 +16,10 @@ class CategoryController extends BaseController
 
     public function index(): string
     {
-        $data['categories'] = $this->categories->findAll();
+        $data = [
+            'categories' => $this->categories->findAll(),
+            'user' => session()->get('nama_lengkap'),
+        ];
         return view('pages/dashboard/categories', $data);
     }
 

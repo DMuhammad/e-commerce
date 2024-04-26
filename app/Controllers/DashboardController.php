@@ -6,6 +6,10 @@ class DashboardController extends BaseController
 {
     public function index(): string
     {
-        return view('pages/dashboard/index');
+        $data = [
+            'user' => session()->get('nama_lengkap'),
+        ];
+
+        return view('pages/dashboard/index', $data);
     }
 }
