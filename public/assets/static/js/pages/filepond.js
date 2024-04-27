@@ -12,6 +12,15 @@ const multipleFilesFilePond = document.querySelectorAll(
 const logoFilePond = document.querySelector(".logo-filepond");
 
 multipleFilesFilePond.forEach((filePond) => {
+  var productImages = JSON.parse(filePond.dataset.images || '[]');
+  var fileItems = productImages.map(function(image) {
+    return {
+      source: image,
+      options: {
+        type: 'local'
+      }
+    };
+  });
   FilePond.create(filePond, {
     credits: null,
     allowImagePreview: true,
@@ -26,6 +35,7 @@ multipleFilesFilePond.forEach((filePond) => {
     allowFileSizeValidation: true,
     maxFileSize: "2MB",
     labelMaxFileSizeExceeded: "File is too large",
+    files: fileItems,
   });
 });
 

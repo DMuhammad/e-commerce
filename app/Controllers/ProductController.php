@@ -57,57 +57,72 @@ class ProductController extends BaseController
         $images = $this->request->getFileMultiple('images');
 
         // Check if the product folder exists, if not create it
-        if (!is_dir(ROOTPATH . 'public/img-product')) {
-            mkdir(ROOTPATH . 'public/img-product', 0777, TRUE);
+        if (!is_dir(WRITEPATH . 'uploads/img-product')) {
+            mkdir(WRITEPATH . 'uploads/img-product', 0777, TRUE);
         }
 
         foreach ($images as $image) {
-            $imageName = $image->getRandomName();
-            $image->move(ROOTPATH . 'public/img-product', $imageName);
+            if ($image->isValid() && !$image->hasMoved()) {
+                $imageName = $image->getRandomName();
+                // Move the image to the 'writable/uploads/img-product' directory
+                $image->move(WRITEPATH . 'uploads/img-product', $imageName);
 
-            $this->productImages->insert([
-                'id' => Uuid::uuid4(),
-                'product_id' => $this->products->getInsertID(),
-                'image' => $imageName
-            ]);
-        }
-
+                $this->productImages->insert([
+                    'id' => Uuid::uuid4(),
+                    'product_id' => $this->products->getInsertID(),
+                    'image' => $imageName
+                ]);
+            }
+    }
         return redirect()->back();
     }
 
     public function update($id)
     {
+        $this->products->update($id, [
+            'nama_produk' => $this->request->getPost('name'),
+            'category_id' => $this->request->getPost('category'),
+            'detail' => stripHtmlTags($this->request->getPost('detail')),
+            'stok' => $this->request->getPost('stock'),
+            'variant' => $this->request->getPost('variant'),
+            'harga' => stripRpAndComma($this->request->getPost('price'))
+        ]);
+
+        $images = $this->request->getFileMultiple('images');
+
+        // Check if the product folder exists, if not create it
+        if (!is_dir(WRITEPATH . 'uploads/img-product')) {
+            mkdir(WRITEPATH . 'uploads/img-product', 0777, TRUE);
+        }
+        
 
         return redirect()->back();
     }
 
     public function delete($id)
     {
-    // Delete the product
-    $this->products->delete($id);
+        // Get the images where 'product_id' is the same as the id request
+        $images = $this->productImages->where('product_id', $id)->findAll();
 
-    // Get the images where 'product_id' is the same as the id request
-    $images = $this->productImages->where('product_id', $id)->findAll();
-
-    // Delete each image file using CodeIgniter's File helper
-    $file = \Config\Services::file();
-
-    foreach ($images as $imageproduct) {
-        $filePath = ROOTPATH . 'public/img-product/' . $imageproduct->image;
-        if (file_exists($filePath)) {
-        try {
-            // Attempt to delete the file using the File helper
-            $file->delete($filePath);
-        } catch (Exception $e) {
-            // Log the error or handle it gracefully
-            log_message('error', 'Error deleting image file: ' . $e->getMessage());
+        foreach ($images as $imageproduct) {
+            // Define the file path
+            $filePath = WRITEPATH . 'uploads/img-product/' . $imageproduct->image;
+            if (file_exists($filePath)) {
+                try {
+                    // Delete the file
+                    unlink($filePath);
+                } catch (Exception $e) {
+                    log_message('error', 'Error deleting image file: ' . $e->getMessage());
+                }
+            }
         }
-        }
-    }
 
-    // Delete the image records from the 'productImages' table
-    $this->productImages->where('product_id', $id)->delete();
+        // Delete the image records from the 'productImages' table
+        $this->productImages->where('product_id', $id)->delete();
+        
+        // Delete the product
+        $this->products->delete($id);
 
-    return redirect()->back();
+        return redirect()->back();
     }
 }
