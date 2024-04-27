@@ -6,6 +6,11 @@ class ChatController extends BaseController
 {
     public function index()
     {
-        return view('pages/dashboard/chat');
+        $data = [
+            'user' => session()->get('nama_lengkap'),
+            'role' => session()->get('role'),
+        ];
+
+        return view('pages/dashboard/chat', $data);
     }
 }

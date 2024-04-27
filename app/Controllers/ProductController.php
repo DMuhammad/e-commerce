@@ -36,6 +36,7 @@ class ProductController extends BaseController
         }
         $data = [
             'user' => session()->get('nama_lengkap'),
+            'role' => session()->get('role'),
             'products' => $products,
             'categories' => $this->categories->findAll(),
         ];

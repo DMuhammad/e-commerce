@@ -1,36 +1,39 @@
 <?php
 
-use CodeIgniter\Router\RouteCollection;
+use App\Controllers\AuthController;
+use App\Controllers\ProductController;
 use App\Controllers\CategoryController;
+use CodeIgniter\Router\RouteCollection;
+use App\Controllers\DashboardController;
 
 /**
  * @var RouteCollection $routes
  */
 $routes->get('/', 'Home::index');
-$routes->get('/login', 'AuthController::index', ['as' => 'login'], ['filter' => 'isLogin']);
-$routes->post('/login', 'AuthController::authenticate');
-$routes->post('/logout', 'AuthController::logout');
+$routes->get('/login', [AuthController::class, 'index'], ['filter' => 'islogin']);
+$routes->post('/login', [AuthController::class, 'authenticate']);
+$routes->post('/logout', [AuthController::class, 'logout']);
 
 // Apply the 'auth' filter to the '/dashboard' route.
-$routes->get('/dashboard', 'DashboardController::index', ['filter' => 'auth']);
+$routes->get('/dashboard', [DashboardController::class, 'index'], ['filter' => 'auth']);
 
 // Apply the 'auth' filter to all routes within the 'categories' group.
-$routes->group('categories', ['filter' => 'auth'], function($routes) {
-    $routes->get('/', [CategoryController::class, 'index'], ['as' => 'categories']);
-    $routes->post('create', [CategoryController::class, 'store'], ['as' => 'categories.store']);
-    $routes->post('update/(:segment)', [CategoryController::class, 'update'], ['as' => 'categories.update']);
-    $routes->post('delete/(:segment)', [CategoryController::class, 'delete'], ['as' => 'categories.delete']);
+$routes->group('dashboard/categories', ['filter' => 'admin'], function($routes) {
+    $routes->get('/', [CategoryController::class, 'index']);
+    $routes->post('create', [CategoryController::class, 'store']);
+    $routes->post('update/(:segment)', [CategoryController::class, 'update']);
+    $routes->post('delete/(:segment)', [CategoryController::class, 'delete']);
 });
 
 // Apply the 'auth' filter to all routes within the 'products' group.
-$routes->group('products', ['filter' => 'auth'], function($routes) {
-    $routes->get('/', 'ProductController::index');
-    $routes->post('create', 'ProductController::store');
-    $routes->post('update/(:segment)', 'ProductController::update/$1');
-    $routes->post('delete/(:segment)', 'ProductController::delete/$1');
+$routes->group('dashboard/products', ['filter' => 'admin'], function($routes) {
+    $routes->get('/', [ProductController::class, 'index']);
+    $routes->post('create', [ProductController::class, 'store']);
+    $routes->post('update/(:segment)', [ProductController::class, 'update']);
+    $routes->post('delete/(:segment)', [ProductController::class, 'delete']);
 });
 
-$routes->get('/transactions', 'TransactionController::index');
-$routes->get('/chat', 'ChatController::index');
-$routes->get('/company-profile', 'CompanyProfileController::index');
-$routes->get('/reports', 'ReportController::index');
+$routes->get('/dashboard/transactions', 'TransactionController::index');
+$routes->get('/dashboard/chats', 'ChatController::index');
+$routes->get('/dashboard/company-profile', 'CompanyProfileController::index');
+$routes->get('/dashboard/reports', 'ReportController::index');

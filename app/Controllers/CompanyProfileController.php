@@ -8,6 +8,7 @@ class CompanyProfileController extends BaseController
     {
         $data = [
             'user' => session()->get('nama_lengkap'),
+            'role' => session()->get('role'),
         ];
 
         return view('pages/dashboard/company-profile', $data);

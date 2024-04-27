@@ -19,6 +19,7 @@ class CategoryController extends BaseController
         $data = [
             'categories' => $this->categories->findAll(),
             'user' => session()->get('nama_lengkap'),
+            'role' => session()->get('role'),
         ];
         return view('pages/dashboard/categories', $data);
     }
