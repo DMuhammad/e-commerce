@@ -33,7 +33,7 @@ class Filters extends BaseConfig
         'islogin' => IsLogin::class,
         'admin' => [
             IsAdmin::class,
-            IsOwner::class,
+            // IsOwner::class,
         ],
         'customer' => IsCustomer::class,
         'owner' => IsOwner::class,

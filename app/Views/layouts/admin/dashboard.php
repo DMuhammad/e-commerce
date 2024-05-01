@@ -30,18 +30,14 @@
 
 <body>
     <div id="app">
-        <?= $this->include('components/sidebar'); ?>
+        <?= $this->include('components/admin/sidebar'); ?>
 
         <div id="main">
-            <header class="mb-3">
-                <a href="#" class="burger-btn d-block d-xl-none">
-                    <i class="bi bi-justify fs-3"></i>
-                </a>
-            </header>
+            <?= $this->include('components/admin/header'); ?>
 
             <?= $this->renderSection('content'); ?>
 
-            <?= $this->include('components/footer'); ?>
+            <?= $this->include('components/admin/footer'); ?>
         </div>
     </div>
 

@@ -36,6 +36,10 @@ class AuthController extends BaseController
             $this->session->set('id', $user[1]);
             $this->session->set('role', $user[2]);
 
+            if ($user[2] == 'User') {
+                return redirect()->to('/');
+            }
+
             return redirect()->to('/dashboard');
         } else {
             $this->session->setFlashdata('error', 'Email atau password salah');
