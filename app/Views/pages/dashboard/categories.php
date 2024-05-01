@@ -1,4 +1,4 @@
-<?= $this->extend('layouts/dashboard'); ?>
+<?= $this->extend('layouts/admin/dashboard'); ?>
 
 <?= $this->section('content'); ?>
 
@@ -72,7 +72,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form method="post" action="<?= base_url('categories/update/') . $category->id ?>">
+                                                        <form method="post" action="<?= base_url('dashboard/categories/update/') . $category->id ?>">
                                                             <div class="form-body">
                                                                 <div class="col-md-12 form-group">
                                                                     <label for="name">Name</label>
@@ -88,8 +88,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <form action="<?= base_url('categories/delete/') . $category->id ?>" method="POST" class="form-delete d-inline-block">
-                                            <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />    
+                                        <form action="<?= base_url('dashboard/categories/delete/') . $category->id ?>" method="POST" class="form-delete d-inline-block">
+                                            <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                             <button type="submit" class="btn btn-danger btn-sm delete-item">
                                                 <i class="bi bi-trash"></i>
                                             </button>
@@ -113,7 +113,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="post" action="<?= base_url('categories/create') ?>">
+                            <form method="post" action="<?= base_url('dashboard/categories/create') ?>">
                                 <div class="form-body">
                                     <div class="col-md-12 form-group">
                                         <label for="name">Name</label>
