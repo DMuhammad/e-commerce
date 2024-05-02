@@ -7,10 +7,7 @@
     <title>Homepage</title>
 
     <link rel="stylesheet" href="<?= base_url('assets/compiled/css/app.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/compiled/fontawesome/css/fontawesome.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/compiled/fontawesome/css/brands.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/compiled/fontawesome/css/solid.min.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/compiled/fontawesome/css/regular.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/extensions/fontawesome/css/all.min.css') ?>">
 
     <style>
         .hero-section {
