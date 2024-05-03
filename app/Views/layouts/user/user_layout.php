@@ -7,8 +7,9 @@
     <title>Homepage</title>
 
     <link rel="stylesheet" href="<?= base_url('assets/compiled/css/app.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/extensions/fontawesome/css/all.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/static/css/custom.css') ?>">
 
+    <link rel="stylesheet" href="<?= base_url('assets/extensions/fontawesome/css/all.min.css') ?>">
     <style>
         .hero-section {
             background-image: url('<?= base_url('assets/static/images/background.png') ?>');
@@ -28,10 +29,31 @@
 
     <?= $this->renderSection('content'); ?>
 
+    <?= $this->include('components/user/chat'); ?>
+
     <?= $this->include('components/user/footer'); ?>
 
     <script src="<?= base_url('assets/compiled/js/app.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/jquery/jquery.min.js') ?>"></script>
+    <script>
+        $(".chat-btn").click(function(e) {
+            e.stopPropagation();
+            $(".chat-popup").toggleClass("d-none");
+        });
+
+        $(".close-chat").click(function() {
+            $(".chat-popup").addClass("d-none");
+        });
+
+        $(document).click(function(e) {
+            if (
+                !$(e.target).closest(".chat-popup").length &&
+                !$(e.target).closest(".chat-btn").length
+            ) {
+                $(".chat-popup").addClass("d-none");
+            }
+        });
+    </script>
 </body>
 
 </html>
