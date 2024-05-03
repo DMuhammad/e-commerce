@@ -12,13 +12,13 @@
 </head>
 
 <body>
-    <div class="row g-0 flex-md-row-reverse bg-white">
+    <div class="row g-0 flex-md-row-reverse bg-white h-100">
         <div class="col-12 col-md-6">
-            <img class="img-fluid object-fit-cover h-100 w-100" loading="lazy" src="<?= base_url('assets/static/images/background-auth.png') ?>" alt="Welcome back you've been missed!">
+            <img class="img-fluid object-fit-cover h-100" loading="lazy" src="<?= base_url('assets/static/images/background.png') ?>" alt="Welcome back you've been missed!">
         </div>
 
         <div class="col-12 col-md-6">
-            <div class="d-flex flex-column justify-content-center align-items-center p-4 p-md-5 h-100">
+            <div class="d-flex flex-column justify-content-center align-items-center p-3 p-md-4 p-xl-5 h-100">
                 <div class="flex-fill">
                     <div class="text-center">
                         <a href="<?= base_url('/login') ?>" class="custom-link fw-medium mx-3">Login</a>
