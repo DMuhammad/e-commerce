@@ -47,6 +47,11 @@ class AuthController extends BaseController
         }
     }
 
+    public function register()
+    {
+        return view('pages/auth/register');
+    }
+
     public function logout()
     {
         $this->session->destroy();

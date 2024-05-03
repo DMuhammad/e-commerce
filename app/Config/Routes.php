@@ -13,6 +13,7 @@ use App\Controllers\Home;
 // $routes->get('/', 'Home::index');
 $routes->get('/login', [AuthController::class, 'index'], ['filter' => 'islogin']);
 $routes->post('/login', [AuthController::class, 'authenticate']);
+$routes->get('/register', [AuthController::class, 'register']);
 $routes->get('/logout', [AuthController::class, 'logout']);
 
 // Apply the 'auth' filter to the '/dashboard' route.
