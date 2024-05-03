@@ -41,4 +41,5 @@ $routes->get('/dashboard/company-profile', 'CompanyProfileController::index');
 $routes->get('/dashboard/reports', 'ReportController::index');
 
 $routes->get('/', [Home::class, 'index'], ['filter' => 'auth']);
+$routes->get('/products', [ProductController::class, 'index'], ['filter' => 'auth']);
 // $routes->get('/');

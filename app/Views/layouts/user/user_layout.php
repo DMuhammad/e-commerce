@@ -11,7 +11,7 @@
 
     <style>
         .hero-section {
-            background-image: url('<?= base_url('assets/static/images/hero-img.png') ?>');
+            background-image: url('<?= base_url('assets/static/images/background.png') ?>');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
