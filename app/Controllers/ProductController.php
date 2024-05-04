@@ -26,13 +26,13 @@ class ProductController extends BaseController
     public function index()
     {
         $products = $this->products->select('products.*, categories.nama_kategori')
-        ->join('categories', 'categories.id = products.category_id')
-        ->findAll();
+            ->join('categories', 'categories.id = products.category_id')
+            ->findAll();
 
         foreach ($products as $key => $product) {
             $products[$key]->images = $this->productImages->select('image')
-            ->where('product_id', $product->id)
-            ->findAll();
+                ->where('product_id', $product->id)
+                ->findAll();
         }
         $data = [
             'user' => session()->get('nama_lengkap'),
@@ -74,7 +74,7 @@ class ProductController extends BaseController
                     'image' => $imageName
                 ]);
             }
-    }
+        }
         return redirect()->back();
     }
 
@@ -95,7 +95,7 @@ class ProductController extends BaseController
         if (!is_dir(WRITEPATH . 'uploads/img-product')) {
             mkdir(WRITEPATH . 'uploads/img-product', 0777, TRUE);
         }
-        
+
 
         return redirect()->back();
     }
@@ -120,7 +120,7 @@ class ProductController extends BaseController
 
         // Delete the image records from the 'productImages' table
         $this->productImages->where('product_id', $id)->delete();
-        
+
         // Delete the product
         $this->products->delete($id);
 

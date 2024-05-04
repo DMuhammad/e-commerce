@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg fixed-top navbar-custom">
+<nav class="navbar navbar-expand-lg navbar-light fixed-top">
     <div class="container">
         <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -8,7 +8,7 @@
                 <img src="<?= base_url('assets/static/images/logo/company-logo-2.png') ?>" alt="Company Logo" id="logo" width="100">
             </a>
             <div>
-                <ul class="navbar-nav">
+                <ul class="nav nav-underline">
                     <li class="nav-item">
                         <a class="nav-link fw-medium active" aria-current="page" href="#">Home</a>
                     </li>
