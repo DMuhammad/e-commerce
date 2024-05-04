@@ -1,6 +1,10 @@
-<nav class="navbar navbar-expand-lg navbar-light fixed-top">
+<?php
+$currentUrl = $_SERVER['REQUEST_URI'];
+?>
+
+<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom <?= $currentUrl != '/' ? 'bg-white shadow' : '' ?>">
     <div class="container">
-        <button class="navbar-toggler d-none" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler <?= $currentUrl == '/' ? 'navbar-custom-toggle' : '' ?>" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
         <div class="collapse navbar-collapse d-lg-flex justify-content-lg-between align-items-center" id="navbarNav">
@@ -8,32 +12,32 @@
                 <img src="<?= base_url('assets/static/images/logo/company-logo-2.png') ?>" alt="Company Logo" id="logo" width="100">
             </a>
             <div>
-                <ul class="nav nav-underline">
+                <ul class="navbar-nav nav-underline">
                     <li class="nav-item">
-                        <a class="nav-link fw-medium active" aria-current="page" href="#">Home</a>
+                        <a class="nav-link fw-medium <?= $currentUrl == '/' ? 'active' : '' ?>" aria-current="page" href="/">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-medium" href="#">Products</a>
+                        <a class="nav-link fw-medium <?= $currentUrl == '/products' ? 'active' : '' ?>" href="/products">Products</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link fw-medium" href="#">About Us</a>
+                        <a class="nav-link fw-medium <?= $currentUrl == '/about-us' ? 'active' : '' ?>" href="/about-us">About Us</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-medium d-md-none d-block" href="/cart">Cart</a>
+                    <li class="nav-item d-md-none d-block">
+                        <a class="nav-link fw-medium <?= $currentUrl == '/cart' ? 'active' : '' ?>" href="/cart">Cart</a>
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link fw-medium d-md-none d-block" href="/account">Account</a>
+                    <li class="nav-item d-md-none d-block">
+                        <a class="nav-link fw-medium <?= $currentUrl == '/account' ? 'active' : '' ?>" href="/account">Account</a>
                     </li>
-                    <li class="nav-item mb-3">
-                        <a class="nav-link fw-medium d-md-none d-block" href="/logout">Logout</a>
+                    <li class="nav-item d-md-none d-block mb-3">
+                        <a class="nav-link fw-medium" href="/logout">Logout</a>
                     </li>
                 </ul>
             </div>
             <div>
-                <form class="d-flex" role="search" action="">
-                    <div class="form-group has-search d-none mb-0">
+                <form class="d-md-flex d-block" role="search" action="">
+                    <div class="form-group has-search mb-0">
                         <span class="fa fa-search form-control-feedback"></span>
-                        <input type="text" class="form-control" placeholder="Search">
+                        <input type="text" class="form-control bg-transparent" placeholder="Search">
                     </div>
                 </form>
             </div>
@@ -43,10 +47,6 @@
                         <a class="nav-link" href="<?= base_url('/cart') ?>"><i class="fa-solid fa-cart-shopping"></i></a>
                     </li>
                     <li class="nav-item dropdown">
-                        <!-- <a href="#" class="nav-link"><i class="fa-solid fa-user"></i></a> -->
-                        <!-- <i class="bi bi-person-fill"></i>
-                        <span class="nav-link">Hello, <?= $user ?>! -->
-                        <!-- <a class="nav-link" href="/login">Login</a> -->
                         <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                             <i class="fa-solid fa-user"></i>
                         </a>
@@ -55,9 +55,6 @@
                             <li><a class="dropdown-item" href="/logout">Logout</a></li>
                         </ul>
                     </li>
-                    <!-- <li class="nav-item">
-                        <a class="nav-link fw-medium" href="/logout"><i class="fa-solid fa-arrow-right-from-bracket"></i> Logout</a>
-                    </li> -->
                 </ul>
             </div>
         </div>

@@ -25,19 +25,19 @@
     <script src="<?= base_url('assets/extensions/jquery/jquery.min.js') ?>"></script>
     <script>
         window.onscroll = function() {
-            if (window.scrollY > 100) {
-                $(".navbar").addClass("bg-white shadow");
-                $(".navbar-toggler").removeClass("d-none");
-                $(".has-search").removeClass("d-none");
-
-            } else {
-                $(".navbar").removeClass("bg-white shadow");
-                $(".has-search").addClass("d-none");
-                $(".navbar-toggler").addClass("d-none");
-                if ($(".navbar-collapse").hasClass("show")) {
-                    $(".navbar-collapse").removeClass("show");
+            if (window.location.pathname == "/") {
+                if (window.scrollY > 100) {
+                    $(".navbar").addClass("navbar-custom-home");
+                    $(".navbar-toggler").removeClass("navbar-custom-toggle");
+                } else {
+                    $(".navbar").removeClass("navbar-custom-home");
+                    $(".navbar-toggler").addClass("navbar-custom-toggle");
+                    if ($(".navbar-collapse").hasClass("show")) {
+                        $(".navbar-collapse").removeClass("show");
+                    }
                 }
             }
+
         };
     </script>
     <script>
