@@ -2,7 +2,7 @@
 $currentUrl = $_SERVER['REQUEST_URI'];
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-light fixed-top navbar-custom <?= $currentUrl != '/' ? 'bg-white shadow' : '' ?>">
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom <?= $currentUrl != '/' ? 'bg-white shadow-sm' : 'fixed-top' ?>">
     <div class="container">
         <button class="navbar-toggler <?= $currentUrl == '/' ? 'navbar-custom-toggle' : '' ?>" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
