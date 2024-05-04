@@ -40,7 +40,7 @@ class ProductController extends BaseController
             'products' => $products,
             'categories' => $this->categories->findAll(),
         ];
-        return view($data['role'] == 'Admin' ? 'pages/dashboard/products' : 'pages/user/products', $data);
+        return view('pages/dashboard/products', $data);
     }
 
     public function store()

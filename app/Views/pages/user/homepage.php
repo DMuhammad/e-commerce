@@ -2,14 +2,12 @@
 
 <?= $this->section('content') ?>
 
-<div class="hero-section d-flex flex-column justify-content-center align-items-center text-center">
-    <!-- <img src="<?= base_url('assets/static/images/hero-img.png') ?>" alt="" class="d-block w-100"> -->
+<div class="hero-section d-flex flex-column justify-content-center align-items-center text-center" style="height: 100vh;">
     <div class="w-50">
         <p class="text-white">PT Persada Jayaraya Abadi</p>
         <h3 class="text-white">Discover the Essence of Luxury with Our Unique Cosmetic Packaging</h3>
         <button type="button" class="btn btn-success mt-10 p-3">Contact Us</button>
     </div>
-
 </div>
 
 <div class="container">
