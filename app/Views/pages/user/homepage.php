@@ -66,26 +66,6 @@
                 </div>
             </div>
         <?php } ?>
-
-        <nav aria-label="Page navigation">
-            <ul class="pagination justify-content-end">
-                <li class="page-item disabled">
-                    <a class="page-link text-muted" href="#" aria-label="Previous">
-                        <span aria-hidden="true">&laquo;</span>
-                        Prev
-                    </a>
-                </li>
-                <li class="page-item"><a class="page-link" href="#">1</a></li>
-                <li class="page-item"><a class="page-link active bg-success" href="#">2</a></li>
-                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                <li class="page-item">
-                    <a class="page-link" href="#" aria-label="Next">
-                        Next
-                        <span aria-hidden="true">&raquo;</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
     </div>
 </div>
 
