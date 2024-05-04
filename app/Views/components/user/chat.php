@@ -60,7 +60,7 @@
                     <input type="text" class="form-control border-0" placeholder="Write a message...">
 
                     <div class="input-group-text bg-transparent border-0">
-                        <button class="btn-send"><i class="bi bi-send"></i></button>
+                        <button class="btn-custom-success"><i class="bi bi-send"></i></button>
                     </div>
                 </div>
             </div>

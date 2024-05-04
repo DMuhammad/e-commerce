@@ -1,3 +1,7 @@
+.navbar-custom {
+  transition: all 0.5s ease-in-out;
+}
+
 .chat-container .chat-btn {
   position: fixed;
   width: 60px;
@@ -44,7 +48,7 @@
   border-bottom-right-radius: 20px;
 }
 
-.btn-send {
+.btn-custom-success {
   background-color: #51994b;
   color: white;
   border: none;
@@ -53,7 +57,31 @@
   cursor: pointer;
 }
 
-.btn-send:hover {
+.btn-custom-success:hover {
   background-color: #3e7e41;
   color: white;
+}
+
+.custom-color-primary {
+  color: #51994b;
+}
+
+.custom-space {
+  margin-bottom: 100px;
+}
+
+.has-search .form-control {
+  padding-left: 2.375rem;
+}
+
+.has-search .form-control-feedback {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 2.375rem;
+  height: 2.375rem;
+  line-height: 2.375rem;
+  text-align: center;
+  pointer-events: none;
+  color: #aaa;
 }

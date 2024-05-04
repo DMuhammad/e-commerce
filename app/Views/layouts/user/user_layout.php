@@ -10,18 +10,6 @@
     <link rel="stylesheet" href="<?= base_url('assets/static/css/custom.css') ?>">
 
     <link rel="stylesheet" href="<?= base_url('assets/extensions/fontawesome/css/all.min.css') ?>">
-    <style>
-        .hero-section {
-            background-image: url('<?= base_url('assets/static/images/background.png') ?>');
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            height: 100vh;
-            /* display: flex;
-            justify-content: center;
-            align-items: center; */
-        }
-    </style>
 </head>
 
 <body class="bg-white overflow-x-hidden">
@@ -35,6 +23,23 @@
 
     <script src="<?= base_url('assets/compiled/js/app.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/jquery/jquery.min.js') ?>"></script>
+    <script>
+        window.onscroll = function() {
+            if (window.scrollY > 100) {
+                $(".navbar").addClass("bg-white shadow");
+                $(".navbar-toggler").removeClass("d-none");
+                $(".has-search").removeClass("d-none");
+
+            } else {
+                $(".navbar").removeClass("bg-white shadow");
+                $(".has-search").addClass("d-none");
+                $(".navbar-toggler").addClass("d-none");
+                if ($(".navbar-collapse").hasClass("show")) {
+                    $(".navbar-collapse").removeClass("show");
+                }
+            }
+        };
+    </script>
     <script>
         $(".chat-btn").click(function(e) {
             e.stopPropagation();
