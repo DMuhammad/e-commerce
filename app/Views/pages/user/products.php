@@ -2,15 +2,15 @@
 
 <?= $this->section('content') ?>
 
-<div class="container">
+<div class="container mt-5">
     <div class="row">
         <div class="col-lg-3">
             <div class="card border p-3">
-                <div class="dropdown mb-3">
-                    <button class="btn btn-outline-light btn-block dropdown-toggle text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="mb-3">
+                    <button class="btn btn-outline-light btn-block text-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseCategories" aria-expanded="false" aria-controls="collapseCategories">
                         Category
                     </button>
-                    <ul class="dropdown-menu">
+                    <ul id="collapseCategories" class="collapse list-unstyled mt-2">
                         <?php
                         foreach ($categories as $category) { ?>
                             <li>
@@ -26,11 +26,11 @@
                         ?>
                     </ul>
                 </div>
-                <div class="dropdown mb-3">
-                    <button class="btn btn-outline-light btn-block dropdown-toggle text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <div class="mb-3">
+                    <button class="btn btn-outline-light btn-block text-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice" aria-expanded="false" aria-controls="collapsePrice">
                         Price
                     </button>
-                    <ul class="dropdown-menu">
+                    <ul id="collapsePrice" class="collapse list-unstyled mt-2">
                         <?php
                         foreach ($categories as $category) { ?>
                             <li>
@@ -47,10 +47,10 @@
                     </ul>
                 </div>
                 <div class="dropdown">
-                    <button class="btn btn-outline-light btn-block dropdown-toggle text-start" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button class="btn btn-outline-light btn-block text-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVariation" aria-expanded="false" aria-controls="collapseVariation">
                         Variation
                     </button>
-                    <ul class="dropdown-menu">
+                    <ul id="collapseVariation" class="collapse list-unstyled mt-2">
                         <?php
                         foreach ($categories as $category) { ?>
                             <li>
@@ -69,151 +69,48 @@
             </div>
         </div>
         <div class="col-lg-9">
-            <h3 class="text-black">All Products</h3>
-            <div class="d-flex align-content-start bg-body-tertiary my-4">
-                <p class="text-black">Applied Filter:</p>
+            <h3 class="text-black mb-4">All Products</h3>
+            <!-- <div class="d-flex align-items-center bg-body-tertiary mb-4">
+                <p class="text-black mb-0">Applied Filter:</p>
                 <div class="d-flex justify-content-start mx-3 gap-2">
                     <button type="button" class="btn btn-outline-light text-dark">Sunscreen <i class="fa-solid fa-xmark"></i></button>
                     <button type="button" class="btn btn-outline-light text-dark">Rp. 45.000 - Rp. 60.000 <i class="fa-solid fa-xmark"></i></button>
                 </div>
-            </div>
+            </div> -->
             <div class="row mb-3">
-                <div class="col-xs-6 col-md-4">
-                    <div class="card shadow">
-                        <div class="card-content">
-                            <img src="<?= base_url('./assets/compiled/jpg/motorcycle.jpg') ?>" class="card-img-top img-fluid" alt="singleminded" />
-                            <div class="card-body">
-                                <h5 class="card-title text-black">Be Single Minded</h5>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <p><span class="fs-5 fw-bold text-success">Rp.50.000</span><span class="fs-6 fw-light">/pc</span></p>
-                                        <p class="text-sm fw-light text-black"><i class="bi bi-star-fill text-warning"></i>(4.8 Reviews)</p>
-                                    </div>
-                                    <div class="col-5 d-flex justify-content-end align-self-center">
-                                        <button class="btn btn-success rounded-circle btn-lg">
-                                            <i class="bi bi-cart"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-md-4">
-                    <div class="card shadow">
-                        <div class="card-content">
-                            <img src="<?= base_url('./assets/compiled/jpg/motorcycle.jpg') ?>" class="card-img-top img-fluid" alt="singleminded" />
-                            <div class="card-body">
-                                <h5 class="card-title text-black">Be Single Minded</h5>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <p><span class="fs-5 fw-bold text-success">Rp.50.000</span><span class="fs-6 fw-light">/pc</span></p>
-                                        <p class="text-sm fw-light text-black">(4.8 Reviews)</p>
-                                    </div>
-                                    <div class="col-5 d-flex justify-content-end align-self-center">
-                                        <button class="btn btn-success rounded-circle btn-lg">
-                                            <i class="bi bi-cart"></i>
-                                        </button>
+                <?php for ($i = 0; $i < 6; $i++) { ?>
+                    <div class="col-6 col-md-4">
+                        <div class="card shadow">
+                            <div class="card-content">
+                                <img src="<?= base_url('assets/static/images/product.png') ?>" class="card-img-top img-fluid" alt="product" />
+                                <div class="card-body">
+                                    <div class="row justify-content-center align-items-center">
+                                        <div class="col-md-9 col-12">
+                                            <h5 class="custom-card-title text-dark fw-semibold">Hair Shampoo Treatment</h5>
+                                            <p><span class="custom-card-title fw-bold text-success">Rp.50.000</span><small class="fw-light">/pcs</small></p>
+                                        </div>
+                                        <div class="col-md-3 col-12 text-end">
+                                            <button class="btn btn-custom-success rounded-circle">
+                                                <i class="bi bi-cart"></i>
+                                            </button>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div class="col-xs-6 col-md-4">
-                    <div class="card shadow">
-                        <div class="card-content">
-                            <img src="<?= base_url('./assets/compiled/jpg/motorcycle.jpg') ?>" class="card-img-top img-fluid" alt="singleminded" />
-                            <div class="card-body">
-                                <h5 class="card-title text-black">Be Single Minded</h5>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <p><span class="fs-5 fw-bold text-success">Rp.50.000</span><span class="fs-6 fw-light">/pc</span></p>
-                                        <p class="text-sm fw-light text-black">(4.8 Reviews)</p>
-                                    </div>
-                                    <div class="col-5 d-flex justify-content-end align-self-center">
-                                        <button class="btn btn-success rounded-circle btn-lg">
-                                            <i class="bi bi-cart"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-md-4">
-                    <div class="card shadow">
-                        <div class="card-content">
-                            <img src="<?= base_url('./assets/compiled/jpg/motorcycle.jpg') ?>" class="card-img-top img-fluid" alt="singleminded" />
-                            <div class="card-body">
-                                <h5 class="card-title text-black">Be Single Minded</h5>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <p><span class="fs-5 fw-bold text-success">Rp.50.000</span><span class="fs-6 fw-light">/pc</span></p>
-                                        <p class="text-sm fw-light text-black">(4.8 Reviews)</p>
-                                    </div>
-                                    <div class="col-5 d-flex justify-content-end align-self-center">
-                                        <button class="btn btn-success rounded-circle btn-lg">
-                                            <i class="bi bi-cart"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-md-4">
-                    <div class="card shadow">
-                        <div class="card-content">
-                            <img src="<?= base_url('./assets/compiled/jpg/motorcycle.jpg') ?>" class="card-img-top img-fluid" alt="singleminded" />
-                            <div class="card-body">
-                                <h5 class="card-title text-black">Be Single Minded</h5>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <p><span class="fs-5 fw-bold text-success">Rp.50.000</span><span class="fs-6 fw-light">/pc</span></p>
-                                        <p class="text-sm fw-light text-black">(4.8 Reviews)</p>
-                                    </div>
-                                    <div class="col-5 d-flex justify-content-end align-self-center">
-                                        <button class="btn btn-success rounded-circle btn-lg">
-                                            <i class="bi bi-cart"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-xs-6 col-md-4">
-                    <div class="card shadow">
-                        <div class="card-content">
-                            <img src="<?= base_url('./assets/compiled/jpg/motorcycle.jpg') ?>" class="card-img-top img-fluid" alt="singleminded" />
-                            <div class="card-body">
-                                <h5 class="card-title text-black">Be Single Minded</h5>
-                                <div class="row">
-                                    <div class="col-7">
-                                        <p><span class="fs-5 fw-bold text-success">Rp.50.000</span><span class="fs-6 fw-light">/pc</span></p>
-                                        <p class="text-sm fw-light text-black">(4.8 Reviews)</p>
-                                    </div>
-                                    <div class="col-5 d-flex justify-content-end align-self-center">
-                                        <button class="btn btn-success rounded-circle btn-lg">
-                                            <i class="bi bi-cart"></i>
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <nav aria-label="Page navigation example">
+                <?php } ?>
+
+                <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-end">
                         <li class="page-item disabled">
-                            <a class="page-link" href="#" aria-label="Previous">
+                            <a class="page-link text-muted" href="#" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                                 Prev
                             </a>
                         </li>
                         <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link active" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link active bg-success" href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                         <li class="page-item">
                             <a class="page-link" href="#" aria-label="Next">
