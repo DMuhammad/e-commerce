@@ -10,16 +10,16 @@ class DetailTransactionMigration extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type' => 'BINARY',
-                'constraint' => 16
+                'type' => 'VARCHAR',
+                'constraint' => 32
             ],
             'transaction_id' => [
-                'type' => 'BINARY',
-                'constraint' => 16
+                'type' => 'VARCHAR',
+                'constraint' => 32
             ],
             'product_id' => [
-                'type' => 'BINARY',
-                'constraint' => 16
+                'type' => 'VARCHAR',
+                'constraint' => 32
             ],
             'qty' => [
                 'type' => 'INT'

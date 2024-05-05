@@ -10,16 +10,16 @@ class ProductMigration extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type' => 'BINARY',
-                'constraint' => 16
+                'type' => 'VARCHAR',
+                'constraint' => 32
             ],
             'nama_produk' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255
             ],
             'category_id' => [
-                'type' => 'BINARY',
-                'constraint' => 16
+                'type' => 'VARCHAR',
+                'constraint' => 32
             ],
             'detail' => [
                 'type' => 'TEXT'

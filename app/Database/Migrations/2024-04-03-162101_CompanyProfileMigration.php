@@ -10,8 +10,8 @@ class CompanyProfileMigration extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type' => 'BINARY',
-                'constraint' => 16,
+                'type' => 'VARCHAR',
+                'constraint' => 32,
             ],
             'nama' => [
                 'type' => 'VARCHAR',
