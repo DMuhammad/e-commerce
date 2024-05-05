@@ -3,6 +3,7 @@
 use App\Controllers\AuthController;
 use App\Controllers\ProductController;
 use App\Controllers\CategoryController;
+use App\Controllers\ChatController;
 use CodeIgniter\Router\RouteCollection;
 use App\Controllers\DashboardController;
 use App\Controllers\Home;
@@ -43,4 +44,7 @@ $routes->get('/dashboard/reports', 'ReportController::index');
 $routes->get('/', [Home::class, 'index'], ['filter' => 'auth']);
 $routes->get('/products', [Home::class, 'products'], ['filter' => 'auth']);
 $routes->get('/about-us', [Home::class, 'aboutUs'], ['filter' => 'auth']);
+
+$routes->get('chats', [ChatController::class, 'chats'], ['filter' => 'auth']);
+$routes->post('chat/send', [ChatController::class, 'store'], ['filter' => 'auth']);
 // $routes->get('/');

@@ -101,6 +101,77 @@
             }
         })
     </script>
+    <script>
+        $(document).ready(function() {
+            const base_url = `<?= base_url() ?>`
+            const chat_body = $("#chat-body");
+            console.log(`${base_url}chat/send`);
+            $("#send-chat").click(function(e) {
+                e.preventDefault();
+                const csrf = $('#csrf');
+                const message = $("input[name='message']");
+                const message_from = $("input[name='from']").val();
+                const new_message = `
+                            <div class="chat-message-right mb-4">
+                                <div>
+                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle me-1" alt="Chris Wood" width="40" height="40">
+                                    <div class="text-muted small text-nowrap mt-2">2:43 am</div>
+                                </div>
+                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 me-3">
+                                <div class="font-weight-bold mb-1">You</div>
+                                ${message.val()}
+                                </div>
+                                </div>
+                                `
+
+                console.log(message.val());
+                console.log(message_from);
+                console.log(csrf.attr('name'));
+                console.log(csrf.val());
+                $.ajax({
+                    url: `${base_url}chat/send`,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    method: 'post',
+                    data: {
+                        from: message_from,
+                        message: message.val(),
+                        [csrf.attr('name')]: csrf.val()
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        csrf.val(response.token)
+                        chat_body.append(new_message);
+                        message.val('')
+                        chat_body.scrollTop(chat_body[0].scrollHeight - chat_body[0].clientHeight);
+                        console.log(response);
+                    },
+                    error: function(response) {
+                        console.log('error', response);
+                    }
+                });
+            });
+            // $.ajax({
+            //     url: `${base_url}chats`,
+            //     method: 'get',
+            //     dataType: 'json',
+            //     success: function(response) {
+            //         response.chats.map(chat => {
+            //             const new_message = `
+            //                 <div class="d-flex flex-column align-items-end text-end justify-content-end mb-4">
+            //                     <div class="chat-left p-2 px-3 m-1">${chat.pesan}</div>
+            //                 </div>
+            //                 `
+            //             chat_body.append(new_message)
+            //         })
+            //     },
+            //     error: function(response) {
+            //         console.log('error', response);
+            //     }
+            // })
+        })
+    </script>
 </body>
 
 </html>
