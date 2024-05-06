@@ -31,51 +31,20 @@
                             </div>
                         </div>
                     </div>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <div class="d-flex align-items-start">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="rounded-circle mx-1" alt="Vanessa Tucker" width="40" height="40">
-                            <div class="flex-grow-1 ms-3">
-                                Vanessa Tucker
-                                <div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
+                    <?php
+                    foreach ($user_chat as $uc) { ?>
+                        <a href="#" class="list-group-item list-group-item-action border-0">
+                            <div class="d-flex align-items-start">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="rounded-circle mx-1" alt="Vanessa Tucker" width="40" height="40">
+                                <div class="flex-grow-1 ms-3">
+                                    <?= $uc->from->nama_lengkap ?>
+                                    <div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
+                                </div>
                             </div>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <div class="d-flex align-items-start">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle mx-1" alt="William Harris" width="40" height="40">
-                            <div class="flex-grow-1 ms-3">
-                                William Harris
-                                <div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <div class="d-flex align-items-start">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mx-1" alt="Sharon Lessman" width="40" height="40">
-                            <div class="flex-grow-1 ms-3">
-                                Sharon Lessman
-                                <div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <div class="d-flex align-items-start">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="rounded-circle mx-1" alt="Christina Mason" width="40" height="40">
-                            <div class="flex-grow-1 ms-3">
-                                Christina Mason
-                                <div class="small"><span class="fas fa-circle chat-offline"></span> Offline</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <div class="d-flex align-items-start">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="rounded-circle mx-1" alt="Fiona Green" width="40" height="40">
-                            <div class="flex-grow-1 ms-3">
-                                Fiona Green
-                                <div class="small"><span class="fas fa-circle chat-offline"></span> Offline</div>
-                            </div>
-                        </div>
-                    </a>
+                        </a>
+                    <?php
+                    }
+                    ?>
                     <a href="#" class="list-group-item list-group-item-action border-0">
                         <div class="d-flex align-items-start">
                             <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle mx-1" alt="Doris Wilder" width="40" height="40">
@@ -138,7 +107,7 @@
                     </div>
 
                     <div class="position-relative">
-                        <div class="chat-messages p-4">
+                        <div class="chat-messages p-4" id="chat-body">
 
                             <div class="chat-message-right pb-4">
                                 <div>
@@ -274,13 +243,48 @@
                                 </div>
                             </div>
 
+                            <?php
+
+                            use CodeIgniter\I18n\Time;
+
+                            foreach ($chats as $chat) {
+                                $time = Time::parse($chat->created_at);
+                                if ($chat->from == 'admin') { ?>
+                                    <div class="chat-message-right mb-4">
+                                        <div>
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle me-1" alt="Chris Wood" width="40" height="40">
+                                            <div class="text-muted small text-nowrap mt-2"><?= $time->toLocalizedString('h:mm a') ?></div>
+                                        </div>
+                                        <div class="flex-shrink-1 bg-light rounded py-2 px-3 me-3">
+                                            <div class="font-weight-bold mb-1">You</div>
+                                            <?= $chat->pesan ?>
+                                        </div>
+                                    </div>
+                                <?php
+                                } else { ?>
+                                    <div class="chat-message-left pb-4">
+                                        <div>
+                                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle me-1" alt="Sharon Lessman" width="40" height="40">
+                                            <div class="text-muted small text-nowrap mt-2"><?= $time->toLocalizedString('h:mm a') ?></div>
+                                        </div>
+                                        <div class="flex-shrink-1 bg-light rounded py-2 px-3 ms-3">
+                                            <?= $chat->pesan ?>
+                                        </div>
+                                    </div>
+                            <?php
+                                }
+                            }
+                            ?>
+
                         </div>
                     </div>
 
                     <div class="flex-grow-0 py-3 px-4 border-top">
                         <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Type your message">
-                            <button class="btn btn-primary">Send</button>
+                            <input type="text" class="form-control" placeholder="Type your message" name="message">
+                            <input type="hidden" id="csrf" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>">
+                            <input type="hidden" name="from" value="admin">
+                            <button class="btn btn-primary" type="submit" name="submit" id="send-chat">Send</button>
                         </div>
                     </div>
 

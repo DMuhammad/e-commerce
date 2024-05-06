@@ -10,8 +10,8 @@ class UserMigration extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type' => "BINARY",
-                'constraint' => 16,
+                'type' => "VARCHAR",
+                'constraint' => 32,
             ],
             'nama_lengkap' => [
                 'type' => 'VARCHAR',

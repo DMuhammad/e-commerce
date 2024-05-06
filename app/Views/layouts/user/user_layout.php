@@ -61,6 +61,69 @@
             }
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            const base_url = `<?= base_url() ?>`
+            const chat_body = $("#chat-body");
+            $("#send-chat").click(function(e) {
+                e.preventDefault();
+                const csrf = $('#csrf');
+                const message = $("input[name='message']");
+                const message_from = $("input[name='from']").val();
+                const new_message = `
+                <div class="d-flex flex-column align-items-end text-end justify-content-end mb-4">
+                        <div class="chat-left p-2 px-3 m-1">${message.val()}</div>
+                        </div>
+                        `
+
+                $.ajax({
+                    url: `${base_url}chat/send`,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    },
+                    method: 'post',
+                    data: {
+                        from: message_from,
+                        message: message.val(),
+                        [csrf.attr('name')]: csrf.val()
+                    },
+                    dataType: 'json',
+                    success: function(response) {
+                        csrf.val(response.token)
+                        chat_body.append(new_message);
+                        message.val('')
+                        chat_body.scrollTop(chat_body[0].scrollHeight - chat_body[0].clientHeight);
+                    },
+                    error: function(response) {
+                        console.log('error', response);
+                    }
+                });
+            });
+            $.ajax({
+                url: `${base_url}chats`,
+                method: 'get',
+                dataType: 'json',
+                success: function(response) {
+                    response.chats.map(chat => {
+                        const user_message = `
+                            <div class="d-flex flex-column align-items-end text-end justify-content-end mb-4">
+                                <div class="chat-left p-2 px-3 m-1">${chat.pesan}</div>
+                            </div>
+                            `
+                        const admin_message = `
+                            <div class="d-flex flex-column align-items-start mb-4">
+                                <div class="chat-right p-2 px-3 m-1">${chat.pesan}</div>
+                            </div>
+                            `
+                        chat.from == "admin" ? chat_body.append(admin_message) : chat_body.append(user_message)
+                    })
+                },
+                error: function(response) {
+                    console.log('error', response);
+                }
+            })
+        })
+    </script>
 
     <script>
         $(document).on('click', '.number-spinner button', function() {
