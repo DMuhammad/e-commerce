@@ -13,8 +13,36 @@
             <a href="/payment" class="fw-medium text-black fs-6 mb-0">Payment</a>
         </div>
     </div>
+
     <div class="row justify-content-md-between justify-content-center gy-3">
         <div class="col-md-8 col-11">
+            <!-- ALERT SUKSES -->
+            <div class="alert alert-success d-flex align-items-center text-white" role="alert">
+                <i class="fa-solid fa-circle-check fs-3"></i>
+                <div class="d-flex flex-column ms-3">
+                    <span class="fw-medium">Your payment has been successful !</span>
+                    <small>Please verify via WhatsApp on the side</small>
+                </div>
+            </div>
+
+            <!-- ALERT WARNING -->
+            <div class="alert alert-warning d-flex align-items-center text-white" role="alert">
+                <i class="fa-solid fa-circle-exclamation fs-3"></i>
+                <div class="d-flex flex-column ms-3">
+                    <span class="fw-medium">Please make payment immediately !</span>
+                    <small>Please press the payment button</small>
+                </div>
+            </div>
+
+            <!-- ALERT DANGER -->
+            <div class="alert alert-danger d-flex align-items-center text-white" role="alert" style="background-color: #FC5A37;">
+                <i class="fa-solid fa-circle-xmark fs-3"></i>
+                <div class="d-flex flex-column ms-3">
+                    <span class="fw-medium">Payment has been Cancelled !</span>
+                    <small>Please make another purchase to make another payment</small>
+                </div>
+            </div>
+
             <div class="d-flex flex-column">
                 <div class="row align-items-start gy-4">
                     <div class="col-md-6">
@@ -70,7 +98,9 @@
                         <p class="custom-color-primary mb-1">Rp 209.000</p>
                     </div>
                 </div>
-                <button type="button" class="btn btn-custom-cancel w-100">Cancel</button>
+                <button type="button" class="btn btn-custom-success w-100 mb-2">Pay Now</button>
+                <!-- kalau cancel -->
+                <button type="button" class="btn btn-custom-cancel w-100 mb-2">Cancel</button>
             </div>
         </div>
 
