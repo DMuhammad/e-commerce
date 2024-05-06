@@ -3,17 +3,20 @@
 <?= $this->section('content') ?>
 
 <div class="container my-5">
-    <h1 class="text-black fw-medium mb-3 mx-md-0 mx-3">Cart</h1>
+    <div class="mx-md-0 mx-3">
+        <h1 class="text-black fw-medium mb-3">Cart</h1>
+        <div class="d-flex gap-1 align-items-center mb-5">
+            <a href="/cart" class="fw-medium text-black fs-6 mb-0">Cart</a>
+            <hr class="text-black" style="width: 50px;">
+            <a href="/checkout" class="fw-medium text-muted fs-6 mb-0">Checkout</a>
+            <hr class="text-black" style="width: 50px;">
+            <a href="/payment" class="fw-medium text-muted fs-6 mb-0">Payment</a>
+        </div>
+    </div>
     <div class="row justify-content-md-between justify-content-center">
         <div class="col-md-8 col-11">
-            <div class="d-flex gap-1 align-items-center mb-5">
-                <a href="/cart" class="fw-medium text-black fs-6 mb-0">Cart</a>
-                <hr class="text-black" style="width: 50px;">
-                <a href="/checkout" class="fw-medium text-muted fs-6 mb-0">Checkout</a>
-                <hr class="text-black" style="width: 50px;">
-                <a href="/payment" class="fw-medium text-muted fs-6 mb-0">Payment</a>
-            </div>
-            <div class="d-flex flex-column mb-4">
+
+            <div class="d-flex flex-column mb-5">
                 <div class="row justify-content-between">
                     <div class="col-md-2 col-3">
                         <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product" height="200">
@@ -25,6 +28,7 @@
                         <h2 class="custom-color-primary">Rp. 50.000</h2>
                     </div>
                 </div>
+
                 <hr>
                 <div class="row justify-content-between">
                     <div class="col-xl-3 col-md-4 col-5">
