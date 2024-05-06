@@ -11,6 +11,7 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/extensions/fontawesome/css/all.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/extensions/splide/css/splide.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/extensions/daterangepicker/daterangepicker.css') ?>">
 </head>
 
 <body class="bg-white overflow-x-hidden">
@@ -25,6 +26,9 @@
     <script src="<?= base_url('assets/compiled/js/app.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/jquery/jquery.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/splide/js/splide.min.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/moment/moment.min.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/daterangepicker/daterangepicker.js') ?>"></script>
+
     <script>
         window.onscroll = function() {
             if (window.location.pathname == "/") {
@@ -182,7 +186,16 @@
             }).mount();
         }
     </script>
-
+    <script>
+        $(function() {
+            $('input[name="payment-date"]').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 2000,
+                maxYear: parseInt(moment().format('YYYY'), 10)
+            });
+        });
+    </script>
 </body>
 
 </html>

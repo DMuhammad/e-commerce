@@ -86,4 +86,26 @@ class Home extends BaseController
 
         return view('pages/user/cart', $data);
     }
+
+    public function checkout(): string
+    {
+        $data = [
+            'user' => session()->get('nama_lengkap'),
+            'role' => session()->get('role'),
+            'title' => 'Checkout',
+        ];
+
+        return view('pages/user/checkout', $data);
+    }
+
+    public function payment(): string
+    {
+        $data = [
+            'user' => session()->get('nama_lengkap'),
+            'role' => session()->get('role'),
+            'title' => 'Payment',
+        ];
+
+        return view('pages/user/payment', $data);
+    }
 }

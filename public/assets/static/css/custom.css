@@ -75,6 +75,20 @@
   color: white;
 }
 
+.btn-custom-cancel {
+  background-color: #fc5a37;
+  color: white;
+  border: none;
+  padding: 10px 15px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-custom-cancel:hover {
+  background-color: #f44336;
+  color: white;
+}
+
 .btn-custom-check {
   background-color: #51994b;
   color: white;
