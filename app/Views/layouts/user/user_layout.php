@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="<?= base_url('assets/static/css/custom.css') ?>">
 
     <link rel="stylesheet" href="<?= base_url('assets/extensions/fontawesome/css/all.min.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/extensions/splide/css/splide.min.css') ?>">
 </head>
 
 <body class="bg-white overflow-x-hidden">
@@ -23,6 +24,7 @@
 
     <script src="<?= base_url('assets/compiled/js/app.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/jquery/jquery.min.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/splide/js/splide.min.js') ?>"></script>
     <script>
         window.onscroll = function() {
             if (window.location.pathname == "/") {
@@ -58,6 +60,65 @@
                 $(".chat-popup").addClass("d-none");
             }
         });
+    </script>
+
+    <script>
+        $(document).on('click', '.number-spinner button', function() {
+            var btn = $(this),
+                oldValue = btn.closest('.number-spinner').find('input').val().trim(),
+                newVal = 0;
+
+            if (btn.attr('data-dir') == 'up') {
+                newVal = parseInt(oldValue) + 1;
+            } else {
+                if (oldValue > 1) {
+                    newVal = parseInt(oldValue) - 1;
+                } else {
+                    newVal = 1;
+                }
+            }
+            btn.closest('.number-spinner').find('input').val(newVal);
+        });
+    </script>
+    <script>
+        if (window.location.pathname == "/detail-product") {
+            const gallery = new Splide('#reference-products', {
+                type: 'loop',
+                perPage: 4,
+                gap: 20,
+                autoplay: true,
+                pagination: false,
+                breakpoints: {
+                    576: {
+                        perPage: 2,
+                        gap: 10,
+                    },
+                    768: {
+                        perPage: 3,
+                    }
+                },
+            }).mount();
+        }
+
+        if (window.location.pathname == "/about-us") {
+            const gallery = new Splide('#gallery-company', {
+                type: 'loop',
+                perPage: 4,
+                autoplay: true,
+                pagination: false,
+                breakpoints: {
+                    576: {
+                        perPage: 1,
+                    },
+                    768: {
+                        perPage: 2,
+                    },
+                    992: {
+                        perPage: 3,
+                    }
+                }
+            }).mount();
+        }
     </script>
 </body>
 
