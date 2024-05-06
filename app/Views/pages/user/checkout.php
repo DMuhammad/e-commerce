@@ -79,7 +79,7 @@
                     <span class="custom-color-primary">Rp 209.000</span>
                 </div>
 
-                <a href="/checkout" class="btn btn-custom-success d-block mt-5">Payment</a>
+                <a href="/payment" class="btn btn-custom-success d-block mt-5">Payment</a>
             </div>
         </div>
     </div>
