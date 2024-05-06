@@ -80,50 +80,76 @@ class ProductController extends BaseController
 
     public function update($id)
     {
-        $this->products->update($id, [
-            'nama_produk' => $this->request->getPost('name'),
-            'category_id' => $this->request->getPost('category'),
-            'detail' => stripHtmlTags($this->request->getPost('detail')),
-            'stok' => $this->request->getPost('stock'),
-            'variant' => $this->request->getPost('variant'),
-            'harga' => stripRpAndComma($this->request->getPost('price'))
-        ]);
+    $this->products->update($id, [
+        'nama_produk' => $this->request->getPost('name'),
+        'category_id' => $this->request->getPost('category'),
+        'detail' => stripHtmlTags($this->request->getPost('detail')),
+        'stok' => $this->request->getPost('stock'),
+        'variant' => $this->request->getPost('variant'),
+        'harga' => stripRpAndComma($this->request->getPost('price'))
+    ]);
 
-        $images = $this->request->getFileMultiple('images');
+    // Get the old images
+    $oldImages = $this->productImages->where('product_id', $id)->findAll();
 
-        // Check if the product folder exists, if not create it
-        if (!is_dir(WRITEPATH . 'uploads/img-product')) {
-            mkdir(WRITEPATH . 'uploads/img-product', 0777, TRUE);
+    // Delete the old images from the directory
+    foreach ($oldImages as $oldImage) {
+        if (file_exists(WRITEPATH . 'uploads/img-product/' . $oldImage->image)) {
+            unlink(WRITEPATH . 'uploads/img-product/' . $oldImage->image);
         }
+    }
 
+    // Delete the old images from the database
+    $this->productImages->where('product_id', $id)->delete();
 
-        return redirect()->back();
+    $images = $this->request->getFileMultiple('images');
+
+    // Check if the product folder exists, if not create it
+    if (!is_dir(WRITEPATH . 'uploads/img-product')) {
+        mkdir(WRITEPATH . 'uploads/img-product', 0777, TRUE);
+    }
+
+    // Upload the new images
+    foreach ($images as $image) {
+        if ($image->isValid() && !$image->hasMoved()) {
+            $imageName = $image->getRandomName();
+            $image->move(WRITEPATH . 'uploads/img-product', $imageName);
+
+            $this->productImages->insert([
+                'id' => Uuid::uuid4(),
+                'product_id' => $id,
+                'image' => $imageName
+            ]);
+        }
+    }
+
+    return redirect()->back();
     }
 
     public function delete($id)
     {
-        // Get the images where 'product_id' is the same as the id request
-        $images = $this->productImages->where('product_id', $id)->findAll();
+    // Get the images where 'product_id' is the same as the id request
+    $images = $this->productImages->where('product_id', $id)->findAll();
 
-        foreach ($images as $imageproduct) {
-            // Define the file path
-            $filePath = WRITEPATH . 'uploads/img-product/' . $imageproduct->image;
-            if (file_exists($filePath)) {
-                try {
-                    // Delete the file
-                    unlink($filePath);
-                } catch (Exception $e) {
-                    log_message('error', 'Error deleting image file: ' . $e->getMessage());
-                }
+    foreach ($images as $imageproduct) {
+        // Define the file path
+        $filePath = WRITEPATH . 'uploads/img-product/' . $imageproduct->image;
+        if (file_exists($filePath)) {
+            try {
+                // Delete the file
+                unlink($filePath);
+            } catch (Exception $e) {
+                log_message('error', 'Error deleting image file: ' . $e->getMessage());
             }
         }
+    }
 
-        // Delete the image records from the 'productImages' table
-        $this->productImages->where('product_id', $id)->delete();
+    // Delete the image records from the 'productImages' table
+    $this->productImages->where('product_id', $id)->delete();
 
-        // Delete the product
-        $this->products->delete($id);
+    // Delete the product
+    $this->products->delete($id);
 
-        return redirect()->back();
+    return redirect()->back();
     }
 }

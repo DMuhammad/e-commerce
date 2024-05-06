@@ -46,7 +46,7 @@ class AuthController extends BaseController
             return redirect()->back()->withInput();
         }
     }
-
+    
     public function register()
     {
         return view('pages/auth/register');
