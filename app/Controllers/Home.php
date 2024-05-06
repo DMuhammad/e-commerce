@@ -75,4 +75,15 @@ class Home extends BaseController
 
         return view('pages/user/detail-product', $data);
     }
+
+    public function cart(): string
+    {
+        $data = [
+            'user' => session()->get('nama_lengkap'),
+            'role' => session()->get('role'),
+            'title' => 'Cart',
+        ];
+
+        return view('pages/user/cart', $data);
+    }
 }

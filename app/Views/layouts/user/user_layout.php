@@ -124,7 +124,6 @@
             })
         })
     </script>
-
     <script>
         $(document).on('click', '.number-spinner button', function() {
             var btn = $(this),
@@ -183,6 +182,7 @@
             }).mount();
         }
     </script>
+
 </body>
 
 </html>
