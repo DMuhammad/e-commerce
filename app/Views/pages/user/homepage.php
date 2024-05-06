@@ -46,24 +46,26 @@
     <div class="row mb-3 justify-content-center">
         <?php for ($i = 0; $i < 8; $i++) { ?>
             <div class="col-6 col-md-4 col-lg-3">
-                <div class="card shadow">
-                    <div class="card-content">
-                        <img src="<?= base_url('assets/static/images/product.png') ?>" class="card-img-top img-fluid" alt="product" />
-                        <div class="card-body">
-                            <div class="row justify-content-center align-items-center">
-                                <div class="col-md-9 col-12">
-                                    <h5 class="custom-card-title text-dark fw-semibold">Be Single Minded</h5>
-                                    <p><span class="custom-card-title fw-bold text-success">Rp.50.000</span><small class="fw-light">/pcs</small></p>
-                                </div>
-                                <div class="col-md-3 col-12 text-end">
-                                    <button class="btn btn-custom-success rounded-circle">
-                                        <i class="bi bi-cart"></i>
-                                    </button>
+                <a href="/detail-product">
+                    <div class="card shadow">
+                        <div class="card-content">
+                            <img src="<?= base_url('assets/static/images/product.png') ?>" class="card-img-top img-fluid" alt="product" />
+                            <div class="card-body">
+                                <div class="row justify-content-center align-items-center">
+                                    <div class="col-md-9 col-12">
+                                        <h5 class="custom-card-title text-dark fw-semibold">Be Single Minded</h5>
+                                        <p><span class="custom-card-title fw-bold text-success">Rp.50.000</span><small class="fw-light">/pcs</small></p>
+                                    </div>
+                                    <div class="col-md-3 col-12 text-end">
+                                        <button class="btn btn-custom-success rounded-circle">
+                                            <i class="bi bi-cart"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
+                </a>
             </div>
         <?php } ?>
     </div>

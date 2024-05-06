@@ -70,34 +70,30 @@
         </div>
         <div class="col-lg-9">
             <h3 class="text-black mb-4">All Products</h3>
-            <!-- <div class="d-flex align-items-center bg-body-tertiary mb-4">
-                <p class="text-black mb-0">Applied Filter:</p>
-                <div class="d-flex justify-content-start mx-3 gap-2">
-                    <button type="button" class="btn btn-outline-light text-dark">Sunscreen <i class="fa-solid fa-xmark"></i></button>
-                    <button type="button" class="btn btn-outline-light text-dark">Rp. 45.000 - Rp. 60.000 <i class="fa-solid fa-xmark"></i></button>
-                </div>
-            </div> -->
+
             <div class="row mb-3">
                 <?php for ($i = 0; $i < 6; $i++) { ?>
                     <div class="col-6 col-md-4">
-                        <div class="card shadow">
-                            <div class="card-content">
-                                <img src="<?= base_url('assets/static/images/product.png') ?>" class="card-img-top img-fluid" alt="product" />
-                                <div class="card-body">
-                                    <div class="row justify-content-center align-items-center">
-                                        <div class="col-md-9 col-12">
-                                            <h5 class="custom-card-title text-dark fw-semibold">Hair Shampoo Treatment</h5>
-                                            <p><span class="custom-card-title fw-bold text-success">Rp.50.000</span><small class="fw-light">/pcs</small></p>
-                                        </div>
-                                        <div class="col-md-3 col-12 text-end">
-                                            <button class="btn btn-custom-success rounded-circle">
-                                                <i class="bi bi-cart"></i>
-                                            </button>
+                        <a href="/detail-product">
+                            <div class="card shadow">
+                                <div class="card-content">
+                                    <img src="<?= base_url('assets/static/images/product.png') ?>" class="card-img-top img-fluid" alt="product" />
+                                    <div class="card-body">
+                                        <div class="row justify-content-center align-items-center">
+                                            <div class="col-md-9 col-12">
+                                                <h5 class="custom-card-title text-dark fw-semibold">Hair Shampoo Treatment</h5>
+                                                <p><span class="custom-card-title fw-bold text-success">Rp.50.000</span><small class="fw-light">/pcs</small></p>
+                                            </div>
+                                            <div class="col-md-3 col-12 text-end">
+                                                <button class="btn btn-custom-success rounded-circle">
+                                                    <i class="bi bi-cart"></i>
+                                                </button>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 <?php } ?>
 
