@@ -43,4 +43,6 @@ $routes->get('/dashboard/reports', 'ReportController::index');
 $routes->get('/', [Home::class, 'index'], ['filter' => 'auth']);
 $routes->get('/products', [Home::class, 'products'], ['filter' => 'auth']);
 $routes->get('/about-us', [Home::class, 'aboutUs'], ['filter' => 'auth']);
+$routes->get('/detail-product', [Home::class, 'detailProduct'], ['filter' => 'auth']);
+
 // $routes->get('/');
