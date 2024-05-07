@@ -48,7 +48,8 @@ $routes->get('/detail-product', [Home::class, 'detailProduct'], ['filter' => 'au
 $routes->get('/cart', [Home::class, 'cart'], ['filter' => 'auth']);
 $routes->get('/checkout', [Home::class, 'checkout'], ['filter' => 'auth']);
 $routes->get('/payment', [Home::class, 'payment'], ['filter' => 'auth']);
-
+$routes->get('/account', [Home::class, 'account'], ['filter' => 'auth']);
+$routes->get('/detail-transactions', [Home::class, 'detailTransactions'], ['filter' => 'auth']);
 
 $routes->get('chats', [ChatController::class, 'chats'], ['filter' => 'auth']);
 $routes->post('chat/send', [ChatController::class, 'store'], ['filter' => 'auth']);

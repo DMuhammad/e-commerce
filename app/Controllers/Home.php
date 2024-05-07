@@ -108,4 +108,26 @@ class Home extends BaseController
 
         return view('pages/user/payment', $data);
     }
+
+    public function account(): string
+    {
+        $data = [
+            'user' => session()->get('nama_lengkap'),
+            'role' => session()->get('role'),
+            'title' => 'Account',
+        ];
+
+        return view('pages/user/account', $data);
+    }
+
+    public function detailTransactions(): string
+    {
+        $data = [
+            'user' => session()->get('nama_lengkap'),
+            'role' => session()->get('role'),
+            'title' => 'Detail Transactions',
+        ];
+
+        return view('pages/user/detail-transactions', $data);
+    }
 }

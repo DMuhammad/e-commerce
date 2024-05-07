@@ -12,6 +12,13 @@
   display: none;
 }
 
+/* nav tabs */
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
+  color: #fff;
+  background-color: #51994b;
+}
+
 /* chat */
 .chat-container .chat-btn {
   position: fixed;
