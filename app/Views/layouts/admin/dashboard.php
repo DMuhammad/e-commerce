@@ -77,6 +77,8 @@
     <script src="<?= base_url('assets/extensions/chart.js/chart.umd.js') ?>"></script>
     <script src="<?= base_url('assets/static/js/pages/ui-chartjs.js') ?>"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bs5-lightbox@1.8.3/dist/index.bundle.min.js"></script>
+
     <script>
         const rupiahToNumeric = (rupiah) => {
             const numericString = rupiah.replace(/[^\d]/g, '');
@@ -94,6 +96,19 @@
                 $(this).val('Rp. 0')
             }
         })
+    </script>
+
+    <script>
+        function previewImages() {
+            const image = document.querySelector('#image');
+            const imgPreview = document.querySelector('.img-preview');
+            imgPreview.style.display = 'block';
+            const oFReader = new FileReader();
+            oFReader.readAsDataURL(image.files[0]);
+            oFReader.onload = function(oFREvent) {
+                imgPreview.src = oFREvent.target.result;
+            }
+        };
     </script>
     <script>
         $(document).ready(function() {

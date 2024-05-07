@@ -29,6 +29,9 @@ $auth = $role;
                             <li class="submenu-item <?= ($currentUrl == '/dashboard/company-profile') ? 'active' : '' ?>">
                                 <a href="/dashboard/company-profile" class="submenu-link">Company Profile</a>
                             </li>
+                            <li class="submenu-item <?= ($currentUrl == '/dashboard/company-images') ? 'active' : '' ?>">
+                                <a href="/dashboard/company-images" class="submenu-link">Company Images</a>
+                            </li>
                             <li class="submenu-item <?= ($currentUrl == '/dashboard/categories') ? 'active' : '' ?>">
                                 <a href="/dashboard/categories" class="submenu-link">Categories</a>
                             </li>
