@@ -31,18 +31,18 @@
                             <img src="<?= base_url('assets/static/images/logo/company-logo.png') ?>" alt="Logo" width="325" height="180">
                         </a>
                     </div>
-                    <form action="<?php echo base_url('/login'); ?>" method="POST">
+                    <form action="<?= base_url('/register') ?>" method="POST">
                         <div class="row gy-3 overflow-hidden">
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="first-name" class="form-label fw-semibold">First Name</label>
-                                    <input type="text" class="form-control" name="first-name" id="first-name" placeholder="First name" required>
+                                    <input type="text" class="form-control" name="first_name" id="first-name" placeholder="First name" required>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label for="last-name" class="form-label fw-semibold">Last Name</label>
-                                    <input type="text" class="form-control" name="last-name" id="last-name" placeholder="Last name" required>
+                                    <input type="text" class="form-control" name="last_name" id="last-name" placeholder="Last name" required>
                                 </div>
                             </div>
                             <div class="col-12">

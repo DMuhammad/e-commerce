@@ -2,21 +2,24 @@
 
 namespace App\Controllers;
 
+use App\Models\UserModel;
+use App\Models\ProductModel;
 use App\Models\CategoryModel;
 use App\Models\ProductImagesModel;
-use App\Models\ProductModel;
 
 class Home extends BaseController
 {
     protected $categories;
     protected $products;
     protected $productImages;
+    protected $userModel;
 
     public function __construct()
     {
         $this->categories = new CategoryModel();
         $this->products = new ProductModel();
         $this->productImages = new ProductImagesModel();
+        $this->userModel = new UserModel();
     }
 
     public function index(): string
@@ -109,15 +112,29 @@ class Home extends BaseController
         return view('pages/user/payment', $data);
     }
 
-    public function account(): string
+    public function account()
     {
+        $id = session()->get('id');
+        $user = $this->userModel->where('id', $id)->first();
+
         $data = [
-            'user' => session()->get('nama_lengkap'),
-            'role' => session()->get('role'),
+            'user'=> $user,
             'title' => 'Account',
         ];
 
         return view('pages/user/account', $data);
+    }
+
+    public function updateAccount()
+    {
+        $id = session()->get('id');
+        $this->userModel->update($id, [
+            'nama_lengkap' => $this->request->getPost('nama_lengkap'),
+            'email' => $this->request->getPost('email'),
+            'no_telp' => $this->request->getPost('no_telp'),
+        ]);
+
+        return redirect()->to('/account');
     }
 
     public function detailTransactions(): string

@@ -34,6 +34,10 @@ class UserMigration extends Migration
                 'type' => 'VARCHAR',
                 'constraint'     => 255,
             ],
+            'no_telp' => [
+                'type' => 'VARCHAR',
+                'constraint'     => 25,
+            ],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
             'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',
         ]);

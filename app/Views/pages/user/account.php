@@ -25,13 +25,13 @@
                         <h4 class="text-black fw-semibold mb-3">My Profile</h4>
                         <p class="text-black mb-0">Manage your profile information to control, protect and secure your account</p>
                         <hr>
-                        <form action="" method="">
+                        <form action="<?= base_url('/account/update') ?>" method="POST">
                             <div class="row align-items-center mb-4">
                                 <div class="col-md-2 col-3">
                                     <label for="fullname" class="col-form-label text-black">Name</label>
                                 </div>
                                 <div class="col-7">
-                                    <input type="text" name="fullname" id="fullname" class="form-control" value="Royhan Daffa">
+                                    <input type="text" name="nama_lengkap" id="fullname" class="form-control" value="<?= $user->nama_lengkap ?>">
                                 </div>
                             </div>
                             <div class="row align-items-center mb-4">
@@ -39,7 +39,7 @@
                                     <label for="email" class="col-form-label text-black">Email</label>
                                 </div>
                                 <div class="col-7">
-                                    <input type="email" name="email" id="email" class="form-control" value="user@gmail.com">
+                                    <input type="email" name="email" id="email" class="form-control" value="<?= $user->email ?>">
                                 </div>
                             </div>
                             <div class="row align-items-center mb-4">
@@ -47,7 +47,17 @@
                                     <label for="phone" class="col-form-label text-black">Phone Number</label>
                                 </div>
                                 <div class="col-7">
-                                    <input type="tel" name="phone" id="phone" class="form-control" value="089 323 921 923 212">
+                                <?php if ($user->no_telp == null) { ?>
+                                    <input type="tel" name="no_telp" id="phone" class="form-control" placeholder="Phone number">
+                                <?php } else  { ?>
+                                    <input type="tel" name="no_telp" id="phone" class="form-control" value="<?= $user->no_telp ?>">
+                                <?php } ?>
+                                </div>
+                            </div>
+                            <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+                            <div class="row align-items-center mb-4">
+                                <div class="col-md-2 col-3">
+                                    <button type="submit" name="submit" class="btn btn-custom-success">Save</button>
                                 </div>
                             </div>
                         </form>
