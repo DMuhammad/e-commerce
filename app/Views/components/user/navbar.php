@@ -2,7 +2,7 @@
 $currentUrl = $_SERVER['REQUEST_URI'];
 ?>
 
-<nav class="navbar navbar-expand-lg navbar-light navbar-custom <?= $currentUrl != '/' ? 'bg-white shadow-sm' : 'fixed-top' ?>">
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom z-1 <?= $currentUrl != '/' ? 'bg-white shadow-sm' : 'fixed-top' ?>">
     <div class="container">
         <button class="navbar-toggler <?= $currentUrl == '/' ? 'navbar-custom-toggle' : '' ?>" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -33,15 +33,13 @@ $currentUrl = $_SERVER['REQUEST_URI'];
                     </li>
                 </ul>
             </div>
-            <div>
-                <form class="d-md-flex d-block" role="search" action="">
+            <div class="d-flex">
+                <form class="d-md-flex d-block me-2" role="search" action="">
                     <div class="form-group has-search mb-0">
                         <span class="fa fa-search form-control-feedback"></span>
                         <input type="text" class="form-control bg-transparent" placeholder="Search">
                     </div>
                 </form>
-            </div>
-            <div>
                 <ul class="navbar-nav d-md-flex justify-content-between d-none">
                     <li class="nav-item me-2">
                         <a class="nav-link" href="<?= base_url('/cart') ?>"><i class="fa-solid fa-cart-shopping"></i></a>
