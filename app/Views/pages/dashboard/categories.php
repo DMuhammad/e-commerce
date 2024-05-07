@@ -35,8 +35,7 @@
                     <div class="col-md-4 col-2">
                         <div class="d-flex justify-content-end">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#tambah" class="btn btn-primary">
-                                <i class="bi bi-plus"></i>
-                                <span class="d-none d-md-inline">Add Category</span>
+                                + <span class="d-none d-md-inline">Add Category</span>
                             </a>
                         </div>
                     </div>
@@ -62,7 +61,7 @@
                                     <td><?= $category->nama_kategori ?></td>
                                     <td>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#edit<?= $category->id ?>" class="btn btn-warning btn-sm">
-                                            <i class="bi bi-pencil-square"></i>
+                                            <i class="fa-regular fa-pen-to-square"></i>
                                         </a>
                                         <div class="modal fade" id="edit<?= $category->id ?>" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -91,7 +90,7 @@
                                         <form action="<?= base_url('dashboard/categories/delete/') . $category->id ?>" method="POST" class="form-delete d-inline-block">
                                             <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                             <button type="submit" class="btn btn-danger btn-sm delete-item">
-                                                <i class="bi bi-trash"></i>
+                                                <i class="fa-regular fa-trash-can"></i>
                                             </button>
                                         </form>
                                     </td>

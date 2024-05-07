@@ -47,7 +47,7 @@
                     <input type="hidden" name="from" value="<?= $_SESSION['id'] ?>" />
 
                     <div class="input-group-text bg-transparent border-0">
-                        <button class="btn-custom-success" type="submit" name="submit" id="send-chat"><i class="bi bi-send"></i></button>
+                        <button class="btn-custom-success" type="submit" name="submit" id="send-chat"><i class="fa-regular fa-paper-plane"></i></button>
                     </div>
                 </div>
             </div>

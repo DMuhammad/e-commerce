@@ -35,8 +35,8 @@
                     </div>
                     <div class="col-md-4 col-12">
                         <div id="reportrange" style="cursor: pointer; padding: 5px 10px; border: 1px solid #ccc; ">
-                            <i class="bi bi-calendar"></i>&nbsp;
-                            <span></span> <i class="bi bi-caret-down"></i>
+                            <i class="fa-regular fa-calendar"></i>&nbsp;
+                            <span></span> <i class="fa-solid fa-caret-down"></i>
                         </div>
                     </div>
                 </div>

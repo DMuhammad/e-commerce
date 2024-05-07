@@ -37,8 +37,7 @@
                     <div class="col-md-4 col-2">
                         <div class="d-flex justify-content-end">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#tambah" class="btn btn-primary">
-                                <i class="bi bi-plus"></i>
-                                <span class="d-none d-md-inline">Add Product</span>
+                                + <span class="d-none d-md-inline">Add Product</span>
                             </a>
                         </div>
                     </div>
@@ -47,12 +46,12 @@
 
             <div class="card-body">
                 <div class="table-responsive">
-                    <table id="table2" class="display nowrap table table-striped" width="100%">
+                    <table id="table2" class="display table table-striped" width="100%">
                         <thead>
                             <tr>
                                 <th>No</th>
                                 <th data-priority="1">Name</th>
-                                <th data-priority="2">Category</th>
+                                <th>Category</th>
                                 <th>Detail</th>
                                 <th>Stok</th>
                                 <th>Variant</th>
@@ -75,7 +74,7 @@
                                     <td>Rp. <?= $product->harga ?></td>
                                     <td>
                                         <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#imagesModal<?= $product->id ?>">
-                                            <i class="bi bi-images"></i>
+                                            <i class="fa-regular fa-image"></i>
                                         </a>
                                         <div class="modal fade text-center" id="imagesModal<?= $product->id ?>" tabindex="-1" aria-labelledby="imagesLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
@@ -115,7 +114,7 @@
                                     </td>
                                     <td>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#edit<?= $product->id ?>" class="btn btn-warning btn-sm edit-button" data-detail="<?= htmlspecialchars($product->detail) ?>">
-                                            <i class="bi bi-pencil"></i>
+                                            <i class="fa-regular fa-pen-to-square"></i>
                                         </a>
                                         <div class="modal fade" id="edit<?= $product->id ?>" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -190,7 +189,7 @@
                                         <form action="<?= base_url('dashboard/products/delete/') . $product->id ?>" method="post" class="form-delete d-inline-block">
                                             <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                             <button type="submit" class="btn btn-danger btn-sm delete-item">
-                                                <i class="bi bi-trash"></i>
+                                                <i class="fa-regular fa-trash-can"></i>
                                             </button>
                                         </form>
                                     </td>

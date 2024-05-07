@@ -56,10 +56,10 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editStatusModal">
-                                        <i class="bi bi-pencil"></i>
+                                        <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
                                     <button type="button" class="btn btn-sm btn-danger delete-item">
-                                        <i class="bi bi-trash"></i>
+                                        <i class="fa-regular fa-trash-can"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -74,10 +74,10 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editStatusModal">
-                                        <i class="bi bi-pencil"></i>
+                                        <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
                                     <button type="button" class="btn btn-sm btn-danger delete-item">
-                                        <i class="bi bi-trash"></i>
+                                        <i class="fa-regular fa-trash-can"></i>
                                     </button>
                                 </td>
                             </tr>
@@ -92,10 +92,10 @@
                                 </td>
                                 <td>
                                     <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editStatusModal">
-                                        <i class="bi bi-pencil"></i>
+                                        <i class="fa-regular fa-pen-to-square"></i>
                                     </button>
                                     <button type="button" class="btn btn-sm btn-danger delete-item">
-                                        <i class="bi bi-trash"></i>
+                                        <i class="fa-regular fa-trash-can"></i>
                                     </button>
                                 </td>
                             </tr>

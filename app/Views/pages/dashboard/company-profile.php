@@ -35,8 +35,7 @@
                     <div class="col-md-4 col-2">
                         <div class="d-flex justify-content-end">
                             <a href="#" data-bs-toggle="modal" data-bs-target="#edit" class="btn btn-primary">
-                                <i class="bi bi-plus"></i>
-                                <span class="d-none d-md-inline">Edit Profile</span>
+                                + <span class="d-none d-md-inline">Edit Profile</span>
                             </a>
                         </div>
                     </div>

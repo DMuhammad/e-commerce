@@ -57,8 +57,8 @@
                                         <p><span class="custom-card-title fw-bold text-success">Rp.50.000</span><small class="fw-light">/pcs</small></p>
                                     </div>
                                     <div class="col-md-3 col-12 text-end">
-                                        <button class="btn btn-custom-success rounded-circle">
-                                            <i class="bi bi-cart"></i>
+                                        <button type="button" class="btn btn-custom-success rounded-circle">
+                                            <i class="fa-solid fa-cart-shopping"></i>
                                         </button>
                                     </div>
                                 </div>

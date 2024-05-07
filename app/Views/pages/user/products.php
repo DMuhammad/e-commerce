@@ -86,7 +86,7 @@
                                             </div>
                                             <div class="col-md-3 col-12 text-end">
                                                 <button class="btn btn-custom-success rounded-circle">
-                                                    <i class="bi bi-cart"></i>
+                                                    <i class="fa-solid fa-cart-shopping"></i>
                                                 </button>
                                             </div>
                                         </div>

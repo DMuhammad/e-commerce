@@ -7,7 +7,7 @@
     <title>Dashboard</title>
 
     <link rel="stylesheet" href="<?= base_url('assets/compiled/css/app.css') ?>">
-    <link rel="stylesheet" href="<?= base_url('assets/compiled/css/icoonly.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/extensions/fontawesome/css/all.min.css') ?>">
 
     <link rel="stylesheet" href="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.css') ?>">
 
@@ -36,14 +36,11 @@
             <?= $this->include('components/admin/header'); ?>
 
             <?= $this->renderSection('content'); ?>
-
-            <?= $this->include('components/admin/footer'); ?>
         </div>
     </div>
 
     <script src="<?= base_url('assets/compiled/js/app.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/jquery/jquery.min.js') ?>"></script>
-    <script src="<?= base_url('assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') ?>"></script>
 
     <!-- Sweetalert / Swalfire -->
     <script src="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.js') ?>"></script>
@@ -73,11 +70,8 @@
     <script src="<?= base_url('assets/static/js/pages/filepond.js') ?>"></script>
 
     <!-- Datepicker -->
-    <script src="<?= base_url('assets/extensions/daterangepicker/moment.min.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/moment/moment.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/daterangepicker/daterangepicker.js') ?>"></script>
-
-    <!-- Scrollbar -->
-    <script src="<?= base_url('assets/extensions/perfect-scrollbar/perfect-scrollbar.min.js') ?>"></script>
 
     <!-- ChartJS -->
     <script src="<?= base_url('assets/extensions/chart.js/chart.umd.js') ?>"></script>
