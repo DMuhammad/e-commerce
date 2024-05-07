@@ -126,7 +126,7 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('products/update/') . $product->id ?>">
+                                                        <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('dashboard/products/update/') . $product->id ?>">
                                                             <div class="form-body">
                                                                 <div class="col-md-12 form-group">
                                                                     <label for="name">Name</label>
@@ -173,9 +173,10 @@
                                                                     <label for="price">Price</label>
                                                                     <input type="text" id="price" class="form-control price-product" name="price" placeholder="Rp 100.000" required value="<?= $product->harga ?>">
                                                                 </div>
-                                                                <input type="file" class="multiple-files-filepond" name="images[]" multiple data-images='<?= json_encode(array_map(function ($image) {
-                                                                                                                                                                return base_url('uploads/img-product/' . $image->image);
-                                                                                                                                                            }, $product->images)) ?>' />
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="images">Images</label>
+                                                                    <input type="file" class="multiple-files-filepond" name="images[]" multiple />
+                                                                </div>
                                                                 <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                                                 <div class="col-sm-12 d-flex justify-content-end">
                                                                     <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
@@ -186,7 +187,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <form action="<?= base_url('products/delete/') . $product->id ?>" method="post" class="form-delete d-inline-block">
+                                        <form action="<?= base_url('dashboard/products/delete/') . $product->id ?>" method="post" class="form-delete d-inline-block">
                                             <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                             <button type="submit" class="btn btn-danger btn-sm delete-item">
                                                 <i class="bi bi-trash"></i>
@@ -210,7 +211,7 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('products/create') ?>">
+                            <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('dashboard/products/create') ?>">
                                 <div class="form-body">
                                     <div class="col-md-12 form-group">
                                         <label for="name">Name</label>
