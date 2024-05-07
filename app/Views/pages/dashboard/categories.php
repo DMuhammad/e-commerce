@@ -6,7 +6,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Categories</h3>
+                <h3 class="text-dark fw-semibold">Categories</h3>
                 <p class="text-subtitle text-muted">
                     In diverse needs, efficient categorization guides seamless navigation.
                 </p>
@@ -15,7 +15,7 @@
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Dashboard</a>
+                            <a href="/dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Categories
@@ -30,11 +30,11 @@
             <div class="card-header ">
                 <div class="row">
                     <div class="col-md-8 col-10">
-                        <h5 class="card-title">Categories Table</h5>
+                        <h5 class="card-title fw-medium text-dark">Categories Table</h5>
                     </div>
                     <div class="col-md-4 col-2">
                         <div class="d-flex justify-content-end">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#tambah" class="btn btn-primary">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#tambah" class="btn btn-success">
                                 + <span class="d-none d-md-inline">Add Category</span>
                             </a>
                         </div>
