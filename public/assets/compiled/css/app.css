@@ -4667,8 +4667,8 @@ fieldset:disabled .btn {
 .active > .page-link {
   z-index: 3;
   color: var(--bs-pagination-active-color);
-  background-color: var(--bs-pagination-active-bg);
-  border-color: var(--bs-pagination-active-border-color);
+  background-color: #51994b;
+  border-color: #51994b;
 }
 .page-link.disabled,
 .disabled > .page-link {
@@ -11498,7 +11498,7 @@ fieldset:disabled .btn {
   .d-print-none {
     display: none !important;
   }
-} 
+}
 
 @font-face {
   font-family: Poppins;
@@ -12432,7 +12432,7 @@ fieldset:disabled .btn {
 }
 .sidebar-wrapper .menu .sidebar-link svg,
 .sidebar-wrapper .menu .sidebar-link i {
-  color: #7c8db5;
+  color: #055160;
 }
 .sidebar-wrapper .menu .sidebar-link i:before {
   vertical-align: top;
@@ -12452,7 +12452,7 @@ fieldset:disabled .btn {
   content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-down"><polyline points="6 9 12 15 18 9" style="fill:none;stroke:white;stroke-width:1"></polyline></svg>');
 }
 .sidebar-wrapper .menu .sidebar-item.active > .sidebar-link {
-  background-color: #435ebe;
+  background-color: #51994b;
 }
 .sidebar-wrapper .menu .sidebar-item.active > .sidebar-link span {
   color: #fff;
@@ -12485,13 +12485,13 @@ fieldset:disabled .btn {
   position: relative;
 }
 .sidebar-wrapper .menu .submenu .submenu-item.active > a {
-  color: #435ebe;
+  color: #131313;
   font-weight: 700;
 }
 .sidebar-wrapper .menu .submenu .submenu-item a {
   padding: 0.7rem 2rem;
   display: block;
-  color: #25396f;
+  color: rgba(96, 112, 128, 0.75);
   font-size: 0.85rem;
   font-weight: 600;
   letter-spacing: 0.5px;

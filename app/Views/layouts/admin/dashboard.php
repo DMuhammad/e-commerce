@@ -29,7 +29,7 @@
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" style="background-color: #F3F4F3;">
         <?= $this->include('components/admin/sidebar'); ?>
 
         <div id="main">

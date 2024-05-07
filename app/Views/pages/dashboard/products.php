@@ -8,7 +8,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Products</h3>
+                <h3 class="fw-semibold text-dark">Products</h3>
                 <p class="text-subtitle text-muted">
                     Revolutionizing product presentation with exquisite beauty packaging solutions.
                 </p>
@@ -32,11 +32,11 @@
             <div class="card-header ">
                 <div class="row">
                     <div class="col-md-8 col-10">
-                        <h5 class="card-title">Products Table</h5>
+                        <h5 class="card-title fw-medium text-dark">Products Table</h5>
                     </div>
                     <div class="col-md-4 col-2">
                         <div class="d-flex justify-content-end">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#tambah" class="btn btn-primary">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#tambah" class="btn btn-success">
                                 + <span class="d-none d-md-inline">Add Product</span>
                             </a>
                         </div>
@@ -178,7 +178,7 @@
                                                                 </div>
                                                                 <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                                                 <div class="col-sm-12 d-flex justify-content-end">
-                                                                    <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                                                    <button type="submit" name="submit" class="btn btn-success me-1 mb-1">Submit</button>
                                                                 </div>
                                                             </div>
                                                         </form>
@@ -251,7 +251,7 @@
                                     </div>
                                     <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                                     <div class="col-sm-12 d-flex justify-content-end">
-                                        <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                        <button type="submit" name="submit" class="btn btn-success me-1 mb-1">Submit</button>
                                     </div>
                                 </div>
                             </form>

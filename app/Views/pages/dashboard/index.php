@@ -3,7 +3,7 @@
 <?= $this->section('content'); ?>
 
 <div class="page-heading">
-    <h3>Profile Statistics</h3>
+    <h3 class="text-dark fw-semibold">Profile Statistics</h3>
 </div>
 <div class="page-content">
     <section class="row">

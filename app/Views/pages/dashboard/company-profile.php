@@ -6,7 +6,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Company Profile</h3>
+                <h3 class="fw-semibold text-dark">Company Profile</h3>
                 <p class="text-subtitle text-muted">
                     A company profile is a professional introduction of the business and aims to inform the audience about its products and services.
                 </p>
@@ -15,7 +15,7 @@
                 <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
-                            <a href="index.html">Dashboard</a>
+                            <a href="/dashboard">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item active" aria-current="page">
                             Company Profile
@@ -30,11 +30,11 @@
             <div class="card-header">
                 <div class="row">
                     <div class="col-md-8 col-10">
-                        <h5 class="card-title">Profile Details</h5>
+                        <h5 class="card-title text-dark fw-medium text-dark">Profile Details</h5>
                     </div>
                     <div class="col-md-4 col-2">
                         <div class="d-flex justify-content-end">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#edit" class="btn btn-primary">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#edit" class="btn btn-success">
                                 + <span class="d-none d-md-inline">Edit Profile</span>
                             </a>
                         </div>
@@ -43,43 +43,43 @@
                 <hr>
             </div>
             <div class="card-body">
-                <div class="row mb-4">
+                <!-- <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-muted">Logo</div>
                     <div class="col-lg-8 d-flex align-items-center fw-bold">
                         <img src="<?= base_url('assets/static/images/faces/1.jpg') ?>" alt="logo" class="img-thumbnail" style="width: 150px;">
                     </div>
+                </div> -->
+                <div class="row mb-4">
+                    <div class="col-lg-4 fw-semibold text-dark fw-regular">Company Name</div>
+                    <div class="col-lg-8 d-flex align-items-center fw-medium">PT. Abadi Jaya</div>
                 </div>
                 <div class="row mb-4">
-                    <div class="col-lg-4 fw-semibold text-muted">Company Name</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-bold">PT. Abadi Jaya</div>
-                </div>
-                <div class="row mb-4">
-                    <div class="col-lg-4 fw-semibold text-muted">Description</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-bold">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</div>
+                    <div class="col-lg-4 fw-semibold text-dark fw-regular">Description</div>
+                    <div class="col-lg-8 d-flex align-items-center fw-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</div>
                 </div>
                 <hr>
                 <div class="row mb-4">
-                    <div class="col-lg-4 fw-semibold text-muted">Address</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-bold">Jl. Raya No. 123, Jakarta, Indonesia</div>
+                    <div class="col-lg-4 fw-semibold text-dark fw-regular">Address</div>
+                    <div class="col-lg-8 d-flex align-items-center fw-medium">Jl. Raya No. 123, Jakarta, Indonesia</div>
                 </div>
                 <div class="row mb-4">
-                    <div class="col-lg-4 fw-semibold text-muted">Email</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-bold">
+                    <div class="col-lg-4 fw-semibold text-dark fw-regular">Email</div>
+                    <div class="col-lg-8 d-flex align-items-center fw-medium">
                         <a href="mailto: royhandf@gmail.com" class="text-decoration-none"> royhandf@gmail.com</a>
                     </div>
                 </div>
                 <div class="row mb-4">
-                    <div class="col-lg-4 fw-semibold text-muted">Phone</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-bold">+62 812-3456-7890</div>
+                    <div class="col-lg-4 fw-semibold text-dark fw-regular">Phone</div>
+                    <div class="col-lg-8 d-flex align-items-center fw-medium">+62 812-3456-7890</div>
                 </div>
                 <hr>
                 <div class="row mb-4">
-                    <div class="col-lg-4 fw-semibold text-muted">Payment Method</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-bold">Mastercard</div>
+                    <div class="col-lg-4 fw-semibold text-dark fw-regular">Payment Method</div>
+                    <div class="col-lg-8 d-flex align-items-center fw-medium">Mastercard</div>
                 </div>
                 <div class="row mb-4">
-                    <div class="col-lg-4 fw-semibold text-muted">Account Number</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-bold">1234 5678 9012 3456</div>
+                    <div class="col-lg-4 fw-semibold text-dark fw-regular">Account Number</div>
+                    <div class="col-lg-8 d-flex align-items-center fw-medium">1234 5678 9012 3456</div>
                 </div>
             </div>
 
