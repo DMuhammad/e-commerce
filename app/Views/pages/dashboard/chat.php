@@ -76,7 +76,7 @@
                                     <div class="chat-right p-2 px-3 m-1">Hi helh, are you available to chat?</div>
                                 </div>
 
-                                <div class="d-flex flex-column align-items-start text-end justify-content-end mb-4">
+                                <div class="d-flex flex-column align-items-start justify-content-end mb-4">
                                     <div class="chat-left p-2 px-3 m-1">Sure</div>
                                     <div class="chat-left p-2 px-3 m-1 ">Let me know when you're available? </div>
                                 </div>
@@ -85,7 +85,7 @@
                                     <div class="chat-right p-2 px-3 m-1">3:00pm??</div>
                                 </div>
 
-                                <div class="d-flex flex-column align-items-start text-end justify-content-end mb-4">
+                                <div class="d-flex flex-column align-items-start justify-content-end mb-4">
                                     <div class="chat-left p-2 px-3 m-1">Cool</div>
                                 </div>
                                 <?php
@@ -95,7 +95,7 @@
                                             <div class="chat-right p-2 px-3 m-1"><?= $chat->pesan ?></div>
                                         </div>
                                     <?php } else { ?>
-                                        <div class="d-flex flex-column align-items-start text-end justify-content-end mb-4">
+                                        <div class="d-flex flex-column align-items-start justify-content-end mb-4">
                                             <div class="chat-left p-2 px-3 m-1"><?= $chat->pesan ?></div>
                                         </div>
                                 <?php
