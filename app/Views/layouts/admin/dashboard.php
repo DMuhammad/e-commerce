@@ -7,6 +7,8 @@
     <title>Dashboard</title>
 
     <link rel="stylesheet" href="<?= base_url('assets/compiled/css/app.css') ?>">
+    <link rel="stylesheet" href="<?= base_url('assets/static/css/custom.css') ?>">
+
     <link rel="stylesheet" href="<?= base_url('assets/extensions/fontawesome/css/all.min.css') ?>">
 
     <link rel="stylesheet" href="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.css') ?>">
@@ -22,8 +24,6 @@
     <link rel="stylesheet" href="<?= base_url('assets/extensions/filepond/filepond.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/extensions/filepond-plugin-image-preview/filepond-plugin-image-preview.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/compiled/css/filepond.css') ?>">
-
-    <link rel="stylesheet" href="<?= base_url('assets/compiled/css/chat-application.css') ?>">
 
     <link rel="stylesheet" href="<?= base_url('assets/extensions/daterangepicker/daterangepicker.css') ?>">
 </head>
@@ -75,7 +75,7 @@
 
     <!-- ChartJS -->
     <script src="<?= base_url('assets/extensions/chart.js/chart.umd.js') ?>"></script>
-    <script src="<?= base_url('assets/static/js/pages/ui-chartjs.js') ?>"></script>
+    <!-- <script src="<?= base_url('assets/static/js/pages/ui-chartjs.js') ?>"></script> -->
 
     <script src="<?= base_url('assets/extensions/lightbox-bs5/lightbox.js') ?>"></script>
 
@@ -179,6 +179,20 @@
             //         console.log('error', response);
             //     }
             // })
+
+            $('#search-users').on('input', function() {
+                let value = $(this).val().toLowerCase();
+
+                $('.list-group-item').filter(function() {
+                    $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+                });
+            });
+
+            // ketika llist group item child button di click
+            $('.list-group-item').click(function() {
+                $('.first-content').addClass('d-none');
+            })
+
         })
     </script>
 </body>

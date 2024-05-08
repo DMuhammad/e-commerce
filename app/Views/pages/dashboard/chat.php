@@ -6,7 +6,7 @@
     <div class="page-title">
         <div class="row">
             <div class="col-12 col-md-6 order-md-1 order-last">
-                <h3>Chat</h3>
+                <h3 class="fw-semibold text-dark">Chat</h3>
                 <p class="text-subtitle text-muted">Unleashing the power of seamless communication with our cutting-edge chat application.</p>
             </div>
             <div class="col-12 col-md-6 order-md-2 order-first">
@@ -20,288 +20,155 @@
         </div>
     </div>
 
-    <section class="section">
-        <div class="card">
-            <div class="row m-2">
-                <div class="col-12 col-lg-5 col-xl-3 border-right list-group chat-list">
-                    <div class="px-4 d-none d-md-block">
-                        <div class="d-flex align-items-center">
-                            <div class="flex-grow-1">
-                                <input type="text" class="form-control my-3" placeholder="Search...">
-                            </div>
-                        </div>
-                    </div>
-                    <?php
-                    foreach ($user_chat as $uc) { ?>
-                        <a href="#" class="list-group-item list-group-item-action border-0">
-                            <div class="d-flex align-items-start">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar5.png" class="rounded-circle mx-1" alt="Vanessa Tucker" width="40" height="40">
-                                <div class="flex-grow-1 ms-3">
-                                    <?= $uc->from->nama_lengkap ?>
-                                    <div class="small"><span class="fas fa-circle chat-online"></span> Online</div>
-                                </div>
-                            </div>
-                        </a>
-                    <?php
-                    }
-                    ?>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <div class="d-flex align-items-start">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar2.png" class="rounded-circle mx-1" alt="Doris Wilder" width="40" height="40">
-                            <div class="flex-grow-1 ms-3">
-                                Doris Wilder
-                                <div class="small"><span class="fas fa-circle chat-offline"></span> Offline</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <div class="d-flex align-items-start">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar4.png" class="rounded-circle mx-1" alt="Haley Kennedy" width="40" height="40">
-                            <div class="flex-grow-1 ms-3">
-                                Haley Kennedy
-                                <div class="small"><span class="fas fa-circle chat-offline"></span> Offline</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <div class="d-flex align-items-start">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mx-1" alt="Jennifer Chang" width="40" height="40">
-                            <div class="flex-grow-1 ms-3">
-                                Jennifer Chang
-                                <div class="small"><span class="fas fa-circle chat-offline"></span> Offline</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <div class="d-flex align-items-start">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mx-1" alt="Jennifer Chang" width="40" height="40">
-                            <div class="flex-grow-1 ms-3">
-                                Jennifer Chang
-                                <div class="small"><span class="fas fa-circle chat-offline"></span> Offline</div>
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="list-group-item list-group-item-action border-0">
-                        <div class="d-flex align-items-start">
-                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle mx-1" alt="Jennifer Chang" width="40" height="40">
-                            <div class="flex-grow-1 ms-3">
-                                Jennifer Chang
-                                <div class="small"><span class="fas fa-circle chat-offline"></span> Offline</div>
-                            </div>
-                        </div>
-                    </a>
-
-                    <hr class="d-block d-lg-none mt-1 mb-0">
-                </div>
-                <div class="col-12 col-lg-7 col-xl-9">
-                    <div class="py-2 px-4 border-bottom d-none d-lg-block">
-                        <div class="d-flex align-items-center py-1">
-                            <div class="position-relative">
-                                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle ms-1" alt="Sharon Lessman" width="40" height="40">
-                            </div>
-                            <div class="flex-grow-1 ps-3">
-                                <strong>Sharon Lessman</strong>
-                                <div class="text-muted small"><em>Typing...</em></div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="position-relative">
-                        <div class="chat-messages p-4" id="chat-body">
-
-                            <div class="chat-message-right pb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle me-1" alt="Chris Wood" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:33 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 me-3">
-                                    <div class="font-weight-bold mb-1">You</div>
-                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-                                </div>
-                            </div>
-
-                            <div class="chat-message-left pb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle me-1" alt="Sharon Lessman" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:34 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 ms-3">
-                                    <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                    Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
-                                </div>
-                            </div>
-
-                            <div class="chat-message-right mb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle me-1" alt="Chris Wood" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:35 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 me-3">
-                                    <div class="font-weight-bold mb-1">You</div>
-                                    Cum ea graeci tractatos.
-                                </div>
-                            </div>
-
-                            <div class="chat-message-left pb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle me-1" alt="Sharon Lessman" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:36 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 ms-3">
-                                    <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                    Sed pulvinar, massa vitae interdum pulvinar, risus lectus porttitor magna, vitae commodo lectus mauris et velit.
-                                    Proin ultricies placerat imperdiet. Morbi varius quam ac venenatis tempus.
-                                </div>
-                            </div>
-
-                            <div class="chat-message-left pb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle me-1" alt="Sharon Lessman" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:37 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 ms-3">
-                                    <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                    Cras pulvinar, sapien id vehicula aliquet, diam velit elementum orci.
-                                </div>
-                            </div>
-
-                            <div class="chat-message-right mb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle me-1" alt="Chris Wood" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:38 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 me-3">
-                                    <div class="font-weight-bold mb-1">You</div>
-                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-                                </div>
-                            </div>
-
-                            <div class="chat-message-left pb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle me-1" alt="Sharon Lessman" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:39 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 ms-3">
-                                    <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                    Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
-                                </div>
-                            </div>
-
-                            <div class="chat-message-right mb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle me-1" alt="Chris Wood" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:40 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 me-3">
-                                    <div class="font-weight-bold mb-1">You</div>
-                                    Cum ea graeci tractatos.
-                                </div>
-                            </div>
-
-                            <div class="chat-message-right mb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle me-1" alt="Chris Wood" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:41 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 me-3">
-                                    <div class="font-weight-bold mb-1">You</div>
-                                    Morbi finibus, lorem id placerat ullamcorper, nunc enim ultrices massa, id dignissim metus urna eget purus.
-                                </div>
-                            </div>
-
-                            <div class="chat-message-left pb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle me-1" alt="Sharon Lessman" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:42 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 ms-3">
-                                    <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                    Sed pulvinar, massa vitae interdum pulvinar, risus lectus porttitor magna, vitae commodo lectus mauris et velit.
-                                    Proin ultricies placerat imperdiet. Morbi varius quam ac venenatis tempus.
-                                </div>
-                            </div>
-
-                            <div class="chat-message-right mb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle me-1" alt="Chris Wood" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:43 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 me-3">
-                                    <div class="font-weight-bold mb-1">You</div>
-                                    Lorem ipsum dolor sit amet, vis erat denique in, dicunt prodesset te vix.
-                                </div>
-                            </div>
-
-                            <div class="chat-message-left pb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle me-1" alt="Sharon Lessman" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:44 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 ms-3">
-                                    <div class="font-weight-bold mb-1">Sharon Lessman</div>
-                                    Sit meis deleniti eu, pri vidit meliore docendi ut, an eum erat animal commodo.
-                                </div>
-                            </div>
-
-                            <?php
-
-                            use CodeIgniter\I18n\Time;
-
-                            foreach ($chats as $chat) {
-                                $time = Time::parse($chat->created_at);
-                                if ($chat->from == 'admin') { ?>
-                                    <div class="chat-message-right mb-4">
-                                        <div>
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle me-1" alt="Chris Wood" width="40" height="40">
-                                            <div class="text-muted small text-nowrap mt-2"><?= $time->toLocalizedString('h:mm a') ?></div>
-                                        </div>
-                                        <div class="flex-shrink-1 bg-light rounded py-2 px-3 me-3">
-                                            <div class="font-weight-bold mb-1">You</div>
-                                            <?= $chat->pesan ?>
-                                        </div>
+    <section class="section chat-window">
+        <div class="row justify-content-start h-100 gy-3">
+            <div class="col-12 col-lg-4 col-xl-3 flex-column border-end border-1 bg-white">
+                <div class="px-4">
+                    <form class="my-3" role="search">
+                        <input type="search" class="form-control" id="search-users" placeholder="Search...">
+                    </form>
+                    <div class="chat-list-users card-body mb-3">
+                        <ul class="nav nav-tabs flex-column bg-white rounded-3 " role="tablist">
+                            <li class="nav-item list-group-item" role="presentation">
+                                <button class="nav-link px-0 w-100" data-bs-toggle="tab" data-bs-target="#user1" type="button" role="tab" aria-controls="user1" aria-selected="false">
+                                    <div class="d-flex align-items-center justify-content-start">
+                                        <img src="<?= base_url('assets/static/images/user.png') ?>" class="rounded-circle mx-1" alt="user" width="40" height="40">
+                                        <div class="ms-3 ">Agus Sahlan</div>
                                     </div>
+                                </button>
+                            </li>
+                            <li class="nav-item list-group-item" role="presentation">
+                                <button class="nav-link px-0 w-100" data-bs-toggle="tab" data-bs-target="#user2" type="button" role="tab" aria-controls="user2" aria-selected="false">
+                                    <div class="d-flex align-items-center justify-content-start">
+                                        <img src="<?= base_url('assets/static/images/user.png') ?>" class="rounded-circle mx-1" alt="user" width="40" height="40">
+                                        <div class="ms-3 ">Budi Luhur</div>
+                                    </div>
+                                </button>
+                            </li>
+                            <?php foreach ($user_chat as $uc) { ?>
+                                <li class="nav-item list-group-item" role="presentation">
+                                    <button class="nav-link px-0 w-100" data-bs-toggle="tab" data-bs-target="#<?= $uc->from->id ?>" type="button" role="tab" aria-controls="<?= $uc->from->id ?>" aria-selected="false">
+                                        <div class="d-flex align-items-center justify-content-start">
+                                            <img src="<?= base_url('assets/static/images/user.png') ?>" class="rounded-circle mx-1" alt="user" width="40" height="40">
+                                            <div class="flex-grow-1 ms-3">
+                                                <?= $uc->from->nama_lengkap ?>
+                                            </div>
+                                        </div>
+                                    </button>
+                                </li>
+                            <?php } ?>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-7 col-xl-9 tab-content bg-white p-md-0 p-1 chat-content">
+                <div class="tab-pane" id="user1" role="tabpanel" tabindex="0">
+                    <div class="card m-0">
+                        <div class="card-header py-2 px-4 border-bottom d-none d-lg-block">
+                            <div class="d-flex align-items-center py-1">
+                                <img src="<?= base_url('assets/static/images/user.png') ?>" class="rounded-circle ms-1" alt="user" width="40" height="40">
+                                <div class="flex-grow-1 ps-3"> Agus Sahlan </div>
+                            </div>
+                        </div>
+                        <div class="card-body chat-body m-xl-0 m-3">
+                            <div class="p-md-4 p-sm-2 p-1">
+                                <div class="d-flex flex-column align-items-end mb-4">
+                                    <div class="chat-right p-2 px-3 m-1">Hi helh, are you available to chat?</div>
+                                </div>
+
+                                <div class="d-flex flex-column align-items-start text-end justify-content-end mb-4">
+                                    <div class="chat-left p-2 px-3 m-1">Sure</div>
+                                    <div class="chat-left p-2 px-3 m-1 ">Let me know when you're available? </div>
+                                </div>
+
+                                <div class="d-flex flex-column align-items-end mb-4">
+                                    <div class="chat-right p-2 px-3 m-1">3:00pm??</div>
+                                </div>
+
+                                <div class="d-flex flex-column align-items-start text-end justify-content-end mb-4">
+                                    <div class="chat-left p-2 px-3 m-1">Cool</div>
+                                </div>
                                 <?php
-                                } else { ?>
-                                    <div class="chat-message-left pb-4">
-                                        <div>
-                                            <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="rounded-circle me-1" alt="Sharon Lessman" width="40" height="40">
-                                            <div class="text-muted small text-nowrap mt-2"><?= $time->toLocalizedString('h:mm a') ?></div>
+                                foreach ($chats as $chat) {
+                                    if ($chat->from == 'admin') { ?>
+                                        <div class="d-flex flex-column align-items-end mb-4">
+                                            <div class="chat-right p-2 px-3 m-1"><?= $chat->pesan ?></div>
                                         </div>
-                                        <div class="flex-shrink-1 bg-light rounded py-2 px-3 ms-3">
-                                            <?= $chat->pesan ?>
+                                    <?php } else { ?>
+                                        <div class="d-flex flex-column align-items-start text-end justify-content-end mb-4">
+                                            <div class="chat-left p-2 px-3 m-1"><?= $chat->pesan ?></div>
                                         </div>
-                                    </div>
-                            <?php
+                                <?php
+                                    }
                                 }
-                            }
-                            ?>
+                                ?>
+                            </div>
+                        </div>
+                        <div class="card-footer py-2 px-4">
+                            <div class="input-group ps-2">
+                                <input type="text" class="form-control border-0" placeholder="Write a message..." name="message">
+                                <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" id="csrf" />
+                                <input type="hidden" name="from" value="<?= $_SESSION['id'] ?>" />
 
+                                <div class="input-group-text bg-transparent border-0">
+                                    <input type="hidden" id="csrf" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>">
+                                    <input type="hidden" name="from" value="admin">
+                                    <button class="btn-custom-success" type="submit" name="submit" id="send-chat"><i class="fa-regular fa-paper-plane"></i></button>
+                                </div>
+                            </div>
                         </div>
                     </div>
-
-                    <div class="flex-grow-0 py-3 px-4 border-top">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Type your message" name="message">
-                            <input type="hidden" id="csrf" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>">
-                            <input type="hidden" name="from" value="admin">
-                            <button class="btn btn-primary" type="submit" name="submit" id="send-chat">Send</button>
-                        </div>
-                    </div>
-
                 </div>
+                <div class="tab-pane" id="user2" role="tabpanel" tabindex="1">
+                    <div class="card m-0">
+                        <div class="card-header py-2 px-4 border-bottom d-none d-lg-block">
+                            <div class="d-flex align-items-center py-1">
+                                <img src="<?= base_url('assets/static/images/user.png') ?>" class="rounded-circle ms-1" alt="user" width="40" height="40">
+                                <div class="flex-grow-1 ps-3">Budi Luhur</div>
+                            </div>
+                        </div>
+                        <div class="card-body chat-body m-xl-0 m-3">
+                            <div class="p-md-4 p-sm-2 p-1">
+                                <div class="d-flex flex-column align-items-end mb-4">
+                                    <div class="chat-right p-2 px-3 m-1">Hi helh, are you available to chat?</div>
+                                </div>
+
+                                <div class="d-flex flex-column align-items-start text-end justify-content-end mb-4">
+                                    <div class="chat-left p-2 px-3 m-1">Sure</div>
+                                    <div class="chat-left p-2 px-3 m-1 ">Let me know when you're available? </div>
+                                </div>
+
+                                <div class="d-flex flex-column align-items-end mb-4">
+                                    <div class="chat-right p-2 px-3 m-1">3:00pm??</div>
+                                </div>
+
+                                <div class="d-flex flex-column align-items-start text-end justify-content-end mb-4">
+                                    <div class="chat-left p-2 px-3 m-1">Cool</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-footer py-2 px-4">
+                            <div class="input-group ps-2">
+                                <input type="text" class="form-control border-0" placeholder="Write a message..." name="message">
+                                <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" id="csrf" />
+                                <input type="hidden" name="from" value="<?= $_SESSION['id'] ?>" />
+
+                                <div class="input-group-text bg-transparent border-0">
+                                    <button class="btn-custom-success" type="submit" name="submit" id="send-chat"><i class="fa-regular fa-paper-plane"></i></button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="first-content h-100">
+                    <div class="d-flex justify-content-center align-items-center h-100">
+                        <h5 class="fw-semibold text-dark">Your Message</h5>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
 </div>
-
-<script>
-    const chatList = document.querySelector('.chat-list');
-
-    if (chatList.querySelectorAll('a').length > 9) {
-        chatList.style.height = '100vh';
-        chatList.style.overflowY = 'scroll';
-    }
-</script>
-
 
 <?= $this->endSection(); ?>
