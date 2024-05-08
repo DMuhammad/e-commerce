@@ -71,21 +71,53 @@
                             </div>
                             <div class="align-self-center">
                                 <!-- KETIKA BLM ADA ALAMAN USER MAKA INI MUNCUL -->
-                                <button type="button" class="btn btn-custom-success">+ <span class="d-md-inline d-none">Add new address</span></button>
+                                <button type="button" class="btn btn-custom-success" data-bs-toggle="modal" data-bs-target="#editAddressModal">+ <span class="d-md-inline d-none">Edit Address</span></button>
                             </div>
+
+                            <!-- Modal -->
+                            <form action="<?= base_url('/account/update-address') ?>" method="POST">
+                                <div class="modal fade" id="editAddressModal" tabindex="-1" aria-labelledby="editAddressModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="editAddressModalLabel">Edit Address</h5>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row align-items-center mb-4">
+                                                    <label for="address" class="col-form-label text-black">Full Address</label>
+                                                    <div class="col-15">
+                                                        <input type="text" name="alamat" id="address" class="form-control" value="<?= $user->alamat ?>">
+                                                    </div>
+                                                </div>
+                                                <!-- create text muted -->
+                                                <small class="text-muted">Contoh: Jl. Mawar 1, Kelurahan Gubeng, Kecamatan Gubeng, Kota Surabaya, Jawa Timur, 6111 </small>
+                                                <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                <button type="submit" name="submit" class="btn btn-custom-success">Save</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                         </div>
                         <hr>
-
                         <p class="text-black">Address</p>
                         <div class="row justify-content-between">
                             <div class="col-8">
-                                <h5 class="text-black fw-medium mb-1">Royhan Daffa</h5>
-                                <p class="text-black mb-1">Jl. Kahuripan Avenue no 23 Sidoarjo, Jawa Timur, Indonesia</p>
-                                <p class="text-black mb-1">+62 812-8363-5368</p>
-                            </div>
-                            <div class="col-4 text-end">
-                                <button type="button" class="btn btn-outline-success"><i class="fa-regular fa-pen-to-square"></i></button>
-                                <button type="button" class="btn btn-outline-danger"><i class="fa-regular fa-trash-can"></i></button>
+                                <h5 class="text-black fw-medium mb-1"><?= $user->nama_lengkap ?></h5>
+                                <?php if ($user->alamat == null) { ?>
+                                    <p class="text-black mb-1">Address not set</p>
+                                <?php } else { ?>
+                                    <p class="text-black mb-1"><?= $user->alamat ?></p>
+                                <?php } ?>
+                                <?php if ($user->no_telp == null) { ?>
+                                    <p class="text-black mb-1">Phone number not set</p>
+                                <?php } else { ?>
+                                    <p class="text-black mb-1"><?= $user->no_telp ?></p>
+                                <?php } ?>
                             </div>
                         </div>
                     </div>
@@ -95,13 +127,13 @@
                         <p class="text-black mb-0">Manage your password information to control, protect and secure your account</p>
                         <hr>
 
-                        <form action="" method="">
+                        <form action="<?= base_url('/account/update-password') ?>" method="POST">
                             <div class="row align-items-center mb-4">
                                 <div class="col-md-2 col-3">
                                     <label for="old-password" class="col-form-label text-black">Old Password</label>
                                 </div>
                                 <div class="col-7">
-                                    <input type="password" name="old-password" id="old-password" class="form-control" value="Royhan Daffa">
+                                    <input type="password" name="old_password" id="old-password" class="form-control" placeholder="********">
                                 </div>
                             </div>
                             <div class="row align-items-center mb-4">
@@ -109,15 +141,13 @@
                                     <label for="new-password" class="col-form-label text-black">New Password</label>
                                 </div>
                                 <div class="col-7">
-                                    <input type="password" name="new-password" id="new-password" class="form-control" placeholder="********">
+                                    <input type="password" name="new_password" id="new-password" class="form-control" placeholder="********">
                                 </div>
                             </div>
+                            <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                             <div class="row align-items-center mb-4">
                                 <div class="col-md-2 col-3">
-                                    <label for="confirm-password" class="col-form-label text-black">Confirm Password</label>
-                                </div>
-                                <div class="col-7">
-                                    <input type="password" name="confirm-password" id="confirm-password" class="form-control" placeholder="********">
+                                    <button type="submit" name="submit" class="btn btn-custom-success">Update</button>
                                 </div>
                             </div>
                         </form>

@@ -56,6 +56,8 @@ $routes->get('/checkout', [Home::class, 'checkout'], ['filter' => 'auth']);
 $routes->get('/payment', [Home::class, 'payment'], ['filter' => 'auth']);
 $routes->get('/account', [Home::class, 'account'], ['filter' => 'auth']);
 $routes->post('/account/update', [Home::class, 'updateAccount'], ['filter' => 'auth']);
+$routes->post('/account/update-password', [Home::class, 'updatePassword'], ['filter' => 'auth']);
+$routes->post('/account/update-address', [Home::class, 'updateAddress'], ['filter' => 'auth']);
 $routes->get('/detail-transactions', [Home::class, 'detailTransactions'], ['filter' => 'auth']);
 
 $routes->get('chats', [ChatController::class, 'chats'], ['filter' => 'auth']);

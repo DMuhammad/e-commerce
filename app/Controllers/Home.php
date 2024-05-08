@@ -133,7 +133,34 @@ class Home extends BaseController
             'email' => $this->request->getPost('email'),
             'no_telp' => $this->request->getPost('no_telp'),
         ]);
+        session()->setFlashdata('success', 'Data akun berhasil disimpan!');
+        return redirect()->to('/account');
+    }
 
+    public function updatePassword()
+    {
+        $id = session()->get('id');
+        $user = $this->userModel->where('id', $id)->first();
+
+        if (password_verify((string)$this->request->getPost('old_password'), $user->password)) {
+            $this->userModel->update($id, [
+                'password' => password_hash((string)$this->request->getPost('new_password'), PASSWORD_DEFAULT),
+            ]);
+            session()->setFlashdata('success', 'Password berhasil diubah!');
+            return redirect()->to('/account');
+        } else {
+            session()->setFlashdata('error', 'Password lama salah!');
+            return redirect()->to('/account');
+        }
+    }
+
+    public function updateAddress()
+    {
+        $id = session()->get('id');
+        $this->userModel->update($id, [
+            'alamat' => $this->request->getPost('alamat'),
+        ]);
+        session()->setFlashdata('success', 'Alamat berhasil disimpan!');
         return redirect()->to('/account');
     }
 

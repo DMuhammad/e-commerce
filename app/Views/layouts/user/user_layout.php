@@ -12,6 +12,8 @@
     <link rel="stylesheet" href="<?= base_url('assets/extensions/fontawesome/css/all.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/extensions/splide/css/splide.min.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/extensions/daterangepicker/daterangepicker.css') ?>">
+
+    <link rel="stylesheet" href="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.css') ?>">
 </head>
 
 <body class="bg-white overflow-x-hidden">
@@ -28,6 +30,30 @@
     <script src="<?= base_url('assets/extensions/splide/js/splide.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/moment/moment.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/daterangepicker/daterangepicker.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.js') ?>"></script>
+
+    <?php if (session()->getFlashdata('success')): ?>
+    <script>
+        Swal.fire({
+            icon: "success",
+            title: "Success!",
+            text: "<?= session()->getFlashdata('success') ?>",
+            confirmButtonText: 'OK'
+        });
+    </script>
+    <?php endif; ?>
+
+
+    <?php if (session()->getFlashdata('error')): ?>
+    <script>
+        Swal.fire({
+            icon: "error",
+            title: "Error!",
+            text: "<?= session()->getFlashdata('error') ?>",
+            confirmButtonText: 'OK'
+        });
+    </script>
+    <?php endif; ?>
 
     <script>
         window.onscroll = function() {
