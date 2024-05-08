@@ -16,6 +16,7 @@ use App\Controllers\Home;
 $routes->get('/login', [AuthController::class, 'index'], ['filter' => 'islogin']);
 $routes->post('/login', [AuthController::class, 'authenticate']);
 $routes->get('/register', [AuthController::class, 'register']);
+$routes->post('/register', [AuthController::class, 'store']);
 $routes->get('/logout', [AuthController::class, 'logout']);
 
 $routes->get('/dashboard', [DashboardController::class, 'index'], ['filter' => 'auth']);
@@ -54,6 +55,7 @@ $routes->get('/cart', [Home::class, 'cart'], ['filter' => 'auth']);
 $routes->get('/checkout', [Home::class, 'checkout'], ['filter' => 'auth']);
 $routes->get('/payment', [Home::class, 'payment'], ['filter' => 'auth']);
 $routes->get('/account', [Home::class, 'account'], ['filter' => 'auth']);
+$routes->post('/account/update', [Home::class, 'updateAccount'], ['filter' => 'auth']);
 $routes->get('/detail-transactions', [Home::class, 'detailTransactions'], ['filter' => 'auth']);
 
 $routes->get('chats', [ChatController::class, 'chats'], ['filter' => 'auth']);

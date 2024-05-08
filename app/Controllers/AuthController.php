@@ -2,6 +2,7 @@
 
 namespace App\Controllers;
 
+use Ramsey\Uuid\Uuid;
 use App\Controllers\BaseController;
 use App\Models\UserModel; // Correct namespace for User model
 
@@ -50,6 +51,31 @@ class AuthController extends BaseController
     public function register()
     {
         return view('pages/auth/register');
+    }
+
+    public function store()
+    {
+        $data = [
+            'id' => Uuid::uuid4(),
+            'nama_lengkap' => $this->request->getPost('first_name') . ' ' . $this->request->getPost('last_name'),
+            'email' => $this->request->getPost('email'),
+            $password = $this->request->getPost('password'),
+            'password' => password_hash((string)$password, PASSWORD_DEFAULT),
+            'role' => 'User',
+        ];
+
+        $this->userModel->register($data);
+
+        $user = $this->userModel->login([
+            'email' => $data['email'],
+            'password' => $password,
+        ]);
+
+        $this->session->set('nama_lengkap', $user[0]);
+        $this->session->set('id', $user[1]);
+        $this->session->set('role', $user[2]);
+
+        return redirect()->to('/');
     }
 
     public function logout()

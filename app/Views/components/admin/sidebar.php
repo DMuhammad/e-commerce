@@ -58,8 +58,12 @@ $auth = $role;
                 </li>
                 <hr>
                 <li class="sidebar-item">
+<<<<<<< HEAD
+                    <a href="/logout" class="sidebar-link">
+=======
                     </form>
                     <a href="/logout" class="sidebar-link fw-medium text-dark">
+>>>>>>> 1e1a760464810fd3b6e46847235d556f048cb409
                         <i class="fa-solid fa-arrow-right-from-bracket"></i> <span>Logout</span>
                     </a>
                 </li>
