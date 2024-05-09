@@ -7,7 +7,9 @@ use App\Models\CartModel;
 use App\Models\UserModel;
 use App\Models\ProductModel;
 use App\Models\CategoryModel;
+use App\Models\TransactionModel;
 use App\Models\ProductImagesModel;
+use App\Models\DetailTransactionModel;
 
 class Home extends BaseController
 {
@@ -16,6 +18,8 @@ class Home extends BaseController
     protected $productImages;
     protected $userModel;
     protected $cart;
+    protected $transaction;
+    protected $detailTransaction;
 
     public function __construct()
     {
@@ -24,6 +28,8 @@ class Home extends BaseController
         $this->productImages = new ProductImagesModel();
         $this->userModel = new UserModel();
         $this->cart = new CartModel();
+        $this->transaction = new TransactionModel();
+        $this->detailTransaction = new DetailTransactionModel();
     }
 
     public function index(): string
@@ -205,31 +211,156 @@ class Home extends BaseController
     public function deleteCart($id)
     {
         $this->cart->delete($id);
-        
+
         session()->setFlashdata('success', 'Product deleted!');
         return redirect()->to('/cart');
     }
 
+    public function checkCart()
+    {
+        $userId = session()->get('id');
+        $carts = $this->cart->where('user_id', $userId)->findAll();
+    
+        if (empty($carts)) {
+            session()->setFlashdata('error', 'Cart is empty!');
+            return redirect()->to('/cart');
+        } else {
+            return redirect()->to('/checkout');
+        }
+    }
+
     public function checkout(): string
     {
+        $userId = session()->get('id');
+        $user = $this->userModel->where('id', $userId)->first();
+        $carts = $this->cart->where('user_id', $userId)->findAll();
+
+        // Retrieve product details for each cart item
+        foreach ($carts as $cart) {
+            $cart->product = $this->products->find($cart->product_id);
+        }
+
+        $subtotal = 0;
+        $tax = 0;
+        foreach ($carts as $cart) {
+            $subtotal += $cart->total_harga;
+            $tax = $subtotal * 0.2;
+        }
+        $total = $subtotal + $tax;
+
         $data = [
             'user' => session()->get('nama_lengkap'),
             'role' => session()->get('role'),
             'title' => 'Checkout',
+            'carts' => $carts,
+            'user' => $user,
+            'subtotal' => $subtotal,
+            'tax' => $tax,
+            'total' => $total,
+        ];
+        return view('pages/user/checkout', $data);
+    }
+
+    public function checkTransaction()
+    {
+        $userId = session()->get('id');
+        $carts = $this->cart->where('user_id', $userId)->findAll();
+    
+        if (empty($carts)) {
+            session()->setFlashdata('error', 'Cart is empty!');
+            return redirect()->to('/cart');
+        } else {
+            return redirect()->to('/transaction');
+        }
+    }
+
+    public function storeTransaction()
+    {
+        $userId = session()->get('id');
+        $user = $this->userModel->where('id', $userId)->first();
+
+        if ($user->alamat == null && $user->no_telp == null) {
+            session()->setFlashdata('error', 'Address and phone number must be filled!');
+            return redirect()->to('/account');
+        }
+
+        $carts = $this->cart->where('user_id', $userId)->findAll();
+        $note = $this->request->getPost('note');
+
+        $subtotal = 0;
+        $tax = 0;
+
+        foreach ($carts as $cart) {
+            $subtotal += $cart->total_harga;
+            $tax = $subtotal * 0.2;
+        }
+        $total = $subtotal + $tax;
+
+        $data = [
+            'id' => Uuid::uuid4(),
+            'user_id' => $userId,
+            'kode_transaksi' => 'INV/' . date('Ymd') . '/' . date('his'). '/' . rand(100, 999),
+            'note'=> $note,
+            'total_bayar' => $total,
+            'status' => 'pending',
         ];
 
-        return view('pages/user/checkout', $data);
+        $this->transaction->insert($data);
+
+        foreach ($carts as $cart) {
+            $this->detailTransaction->insert([
+                'id' => Uuid::uuid4(),
+                'transaction_id' => $data['id'],
+                'product_id' => $cart->product_id,
+                'qty' => $cart->qty,
+            ]);
+        }
+
+        foreach ($carts as $cart) {
+            $this->cart->delete($cart->id);
+        }
+
+        session()->setFlashdata('success', 'Please pay your order!');
+        return redirect()->to('/payment');
     }
 
     public function payment(): string
     {
+        $admin = $this->userModel->where('role', 'admin')->first();
+        $userId = session()->get('id');
+        $user = $this->userModel->where('id', $userId)->first();
+        $transaction = $this->transaction->where('user_id', $userId)->orderBy('created_at', 'DESC')->first();
+        $detail = $this->detailTransaction->where('transaction_id', $transaction->id)->findAll();
+
+        foreach ($detail as $item) {
+            $item->product = $this->products->find($item->product_id);
+        }
+
+        $tax = 0;
+        foreach ($detail as $item) {
+            $tax += $item->product->harga * $item->qty * 0.2;
+        }
+
         $data = [
             'user' => session()->get('nama_lengkap'),
             'role' => session()->get('role'),
             'title' => 'Payment',
+            'transaction' => $transaction,
+            'details' => $detail,
+            'admin' => $admin,
+            'user' => $user,
+            'tax' => $tax,
         ];
 
         return view('pages/user/payment', $data);
+    }
+
+    public function cancelPayment($id)
+    {
+        $this->transaction->update($id, [
+            'status' => 'canceled',
+        ]);
+        return redirect()->to('/payment');
     }
 
     public function account()
@@ -237,8 +368,11 @@ class Home extends BaseController
         $id = session()->get('id');
         $user = $this->userModel->where('id', $id)->first();
 
+        $transactions = $this->transaction->where('user_id', $id)->findAll();
+
         $data = [
             'user'=> $user,
+            'transactions' => $transactions,
             'title' => 'Account',
         ];
 
@@ -284,12 +418,32 @@ class Home extends BaseController
         return redirect()->to('/account');
     }
 
-    public function detailTransactions(): string
+    public function detailTransactions($id)
     {
+        $userId = session()->get('id');
+        $user = $this->userModel->where('id', $userId)->first();
+        $admin = $this->userModel->where('role', 'admin')->first();
+        $transaction = $this->transaction->where('id', $id)->first();
+        $details = $this->detailTransaction->where('transaction_id', $transaction->id)->findAll();
+
+        foreach ($details as $detail) {
+            $detail->product = $this->products->find($detail->product_id);
+        }
+
+        $tax = 0;
+        foreach ($details as $detail) {
+            $tax += $detail->product->harga * $detail->qty * 0.2;
+        }
+
         $data = [
             'user' => session()->get('nama_lengkap'),
             'role' => session()->get('role'),
             'title' => 'Detail Transactions',
+            'transaction' => $transaction,
+            'details' => $details,
+            'admin' => $admin,
+            'user' => $user,
+            'tax' => $tax,
         ];
 
         return view('pages/user/detail-transactions', $data);

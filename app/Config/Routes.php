@@ -1,14 +1,15 @@
 <?php
 
+use App\Controllers\Home;
 use App\Controllers\AuthController;
+use App\Controllers\ChatController;
 use App\Controllers\ProductController;
 use App\Controllers\CategoryController;
-use App\Controllers\ChatController;
-use App\Controllers\CompanyImageController;
 use CodeIgniter\Router\RouteCollection;
 use App\Controllers\DashboardController;
-use App\Controllers\Home;
 use App\Controllers\WebSocketController;
+use App\Controllers\TransactionController;
+use App\Controllers\CompanyImageController;
 
 /**
  * @var RouteCollection $routes
@@ -44,6 +45,12 @@ $routes->group('dashboard/company-images', ['filter' => 'admin'], function ($rou
     $routes->post('delete/(:segment)', [CompanyImageController::class, 'delete']);
 });
 
+$routes->group('dashboard/transactions', ['filter' => 'admin'], function ($routes) {
+    $routes->get('/', [TransactionController::class, 'index']);
+    $routes->post('update/(:segment)', [TransactionController::class, 'update']);
+    $routes->post('delete/(:segment)', [TransactionController::class, 'delete']);
+});
+
 $routes->get('/dashboard/transactions', 'TransactionController::index');
 $routes->get('/dashboard/chats', 'ChatController::index');
 $routes->get('/dashboard/company-profile', 'CompanyProfileController::index');
@@ -57,13 +64,16 @@ $routes->post('/add-to-cart', [Home::class, 'addToCart'], ['filter' => 'auth']);
 $routes->get('/cart', [Home::class, 'cart'], ['filter' => 'auth']);
 $routes->post('/cart/update/(:segment)', [Home::class, 'updateCart'], ['filter' => 'auth']);
 $routes->post('/cart/delete/(:segment)', [Home::class, 'deleteCart'], ['filter' => 'auth']);
+$routes->get('/check-cart', [Home::class, 'checkCart'], ['filter' => 'auth']);
 $routes->get('/checkout', [Home::class, 'checkout'], ['filter' => 'auth']);
+$routes->post('/checkout', [Home::class, 'storeTransaction'], ['filter' => 'auth']);
 $routes->get('/payment', [Home::class, 'payment'], ['filter' => 'auth']);
+$routes->post('/cancel-payment/(:segment)', [Home::class, 'cancelPayment'], ['filter' => 'auth']);
 $routes->get('/account', [Home::class, 'account'], ['filter' => 'auth']);
 $routes->post('/account/update', [Home::class, 'updateAccount'], ['filter' => 'auth']);
 $routes->post('/account/update-password', [Home::class, 'updatePassword'], ['filter' => 'auth']);
 $routes->post('/account/update-address', [Home::class, 'updateAddress'], ['filter' => 'auth']);
-$routes->get('/detail-transactions', [Home::class, 'detailTransactions'], ['filter' => 'auth']);
+$routes->get('/detail-transaction/(:segment)', [Home::class, 'detailTransactions'], ['filter' => 'auth']);
 
 $routes->get('chats', [ChatController::class, 'chats'], ['filter' => 'auth']);
 $routes->get('chats/(:segment)', [ChatController::class, 'chatsByUser'], ['filter' => 'auth']);

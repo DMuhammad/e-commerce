@@ -61,7 +61,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <?php
+                        <?php
                             $no = 1;
                             foreach ($products as $product) { ?>
                                 <tr>
@@ -191,10 +191,8 @@
                                         </form>
                                     </td>
                                 </tr>
-
-                            <?php
-                            }
-                            ?>
+                            <?php 
+                        }?>
                         </tbody>
                     </table>
                 </div>

@@ -46,88 +46,66 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <td>1</td>
-                                <td>INV-20210403-001</td>
-                                <td>2021-04-03</td>
-                                <td>Customer 1</td>
-                                <td>Rp. 100.000</td>
-                                <td>
-                                    <span class="badge bg-warning">Pending</span>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editStatusModal">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-danger delete-item">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>INV-20210403-002</td>
-                                <td>2021-04-03</td>
-                                <td>Customer 2</td>
-                                <td>Rp. 200.000</td>
-                                <td>
-                                    <span class="badge bg-info">Process</span>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editStatusModal">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-danger delete-item">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>INV-20210403-003</td>
-                                <td>2021-04-03</td>
-                                <td>Customer 3</td>
-                                <td>Rp. 300.000</td>
-                                <td>
-                                    <span class="badge bg-success">Success</span>
-                                </td>
-                                <td>
-                                    <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#editStatusModal">
-                                        <i class="fa-regular fa-pen-to-square"></i>
-                                    </button>
-                                    <button type="button" class="btn btn-sm btn-danger delete-item">
-                                        <i class="fa-regular fa-trash-can"></i>
-                                    </button>
-                                </td>
-                            </tr>
-
-                            <div class="modal fade" id="editStatusModal" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
-                                <div class="modal-dialog modal-md modal-dialog-centered">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title" id="exampleModalLabel">Form Edit Status</h5>
-                                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data">
-                                                <div class="form-body">
-                                                    <div class="col-md-12 form-group">
-                                                        <label for="status">Status</label>
-                                                        <select class="form-control" name="status" id="status" required>
-                                                            <option value="" disabled selected>--Change Status--</option>
-                                                            <option value="1">Pending</option>
-                                                            <option value="2">Process</option>
-                                                            <option value="3">Success</option>
-                                                        </select>
+                                <?php 
+                                                            $no = 1;
+                                foreach ($transactions as $transaction) : ?>
+                                    
+                                    <td><?= $no++ ?></td>
+                                    <td><?= $transaction->kode_transaksi ?></td>
+                                    <td><?= $transaction->created_at ?></td>
+                                    <td><?= $transaction->user->nama_lengkap ?></td>
+                                    <td>Rp. <?= $transaction->total_bayar ?></td>
+                                    <td>
+                                        <?php if ($transaction->status == 'pending') : ?>
+                                            <span class="badge bg-warning">Pending</span>
+                                        <?php elseif ($transaction->status == 'canceled') : ?>
+                                            <span class="badge bg-danger">Canceled</span>
+                                        <?php elseif ($transaction->status == 'success') : ?>
+                                            <span class="badge bg-success">Success</span>
+                                        <?php endif; ?>
+                                    </td>
+                                    <td>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#edit<?= $transaction->id ?>" class="btn btn-warning btn-sm edit-button"">
+                                            <i class="fa-regular fa-pen-to-square"></i>
+                                        </a>
+                                        <div class="modal fade" id="edit<?= $transaction->id ?>" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Change Status Transaction
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                    <div class="col-sm-12 d-flex justify-content-end">
-                                                        <button type="submit" name="submit" class="btn btn-success me-1 mb-1">Submit</button>
+                                                    <div class="modal-body">
+                                                        <form class="form form-horizontal" id="form-product" method="post"  action="<?= base_url('dashboard/transactions/update/') . $transaction->id ?>">
+                                                            <div class="form-body">
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="category">Status</label>
+                                                                    <select class="form-control" name="status" required>
+                                                                        <?php foreach ($statuses as $status) { ?>
+                                                                            <option value="<?= $status ?>" <?= ($status == $transaction->status) ? 'selected' : '' ?>><?= $status ?></option>
+                                                                        <?php }?>
+                                                                    </select>
+                                                                </div>
+                                                                <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+                                                                <div class="col-sm-12 d-flex justify-content-end">
+                                                                    <button type="submit" name="submit" class="btn btn-success me-1 mb-1">Save</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
                                                     </div>
                                                 </div>
-                                            </form>
+                                            </div>
                                         </div>
-                                    </div>
-                                </div>
-                            </div>
+                                        <form action="<?= base_url('dashboard/transactions/delete/') . $transaction->id ?>" method="POST" class="form-delete d-inline-block">
+                                            <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+                                            <button type="submit" class="btn btn-danger btn-sm delete-item">
+                                                <i class="fa-regular fa-trash-can"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                        <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>

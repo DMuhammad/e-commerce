@@ -8,7 +8,7 @@
         <div class="d-flex gap-1 align-items-center mb-5">
             <a href="/cart" class="fw-medium text-black fs-6 mb-0">Cart</a>
             <hr class="text-black" style="width: 50px;">
-            <a href="/checkout" class="fw-medium text-muted fs-6 mb-0">Checkout</a>
+            <a href="<?= base_url('/check-cart') ?>" class="fw-medium text-muted fs-6 mb-0">Checkout</a>
             <hr class="text-black" style="width: 50px;">
             <a href="/payment" class="fw-medium text-muted fs-6 mb-0">Payment</a>
         </div>
@@ -76,8 +76,9 @@
                     <p>Total</p>
                     <span class="custom-color-primary">Rp. <?= $total ?></span>
                 </div>
-
-                <a href="/checkout" class="btn btn-custom-success d-block mt-5">Checkout</a>
+                <?php if ($carts) : ?>
+                    <a href="<?= base_url('/check-cart') ?>" class="btn btn-custom-success d-block mt-5">Checkout</a>
+                <?php endif; ?>
             </div>
         </div>
     </div>

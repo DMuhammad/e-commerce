@@ -27,12 +27,13 @@ class TransactionMigration extends Migration
             ],
             'status' => [
                 'type' => 'ENUM',
-                'constraint' => ['pending', 'process', 'success']
+                'constraint' => ['pending', 'success', 'canceled']
             ],
             'total_bayar' => [
                 'type' => 'DOUBLE',
             ],
-            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
+            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
+            'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('user_id', 'users', 'id');

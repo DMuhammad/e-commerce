@@ -27,7 +27,7 @@ class DetailTransactionMigration extends Migration
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('transaction_id', 'transactions', 'id');
+        $this->forge->addForeignKey('transaction_id', 'transactions', 'id', 'CASCADE', 'CASCADE');
         $this->forge->addForeignKey('product_id', 'products', 'id');
         $this->forge->createTable('detailtransactions', TRUE);
     }
