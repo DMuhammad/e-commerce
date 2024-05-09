@@ -15,42 +15,38 @@
         </div>
         <div class="col-md-8 col-12">
             <div class="m-2">
-                <h1 class="text-black fw-medium custom-title">Hair Shampoo Treatment</h1>
-                <h1 class="custom-color-primary custom-title">Rp. 50.000</h1>
-                <p>Select Variation:</p>
-                <div class="d-flex gap-3 mb-4">
-                    <!-- if checked tambahkan background-color: #51994b; -->
-                    <input type="radio" class="btn-check" name="options" id="option1" autocomplete="off" checked>
-                    <label class="btn btn-outline-success" for="option1">50 ml</label>
-
-                    <input type="radio" class="btn-check" name="options" id="option2" autocomplete="off">
-                    <label class="btn btn-outline-success" for="option2">75 ml</label>
-
-                    <input type="radio" class="btn-check" name="options" id="option3" autocomplete="off">
-                    <label class="btn btn-outline-success" for="option3">100 ml</label>
-                </div>
-                <hr class="mb-4">
-                <div class="row mb-4 gy-2">
-                    <div class="col-md-3 col-5">
-                        <div class="input-group number-spinner rounded-3" style="background-color: #f5f5f5;">
-                            <span class="input-group-btn">
-                                <button class="btn" data-dir="dwn"><i class="fa-solid fa-minus"></i></button>
-                            </span>
-                            <input type="text" class="form-control text-center" value="1" disabled style="background-color: #f5f5f5;">
-                            <span class="input-group-btn">
-                                <button class="btn" data-dir="up">+</button>
-                            </span>
+                <form action="<?= base_url('/add-to-cart') ?>" method="POST">
+                    <h1 class="text-black fw-medium custom-title"><?= $product->nama_produk ?></h1>
+                    <h1 class="custom-color-primary custom-title">Rp. <?= $product->harga ?></h1>
+                    <p>Select Variation:</p>
+                    <div class="d-flex gap-3 mb-4">
+                        <!-- Display all variants -->
+                        <?php foreach ($variants as $variant): ?>
+                            <label class="btn btn-outline-success variant-label" for="variant<?= $variant->id ?>"><?= $variant->variant ?></label>
+                            <input type="radio" class="btn-check variant-radio" name="variant" id="variant<?= $variant->id ?>" value="<?= $variant->id ?>" autocomplete="off">
+                        <?php endforeach; ?>
+                    </div>
+                    <hr class="mb-4">
+                    <div class="row mb-4 gy-2">
+                        <div class="col-md-3 col-5">
+                            <div class="input-group number-spinner rounded-3" style="background-color: #f5f5f5;">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn" data-dir="dwn"><i class="fa-solid fa-minus"></i></button>
+                                </span>
+                                <input type="text" class="form-control text-center" name="qty" value="1" style="background-color: #f5f5f5;">
+                                <span class="input-group-btn">
+                                    <button type="button" class="btn" data-dir="up">+</button>
+                                </span>
+                            </div>
                         </div>
+                        <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+                            <div class="col-md-9 col-7">
+                                <button type="submit" name="submit" class="btn btn-custom-success w-100">Add to Cart</button>
+                            </div>
                     </div>
-                    <div class="col-md-9 col-7">
-                        <button class="btn btn-custom-success w-100">Add to Cart</button>
-                    </div>
-                </div>
+                </form>
                 <h5>Description</h5>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                    sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet,
-                    consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                <p><?= $product->detail ?>
                 </p>
             </div>
         </div>

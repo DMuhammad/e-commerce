@@ -45,6 +45,7 @@
                     <input type="text" class="form-control border-0" placeholder="Write a message..." name="message">
                     <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" id="csrf" />
                     <input type="hidden" name="from" value="<?= $_SESSION['id'] ?>" />
+                    <input type="hidden" name="to" value="admin" />
 
                     <div class="input-group-text bg-transparent border-0">
                         <button class="btn-custom-success" type="submit" name="submit" id="send-chat"><i class="fa-regular fa-paper-plane"></i></button>

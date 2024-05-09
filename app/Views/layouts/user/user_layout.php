@@ -56,6 +56,27 @@
     <?php endif; ?>
 
     <script>
+    // Get all variant radio buttons
+    var radios = document.querySelectorAll('.variant-radio');
+
+    // Add a change event listener to each radio button
+    radios.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            // Reset the color of all labels
+            document.querySelectorAll('.variant-label').forEach(function(label) {
+                label.style.backgroundColor = '';
+            });
+
+            // Change the color of the checked radio button's label
+            if (this.checked) {
+                var label = document.querySelector('label[for="' + this.id + '"]');
+                label.style.backgroundColor = '#51994b';
+            }
+        });
+    });
+    </script>
+
+    <script>
         window.onscroll = function() {
             if (window.location.pathname == "/") {
                 if (window.scrollY > 100) {
@@ -76,6 +97,7 @@
         $(".chat-btn").click(function(e) {
             e.stopPropagation();
             $(".chat-popup").toggleClass("d-none");
+            $("#chat-body").scrollTop($("#chat-body")[0].scrollHeight - $("#chat-body")[0].clientHeight);
         });
 
         $(".close-chat").click(function() {
@@ -95,15 +117,71 @@
         $(document).ready(function() {
             const base_url = `<?= base_url() ?>`
             const chat_body = $("#chat-body");
+            const ws_url = base_url.replace(/http:\/\/|https:\/\//g, "ws://").replace(/\/$/, '');
+            
+            var conn = new WebSocket(`ws://localhost:8282?userId=<?= $_SESSION['id'] ?>`);
+            
+            conn.onopen = function(e) {
+                console.log(e);
+                console.log("Connection established!");
+            };
+
+            conn.onmessage = function(e) {
+                getChat(base_url);
+                console.log("Received message: ", e.data);
+            };
+            
+            $(function() {
+                getChat(base_url);
+            })
+
+            // Fungsi untuk mengirim pesan melalui WebSocket
+            function sendWebSocketMessage(from, to, message) {
+                var msg = JSON.stringify({
+                    targetUserId: to,
+                    from,
+                    message
+                });
+                conn.send(msg);
+            }
+
+            function getChat(url) {
+                $.ajax({
+                    url: `${url}chats`,
+                    method: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+                        response.chats.map(chat => {
+                            const user_message = `
+                                <div class="d-flex flex-column align-items-end text-end justify-content-end mb-4">
+                                    <div class="chat-right p-2 px-3 m-1">${chat.pesan}</div>
+                                </div>
+                                `
+                            const admin_message = `
+                                <div class="d-flex flex-column align-items-start mb-4">
+                                    <div class="chat-left p-2 px-3 m-1">${chat.pesan}</div>
+                                </div>
+                                `
+                            chat.from == "admin" ? chat_body.append(admin_message) : chat_body.append(user_message)
+                            chat_body.scrollTop(chat_body[0].scrollHeight - chat_body[0].clientHeight);
+                        })
+                    },
+                    error: function(response) {
+                        console.log('error', response);
+                    }
+                })
+            }
+
             $("#send-chat").click(function(e) {
                 e.preventDefault();
                 const csrf = $('#csrf');
                 const message = $("input[name='message']");
                 const message_from = $("input[name='from']").val();
+                const message_to = $("input[name='to']").val();
                 const new_message = `
-                <div class="d-flex flex-column align-items-end text-end justify-content-end mb-4">
-                        <div class="chat-left p-2 px-3 m-1">${message.val()}</div>
-                        </div>
+                            <div class="d-flex flex-column align-items-end text-end justify-content-end">
+                                <div class="chat-right p-2 px-3 m-1">${message.val()}</div>
+                            </div>
                         `
 
                 $.ajax({
@@ -114,6 +192,7 @@
                     method: 'post',
                     data: {
                         from: message_from,
+                        to: message_to,
                         message: message.val(),
                         [csrf.attr('name')]: csrf.val()
                     },
@@ -123,35 +202,14 @@
                         chat_body.append(new_message);
                         message.val('')
                         chat_body.scrollTop(chat_body[0].scrollHeight - chat_body[0].clientHeight);
+                        
+                        sendWebSocketMessage(message_from, message_to, message.val());
                     },
                     error: function(response) {
                         console.log('error', response);
                     }
                 });
             });
-            $.ajax({
-                url: `${base_url}chats`,
-                method: 'get',
-                dataType: 'json',
-                success: function(response) {
-                    response.chats.map(chat => {
-                        const user_message = `
-                            <div class="d-flex flex-column align-items-end text-end justify-content-end mb-4">
-                                <div class="chat-left p-2 px-3 m-1">${chat.pesan}</div>
-                            </div>
-                            `
-                        const admin_message = `
-                            <div class="d-flex flex-column align-items-start mb-4">
-                                <div class="chat-right p-2 px-3 m-1">${chat.pesan}</div>
-                            </div>
-                            `
-                        chat.from == "admin" ? chat_body.append(admin_message) : chat_body.append(user_message)
-                    })
-                },
-                error: function(response) {
-                    console.log('error', response);
-                }
-            })
         })
     </script>
     <script>

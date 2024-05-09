@@ -2,6 +2,8 @@
 
 namespace App\Controllers;
 
+use Ramsey\Uuid\Uuid;
+use App\Models\CartModel;
 use App\Models\UserModel;
 use App\Models\ProductModel;
 use App\Models\CategoryModel;
@@ -13,6 +15,7 @@ class Home extends BaseController
     protected $products;
     protected $productImages;
     protected $userModel;
+    protected $cart;
 
     public function __construct()
     {
@@ -20,19 +23,39 @@ class Home extends BaseController
         $this->products = new ProductModel();
         $this->productImages = new ProductImagesModel();
         $this->userModel = new UserModel();
+        $this->cart = new CartModel();
     }
 
     public function index(): string
     {
+        $productIds = $this->products->select('MIN(products.id) as product_id')
+            ->groupBy('nama_produk') // Group by product name
+            ->findAll();
+    
+        $productIds = array_column($productIds, 'product_id');
+    
+        $products = $this->products->select('products.*, categories.nama_kategori')
+            ->whereIn('products.id', $productIds)
+            ->join('categories', 'categories.id = products.category_id', 'left')
+            ->findAll();
+    
+        foreach ($products as $key => $product) {
+            $products[$key]->images = $this->productImages->select('image')
+                ->where('product_id', $product->id)
+                ->findAll();
+        }
+    
         $data = [
             'user' => session()->get('nama_lengkap'),
             'role' => session()->get('role'),
             'categories' => $this->categories->findAll(),
+            'products' => $products,
             'title' => 'Homepage',
         ];
-
+    
         return view('pages/user/homepage', $data);
     }
+
 
     public function products(): string
     {
@@ -68,26 +91,123 @@ class Home extends BaseController
         return view('pages/user/about-us', $data);
     }
 
-    public function detailProduct(): string
+    public function detailProduct($id): string
     {
+        $product = $this->products->select('products.*, categories.nama_kategori')
+            ->join('categories', 'categories.id = products.category_id')
+            ->where('products.id', $id)
+            ->first();
+
+        $product->images = $this->productImages->select('image')
+            ->where('product_id', $product->id)
+            ->findAll();
+
+        // Get all variants of the product with the same name
+        $variants = $this->products->select('id, variant')
+        ->where('nama_produk', $product->nama_produk)
+        ->findAll();
+
         $data = [
             'user' => session()->get('nama_lengkap'),
             'role' => session()->get('role'),
+            'product' => $product,
+            'variants' => $variants,
             'title' => 'Detail Product',
         ];
 
         return view('pages/user/detail-product', $data);
     }
 
+    public function addToCart()
+    {
+        // Get the POST data
+        $variantId = $this->request->getPost('variant');
+        $qty = $this->request->getPost('qty');
+    
+        // Get the variant details
+        $variant = $this->products->find($variantId);
+    
+        // Calculate the total price
+        $totalHarga = $variant->harga * $qty;
+    
+        // Get the user ID from the session
+        $userId = session()->get('id');
+    
+        // Prepare the data to be inserted
+        $data = [
+            'id' => Uuid::uuid4(),
+            'user_id' => $userId,
+            'product_id' => $variantId,
+            'qty' => $qty,
+            'total_harga' => $totalHarga,
+        ];
+    
+        // Insert the data into the cart table
+        $this->cart->insert($data);
+    
+        // Set a flash message
+        session()->setFlashdata('success', 'Product added to cart!');
+    
+        // Redirect the user back to the product detail page
+        return redirect()->to('/detail-product/' . $variant->id);
+    }
+
     public function cart(): string
     {
+        $userId = session()->get('id');
+        $carts = $this->cart->where('user_id', $userId)->findAll();
+    
+        // Retrieve product details for each cart item
+        foreach ($carts as $cart) {
+            $cart->product = $this->products->find($cart->product_id);
+        }
+
+        $subTotal = 0;
+        foreach ($carts as $cart) {
+            $subTotal += $cart->total_harga;
+        }
+        $tax = $subTotal * 0.2;
+        $total = $subTotal + $tax;
+
         $data = [
             'user' => session()->get('nama_lengkap'),
             'role' => session()->get('role'),
             'title' => 'Cart',
+            'carts' => $carts,
+            'subTotal' => $subTotal,
+            'tax' => $tax,
+            'total' => $total,
         ];
-
+    
         return view('pages/user/cart', $data);
+    }
+
+    public function updateCart($id)
+    {
+        $cartId = $id;
+        $qty = $this->request->getPost('qty');
+    
+        $cart = $this->cart->find($cartId);
+        $variant = $this->products->find($cart->product_id);
+    
+        $totalHarga = $variant->harga * $qty;
+    
+        $this->cart->update($cartId, [
+            'qty' => $qty,
+            'total_harga' => $totalHarga,
+        ]);
+    
+        session()->setFlashdata('success', 'Product updated!');
+    
+        return redirect()->to('/cart');
+    }
+
+    public function deleteCart($id)
+    {
+        $this->cart->delete($id);
+        
+        session()->setFlashdata('success', 'Product deleted!');
+        return redirect()->to('/cart');
     }
 
     public function checkout(): string

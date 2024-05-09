@@ -113,30 +113,110 @@
     <script>
         $(document).ready(function() {
             const base_url = `<?= base_url() ?>`
-            const chat_body = $("#chat-body");
-            console.log(`${base_url}chat/send`);
-            $("#send-chat").click(function(e) {
+            const pathName = $(location).attr('pathname');
+            const chat_content = $(".chat-content");
+            const btn_show_chat = $(".show-chat");
+            let id, nama_lengkap;
+            const conn = new WebSocket('ws://localhost:8282?userId=admin');
+
+            conn.onopen = function(e) {
+                console.log("Connection established!");
+            };
+
+            conn.onmessage = function(e) {
+                console.log("Received message: ", e.data);
+                showChat(base_url, id, nama_lengkap);
+            };
+            
+            function scrollMsgBottom(){
+                const d = $('.chat-body');
+                d.scrollTop(d.prop("scrollHeight"));
+            }
+
+            // Fungsi untuk mengirim pesan melalui WebSocket
+            function sendWebSocketMessage(to, message) {
+                var msg = JSON.stringify({
+                    targetUserId: to,
+                    message: message
+                });
+                conn.send(msg);
+            }
+
+            function showChat(url, id, nama_lengkap) {
+                $.ajax({
+                    url: `${url}chats/${id}`,
+                    method: 'get',
+                    dataType: 'json',
+                    success: function(response) {
+                        chat_content.empty();
+                        const content = `
+                            <div class="tab-pane active show" id="${id}" role="tabpanel" tabindex="0">
+                                <div class="card m-0">
+                                    <div class="card-header py-2 px-4 border-bottom d-none d-lg-block">
+                                        <div class="d-flex align-items-center py-1">
+                                            <img src="<?= base_url('assets/static/images/user.png') ?>" class="rounded-circle ms-1" alt="user" width="40" height="40">
+                                            <div class="flex-grow-1 ps-3"> ${nama_lengkap} </div>
+                                        </div>
+                                    </div>
+                                    <div class="card-body m-xl-0 m-3">
+                                        <div class="p-md-4 p-sm-2 p-1 chat-body">
+                                            ${response.chats.map(chat => {
+                                                if (chat.from == id) {
+                                                    return `<div class="d-flex flex-column align-items-start justify-content-end">
+                                                                <div class="chat-left p-2 px-3 m-1">${chat.pesan}</div>
+                                                            </div>`
+                                                }
+                                                return `<div class="d-flex flex-column align-items-end">
+                                                            <div class="chat-right p-2 px-3 m-1"> ${chat.pesan} </div> 
+                                                        </div>`
+                                            })}
+                                        </div>
+                                    </div>
+                                    <div class="card-footer py-2 px-4">
+                                        <div class="input-group ps-2">
+                                            <input type="text" class="form-control border-0" placeholder="Write a message..." name="message">
+                                            <input type="hidden" name="<?= csrf_token() ?>" value="${response.token}" id="csrf" />
+                                            <input type="hidden" name="from" value="admin" />
+                                            <input type="hidden" name="to" value="${id}" />
+    
+                                            <div class="input-group-text bg-transparent border-0">
+                                                <button class="btn-custom-success" type="submit" name="submit" id="send-chat"><i class="fa-regular fa-paper-plane"></i></button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `
+                        chat_content.append(content);
+                        scrollMsgBottom();
+                    },
+                    error: function(response) {
+                        console.log('error', response);
+                    }
+                })
+            }
+
+            $(btn_show_chat).click(function(e) {
+                id = $(this).attr('aria-controls');
+                nama_lengkap = $(this).find('.nama-lengkap').text();
+
+                showChat(base_url, id, nama_lengkap);
+            })
+
+            chat_content.on('click', '#send-chat', function(e) {
                 e.preventDefault();
                 const csrf = $('#csrf');
                 const message = $("input[name='message']");
                 const message_from = $("input[name='from']").val();
-                const new_message = `
-                            <div class="chat-message-right mb-4">
-                                <div>
-                                    <img src="https://bootdey.com/img/Content/avatar/avatar1.png" class="rounded-circle me-1" alt="Chris Wood" width="40" height="40">
-                                    <div class="text-muted small text-nowrap mt-2">2:43 am</div>
-                                </div>
-                                <div class="flex-shrink-1 bg-light rounded py-2 px-3 me-3">
-                                <div class="font-weight-bold mb-1">You</div>
-                                ${message.val()}
-                                </div>
-                                </div>
-                                `
+                const message_to = $("input[name='to']").val();
+                const chat_body = $(".chat-body");
 
-                console.log(message.val());
-                console.log(message_from);
-                console.log(csrf.attr('name'));
-                console.log(csrf.val());
+                const new_message = `
+                                <div class="d-flex flex-column align-items-end">
+                                    <div class="chat-right p-2 px-3 m-1">${message.val()}</div>
+                                </div>
+                            `
+
                 $.ajax({
                     url: `${base_url}chat/send`,
                     headers: {
@@ -145,6 +225,7 @@
                     method: 'post',
                     data: {
                         from: message_from,
+                        to: message_to,
                         message: message.val(),
                         [csrf.attr('name')]: csrf.val()
                     },
@@ -153,32 +234,14 @@
                         csrf.val(response.token)
                         chat_body.append(new_message);
                         message.val('')
-                        chat_body.scrollTop(chat_body[0].scrollHeight - chat_body[0].clientHeight);
-                        console.log(response);
+                        scrollMsgBottom();
+                        sendWebSocketMessage(message_to, message.val());
                     },
                     error: function(response) {
                         console.log('error', response);
                     }
                 });
             });
-            // $.ajax({
-            //     url: `${base_url}chats`,
-            //     method: 'get',
-            //     dataType: 'json',
-            //     success: function(response) {
-            //         response.chats.map(chat => {
-            //             const new_message = `
-            //                 <div class="d-flex flex-column align-items-end text-end justify-content-end mb-4">
-            //                     <div class="chat-left p-2 px-3 m-1">${chat.pesan}</div>
-            //                 </div>
-            //                 `
-            //             chat_body.append(new_message)
-            //         })
-            //     },
-            //     error: function(response) {
-            //         console.log('error', response);
-            //     }
-            // })
 
             $('#search-users').on('input', function() {
                 let value = $(this).val().toLowerCase();

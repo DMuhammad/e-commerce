@@ -20,9 +20,6 @@ class CompanyProfileMigration extends Migration
             'deskripsi' => [
                 'type' => 'TEXT',
             ],
-            'image' => [
-                'type' => 'BLOB'
-            ],
             'alamat' => [
                 'type' => 'TEXT',
             ],

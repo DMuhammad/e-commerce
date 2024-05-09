@@ -47,10 +47,10 @@
                             </li>
                             <?php foreach ($user_chat as $uc) { ?>
                                 <li class="nav-item list-group-item" role="presentation">
-                                    <button class="nav-link px-0 w-100" data-bs-toggle="tab" data-bs-target="#<?= $uc->from->id ?>" type="button" role="tab" aria-controls="<?= $uc->from->id ?>" aria-selected="false">
+                                    <button class="nav-link px-0 w-100 show-chat" data-bs-toggle="tab" data-bs-target="#<?= $uc->from->id ?>" type="button" role="tab" aria-controls="<?= $uc->from->id ?>" aria-selected="false">
                                         <div class="d-flex align-items-center justify-content-start">
                                             <img src="<?= base_url('assets/static/images/user.png') ?>" class="rounded-circle mx-1" alt="user" width="40" height="40">
-                                            <div class="flex-grow-1 ms-3">
+                                            <div class="flex-grow-1 ms-3 text-start nama-lengkap">
                                                 <?= $uc->from->nama_lengkap ?>
                                             </div>
                                         </div>
@@ -70,8 +70,8 @@
                                 <div class="flex-grow-1 ps-3"> Agus Sahlan </div>
                             </div>
                         </div>
-                        <div class="card-body chat-body m-xl-0 m-3">
-                            <div class="p-md-4 p-sm-2 p-1">
+                        <div class="card-body m-xl-0 m-3">
+                            <div class="p-md-4 p-sm-2 p-1 chat-body">
                                 <div class="d-flex flex-column align-items-end mb-4">
                                     <div class="chat-right p-2 px-3 m-1">Hi helh, are you available to chat?</div>
                                 </div>
