@@ -68,6 +68,7 @@ $routes->get('/check-cart', [Home::class, 'checkCart'], ['filter' => 'auth']);
 $routes->get('/checkout', [Home::class, 'checkout'], ['filter' => 'auth']);
 $routes->post('/checkout', [Home::class, 'storeTransaction'], ['filter' => 'auth']);
 $routes->get('/payment', [Home::class, 'payment'], ['filter' => 'auth']);
+$routes->get('/verify-payment', [Home::class, 'verifyWhatsapp'], ['filter' => 'auth']);
 $routes->post('/cancel-payment/(:segment)', [Home::class, 'cancelPayment'], ['filter' => 'auth']);
 $routes->get('/account', [Home::class, 'account'], ['filter' => 'auth']);
 $routes->post('/account/update', [Home::class, 'updateAccount'], ['filter' => 'auth']);

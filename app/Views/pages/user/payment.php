@@ -111,7 +111,7 @@
                     <p class="text-black fw-regular">Agus Subaya</p>
                 </div>
                 <?php if ($transaction->status == 'pending') : ?>
-                    <a href="wa.me" class="btn btn-custom-success d-block mt-4">
+                    <a href="<?= base_url('/verify-payment') ?>" class="btn btn-custom-success d-block mt-4">
                         <i class="fa-brands fa-whatsapp mx-2 fs-6"></i> Verify Payment
                     </a>
                 <?php endif; ?>

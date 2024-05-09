@@ -448,4 +448,30 @@ class Home extends BaseController
 
         return view('pages/user/detail-transactions', $data);
     }
+
+    public function verifyWhatsapp()
+    {
+        // Get the user ID from the session
+        $userId = session()->get('id');
+
+        $user = $this->userModel->find($userId);
+        $admin = $this->userModel->where('role', 'admin')->first();
+
+        $transac = $this->transaction->where('user_id', $userId)->orderBy('created_at', 'DESC')->first();
+
+        // Prepare the message
+        $message = "Halo Admin,\n\nPesanan $transac->kode_transaksi atas nama $user->nama_lengkap sudah melakukan pembayaran. Mohon dicek dan diproses.\n\nTerima kasih.";
+
+        // URL encode the message
+        $message = urlencode($message);
+
+        // Prepare the phone number
+        $phoneNumber = $admin->no_telp; // Replace with the actual phone number
+
+        // Generate the WhatsApp URL
+        $whatsappUrl = "https://wa.me/$phoneNumber?text=$message";
+
+        // Redirect to the WhatsApp URL
+        return redirect()->to($whatsappUrl);  
+    }
 }
