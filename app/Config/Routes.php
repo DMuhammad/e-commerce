@@ -8,11 +8,13 @@ use App\Controllers\CompanyImageController;
 use CodeIgniter\Router\RouteCollection;
 use App\Controllers\DashboardController;
 use App\Controllers\Home;
+use App\Controllers\WebSocketController;
 
 /**
  * @var RouteCollection $routes
  */
 // $routes->get('/', 'Home::index');
+$routes->setAutoRoute(true);
 $routes->get('/login', [AuthController::class, 'index'], ['filter' => 'islogin']);
 $routes->post('/login', [AuthController::class, 'authenticate']);
 $routes->get('/register', [AuthController::class, 'register']);
@@ -59,5 +61,6 @@ $routes->post('/account/update', [Home::class, 'updateAccount'], ['filter' => 'a
 $routes->get('/detail-transactions', [Home::class, 'detailTransactions'], ['filter' => 'auth']);
 
 $routes->get('chats', [ChatController::class, 'chats'], ['filter' => 'auth']);
+$routes->get('chats/(:segment)', [ChatController::class, 'chatsByUser'], ['filter' => 'auth']);
 $routes->post('chat/send', [ChatController::class, 'store'], ['filter' => 'auth']);
 // $routes->get('/');

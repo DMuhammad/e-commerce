@@ -22,9 +22,9 @@ class ChatController extends BaseController
     public function index()
     {
         $this->db->query("SET sql_mode=(SELECT REPLACE(@@sql_mode, 'ONLY_FULL_GROUP_BY', ''));");
-        $user_chat = $this->chats->orderBy('created_at', 'asc')->where('from !=', 'admin')->groupBy('from')->findAll();
+        $user_chat = $this->chats->orderBy('created_at', 'desc')->where('from !=', 'admin')->groupBy('from')->findAll();
         foreach ($user_chat as $uc) {
-            $uc->from = $this->users->select('nama_lengkap')->find($uc->from);
+            $uc->from = $this->users->select('id, nama_lengkap')->find($uc->from);
         }
         $data = [
             'user' => session()->get('nama_lengkap'),
@@ -40,13 +40,11 @@ class ChatController extends BaseController
 
     public function store()
     {
-
-
         $status = $this->chats->insert([
             'id' => Uuid::uuid4(),
             'pesan' => $this->request->getPost('message'),
             'from' => $this->request->getPost('from'),
-            'to' => $this->request->getPost('from') == 'admin' ? '5cbc6be9-a3b6-457f-b7f1-444f1147' : 'admin',
+            'to' => $this->request->getPost('to'),
             'status' => 'pending'
         ]);
         $data = [
@@ -60,7 +58,18 @@ class ChatController extends BaseController
     public function chats()
     {
         $data = [
-            'chats' => $this->chats->where('from', session()->get('id'))->orWhere('to', session()->get('id'))->orderBy('created_at', 'asc')->findAll()
+            'chats' => $this->chats->where('from', session()->get('id'))->orWhere('to', session()->get('id'))->orderBy('created_at', 'asc')->findAll(),
+            'token' => csrf_hash()
+        ];
+
+        return response()->setJSON($data);
+    }
+
+    public function chatsByUser($id)
+    {
+        $data = [
+            'chats' => $this->chats->where('from', $id)->orWhere('to', $id)->orderBy('created_at', 'asc')->findAll(),
+            'token' => csrf_hash()
         ];
 
         return response()->setJSON($data);
