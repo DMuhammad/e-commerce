@@ -82,6 +82,16 @@
 
 /* endchat */
 
+.stats-icon {
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.5rem;
+  float: right;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .btn-custom-success {
   background-color: #51994b;
   color: white;
@@ -159,9 +169,19 @@
   font-size: 40px;
 }
 
+#donut {
+  width: 100%;
+  height: 100%;
+  margin: 1rem 0;
+}
+
 @media (max-width: 1200px) {
   .chat-body {
     height: 460px;
+  }
+  #donut {
+    max-width: 500px;
+    max-height: 500px;
   }
 }
 

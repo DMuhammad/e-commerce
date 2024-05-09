@@ -1,5 +1,9 @@
 let jquery_datatable = $("#table1").DataTable({
   responsive: true,
+  paging: false,
+  ordering: false,
+  info: false,
+  searching: false,
 });
 
 let customized_datatable = $("#table2").DataTable({
