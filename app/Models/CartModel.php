@@ -8,11 +8,11 @@ class CartModel extends Model
 {
     protected $table            = 'carts';
     protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['user_id', 'product_id', 'qty', 'total_harga'];
+    protected $allowedFields    = ['id','user_id', 'product_id', 'qty', 'total_harga'];
 
     protected bool $allowEmptyInserts = false;
 

@@ -56,6 +56,27 @@
     <?php endif; ?>
 
     <script>
+    // Get all variant radio buttons
+    var radios = document.querySelectorAll('.variant-radio');
+
+    // Add a change event listener to each radio button
+    radios.forEach(function(radio) {
+        radio.addEventListener('change', function() {
+            // Reset the color of all labels
+            document.querySelectorAll('.variant-label').forEach(function(label) {
+                label.style.backgroundColor = '';
+            });
+
+            // Change the color of the checked radio button's label
+            if (this.checked) {
+                var label = document.querySelector('label[for="' + this.id + '"]');
+                label.style.backgroundColor = '#51994b';
+            }
+        });
+    });
+    </script>
+
+    <script>
         window.onscroll = function() {
             if (window.location.pathname == "/") {
                 if (window.scrollY > 100) {

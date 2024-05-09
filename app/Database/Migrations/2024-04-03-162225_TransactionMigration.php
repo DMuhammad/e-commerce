@@ -21,6 +21,10 @@ class TransactionMigration extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 255
             ],
+            'note'=> [
+                'type' => 'TEXT',
+                'null' => true
+            ],
             'status' => [
                 'type' => 'ENUM',
                 'constraint' => ['pending', 'process', 'success']

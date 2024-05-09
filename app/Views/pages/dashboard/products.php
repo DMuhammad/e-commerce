@@ -134,13 +134,10 @@
                                                                 <div class="col-md-12 form-group">
                                                                     <label for="category">Category</label>
                                                                     <select class="form-control" name="category" id="category" required>
-                                                                        <?php
-                                                                        foreach ($categories as $category) { ?>
+                                                                        <?php foreach ($categories as $category) { ?>
                                                                             <option value="<?= $category->id ?>" selected="<?= $category->id == $product->category_id ? true : false ?>">
                                                                                 <?= $category->nama_kategori ?></option>
-                                                                        <?php
-                                                                        }
-                                                                        ?>
+                                                                        <?php }?>
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-12 form-group">
