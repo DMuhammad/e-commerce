@@ -76,7 +76,7 @@ class Home extends BaseController
         foreach ($products as $key => $product) {
             $products[$key]->images = $this->productImages->select('image')
                 ->where('product_id', $product->id)
-                ->findAll();
+                ->first();
         }
 
         $data = [
@@ -104,7 +104,7 @@ class Home extends BaseController
         return view('pages/user/about-us', $data);
     }
 
-    public function detailProduct($id): string
+    public function detailProduct($id)
     {
         $product = $this->products->select('products.*, categories.nama_kategori')
             ->join('categories', 'categories.id = products.category_id')
@@ -128,6 +128,8 @@ class Home extends BaseController
             'title' => 'Detail Product',
         ];
 
+        // return response()->setJSON($data);
+
         return view('pages/user/detail-product', $data);
     }
 
@@ -136,6 +138,13 @@ class Home extends BaseController
         // Get the POST data
         $variantId = $this->request->getPost('variant');
         $qty = $this->request->getPost('qty');
+
+        $stok = $this->products->find($variantId)->stok;
+
+        if ($qty > $stok) {
+            session()->setFlashdata('error', 'Stock is not enough!');
+            return redirect()->to('/detail-product/' . $variantId);
+        }
 
         // Get the variant details
         $variant = $this->products->find($variantId);
@@ -312,6 +321,18 @@ class Home extends BaseController
             'status' => 'pending',
         ];
 
+        // reduce the stok in the product table based on qty in the cart and check if the stock is still available
+        foreach ($carts as $cart) {
+            $product = $this->products->find($cart->product_id);
+            if ($product->stok < $cart->qty) {
+                session()->setFlashdata('error', 'Stock is not enough!');
+                return redirect()->to('/cart');
+            }
+            $this->products->update($cart->product_id, [
+                'stok' => $product->stok - $cart->qty,
+            ]);
+        }
+
         $this->transaction->insert($data);
 
         foreach ($carts as $cart) {
@@ -367,6 +388,15 @@ class Home extends BaseController
         $this->transaction->update($id, [
             'status' => 'canceled',
         ]);
+
+        // return the stock to the product table
+        $details = $this->detailTransaction->where('transaction_id', $id)->findAll();
+        foreach ($details as $detail) {
+            $product = $this->products->find($detail->product_id);
+            $this->products->update($detail->product_id, [
+                'stok' => $product->stok + $detail->qty,
+            ]);
+        }
         return redirect()->to('/payment');
     }
 

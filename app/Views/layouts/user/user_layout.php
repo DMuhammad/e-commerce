@@ -56,6 +56,14 @@
     <?php endif; ?>
 
     <script>
+    // Function to reset all labels to default color
+    function resetLabels() {
+        document.querySelectorAll('.variant-label').forEach(function(label) {
+            label.style.backgroundColor = '#f8f9fa';
+            label.style.color = '#198754';
+        });
+    }
+
     // Get all variant radio buttons
     var radios = document.querySelectorAll('.variant-radio');
 
@@ -63,18 +71,34 @@
     radios.forEach(function(radio) {
         radio.addEventListener('change', function() {
             // Reset the color of all labels
-            document.querySelectorAll('.variant-label').forEach(function(label) {
-                label.style.backgroundColor = '';
-            });
+            resetLabels();
 
-            // Change the color of the checked radio button's label
+            // Change the color of the selected label
             if (this.checked) {
                 var label = document.querySelector('label[for="' + this.id + '"]');
-                label.style.backgroundColor = '#51994b';
+                label.style.backgroundColor = '#198754';
+                label.style.color = '#fff';
+                
+                // Redirect to the detail page of the selected variant
+                window.location.href = '/detail-product/' + this.value;
             }
         });
     });
-    </script>
+
+    // Check the radio button of the current variant and change the color of its label
+    var currentVariantId = window.location.pathname.split('/').pop();
+    var selectedVariant = document.querySelector('.variant-radio[value="' + currentVariantId + '"]');
+    if (selectedVariant) {
+        selectedVariant.checked = true;
+        resetLabels(); // Reset all labels before setting the selected one
+        var selectedLabel = document.querySelector('label[for="' + selectedVariant.id + '"]');
+        if (selectedLabel) {
+            selectedLabel.style.backgroundColor = '#198754';
+            selectedLabel.style.color = '#fff';
+        }
+    }
+</script>
+
 
     <script>
         window.onscroll = function() {

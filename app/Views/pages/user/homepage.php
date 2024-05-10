@@ -26,22 +26,13 @@
 <div class="container mb-5">
     <h2 class="text-dark fw-medium mb-5">Our Products</h2>
 
-    <div class="d-flex align-items-start gap-3 mb-4">
-        <?php
-        foreach ($categories as $category) { ?>
-            <button type="button" class="btn btn-outline-light text-dark col"><?= $category->nama_kategori ?></button>
-        <?php
-        }
-        ?>
-    </div>
-
     <div class="row mb-3 justify-content-center">
         <?php foreach ($products as $product) { ?>
             <div class="col-6 col-md-4 col-lg-3">
             <a href="<?= base_url('/detail-product/') . $product->id ?>">
                     <div class="card shadow">
                         <div class="card-content">
-                            <img src="<?= base_url('assets/static/images/product.png') ?>" class="card-img-top img-fluid" alt="product" />
+                        <img src="<?= $product->images != null ? base_url('assets/uploads/img-product/' . $product->images[0]->image) : base_url('assets/static/images/product.png') ?>" class="card-img-top img-fluid" alt="product" />
                             <div class="card-body">
                                 <div class="row justify-content-center align-items-center">
                                     <div class="col-md-9 col-12">
