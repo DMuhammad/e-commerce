@@ -9,6 +9,11 @@
     <link rel="stylesheet" href="<?= base_url('assets/compiled/css/app.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/static/css/auth.css') ?>">
     <link rel="stylesheet" href="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.css') ?>">
+    <style>
+        body.swal2-height-auto {
+            height: 100vh !important;
+        }
+    </style>
 </head>
 
 <body>
@@ -56,16 +61,19 @@
         </div>
     </div>
 
+    <div class="container-swal"></div>
+
     <script src="<?= base_url('assets/compiled/js/app.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.js') ?>"></script>
     <script>
         var error = '<?= session()->getFlashdata('error') ?>';
         if (error) {
+            // swal di panggil dalam class alert
             Swal.fire({
                 icon: 'error',
                 title: 'Oops...',
                 text: error,
-            })
+            });
         }
     </script>
 </body>
