@@ -43,43 +43,62 @@
                 <hr>
             </div>
             <div class="card-body">
-                <!-- <div class="row mb-4">
-                    <div class="col-lg-4 fw-semibold text-muted">Logo</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-bold">
-                        <img src="<?= base_url('assets/static/images/faces/1.jpg') ?>" alt="logo" class="img-thumbnail" style="width: 150px;">
-                    </div>
-                </div> -->
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Company Name</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-medium">PT. Abadi Jaya</div>
+                    <div class="col-lg-8 fw-medium">PT. Abadi Jaya</div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Description</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</div>
+                    <div class="col-lg-8 fw-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</div>
                 </div>
+                <div class="row mb-4">
+                    <div class="col-lg-4 fw-semibold text-dark fw-regular">Visi</div>
+                    <div class="col-lg-8 fw-medium">Menjadi perusahaan terbaik di Indonesia</div>
+                </div>
+                <div class="row mb-4">
+                    <div class="col-lg-4 fw-semibold text-dark fw-regular">Misi</div>
+                    <div class="col-lg-8 fw-medium">
+                        <ol>
+                            <li>Menyediakan produk berkualitas</li>
+                            <li>Memberikan pelayanan terbaik</li>
+                            <li>Menjaga kepercayaan pelanggan</li>
+                            <li>Menjadi perusahaan yang berkelanjutan</li>
+                        </ol>
+                    </div>
+                </div>
+
                 <hr>
+
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Address</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-medium">Jl. Raya No. 123, Jakarta, Indonesia</div>
+                    <div class="col-lg-8 fw-medium">Jl. Raya No. 123, Jakarta, Indonesia</div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Email</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-medium">
-                        <a href="mailto: royhandf@gmail.com" class="text-decoration-none"> royhandf@gmail.com</a>
-                    </div>
+                    <div class="col-lg-8 fw-medium">royhandf@gmail.com </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Phone</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-medium">+62 812-3456-7890</div>
+                    <div class="col-lg-8 fw-medium">+62 812-3456-7890</div>
                 </div>
+
                 <hr>
+
+                <div class="row mb-4">
+                    <div class="col-lg-4 fw-semibold text-dark fw-regular">Logo</div>
+                    <div class="col-lg-8 fw-medium">
+                        <!-- cek kondisi payment -->
+                        <!-- if 1 = /bri.png : 2 = /bri.png : 3 = mandiri.png : 4 = bsi.png  -->
+                        <img src="<?= base_url('assets/static/images/bri.png') ?>" alt="logo" class="img-thumbnail" width="100">
+                    </div>
+                </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Payment Method</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-medium">Mastercard</div>
+                    <div class="col-lg-8 fw-medium">BCA</div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Account Number</div>
-                    <div class="col-lg-8 d-flex align-items-center fw-medium">1234 5678 9012 3456</div>
+                    <div class="col-lg-8 fw-medium">1234 5678 9012 3456</div>
                 </div>
             </div>
 
@@ -94,44 +113,53 @@
                             <form method="post">
                                 <div class="form-body">
                                     <div class="col-md-12 form-group">
-                                        <label for="logo">Logo</label>
-                                        <input type="file" class="logo-filepond" name="logo" id="logo" />
-                                    </div>
-                                    <div class="col-md-12 form-group">
                                         <label for="company-name">Company Name</label>
-                                        <input type="text" class="form-control" name="company-name" id="company-name" value="PT. Abadi Jaya" />
+                                        <input type="text" class="form-control" name="company-name" id="company-name" value="PT. Abadi Jaya" required />
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label for="description">Description</label>
                                         <div class="summernote"></div>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <label for="address">Address</label>
-                                        <input type="text" class="form-control" name="address" id="address" value="Jl. Raya No. 123, Jakarta, Indonesia" />
+                                        <label for="visi">Visi</label>
+                                        <input type="text" class="form-control" name="visi" id="visi" required />
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <label for="email">Email</label>
-                                        <input type="email" class="form-control" name="email" id="email" value="royhandf@gmail.com" />
+                                        <label for="misi">Misi</label>
+                                        <small id="misi" class="form-text text-danger align-text-top">
+                                            * Apabila ada lebih dari satu misi, pisahkan dengan tanda titik koma (;)
+                                        </small>
+                                        <div class="summernote" aria-describedby="misi"></div>
                                     </div>
-                                    <div class="col-md-12 form-group">
-                                        <label for="phone">Phone</label>
-                                        <input type="text" class="form-control" name="phone" id="phone" value="+62 812-3456-7890" />
-                                    </div>
-                                    <div class="col-md-12 form-group">
-                                        <label for="payment">Payment</label>
-                                        <div class="input-group mb-3">
-                                            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown">Provider</button>
-                                            <ul class="dropdown-menu">
-                                                <li><a class="dropdown-item" href="#">BRI</a></li>
-                                                <li><a class="dropdown-item" href="#">Mastercard</a></li>
-                                                <li><a class="dropdown-item" href="#">BCA</a></li>
-                                            </ul>
-                                            <input type="text" class="form-control" name="account-number" placeholder="1234 5678 9012 3456">
-                                        </div>
-                                    </div>
-                                    <div class="col-sm-12 d-flex justify-content-end">
-                                        <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                    </div>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label for="address">Address</label>
+                                    <input type="text" class="form-control" name="address" id="address" value="Jl. Raya No. 123, Jakarta, Indonesia" required />
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" class="form-control" name="email" id="email" value="royhandf@gmail.com" required />
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label for="phone">Phone</label>
+                                    <input type="text" class="form-control" name="phone" id="phone" value="+62 812-3456-7890" required />
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label for="payment-method">Payment Method</label>
+                                    <select class="form-select" name="payment-method" id="payment-method" required>
+                                        <option selected disabled>Select Payment Method</option>
+                                        <option value="1">BCA</option>
+                                        <option value="2">BRI</option>
+                                        <option value="3">MANDIRI</option>
+                                        <option value="4">BSI</option>
+                                    </select>
+                                </div>
+                                <div class="col-md-12 form-group">
+                                    <label for="account-number">Account Number</label>
+                                    <input type="text" class="form-control" name="account-number" id="account-number" value="1234-5678-9012-3456" required />
+                                </div>
+                                <div class="col-sm-12 d-flex justify-content-end">
+                                    <button type="submit" name="submit" class="btn btn-custom-success me-1 mb-1">Submit</button>
                                 </div>
                             </form>
                         </div>
