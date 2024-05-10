@@ -72,7 +72,7 @@ class Home extends BaseController
         foreach ($products as $key => $product) {
             $products[$key]->images = $this->productImages->select('image')
                 ->where('product_id', $product->id)
-                ->findAll();
+                ->first();
         }
 
         $data = [
@@ -97,7 +97,7 @@ class Home extends BaseController
         return view('pages/user/about-us', $data);
     }
 
-    public function detailProduct($id): string
+    public function detailProduct($id)
     {
         $product = $this->products->select('products.*, categories.nama_kategori')
             ->join('categories', 'categories.id = products.category_id')
@@ -120,6 +120,8 @@ class Home extends BaseController
             'variants' => $variants,
             'title' => 'Detail Product',
         ];
+
+        // return response()->setJSON($data);
 
         return view('pages/user/detail-product', $data);
     }

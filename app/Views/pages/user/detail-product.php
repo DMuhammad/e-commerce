@@ -8,7 +8,7 @@
             <div style="background-color: #f5f5f5;">
                 <div class="row justify-content-center">
                     <div class="col-md-12 col-5">
-                        <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product" class="img-fluid">
+                        <img src="<?= base_url('assets/uploads/img-product/' . $product->images[1]->image) ?>" alt="product" class="img-fluid">
                     </div>
                 </div>
             </div>
@@ -56,15 +56,14 @@
     <div class="mb-5">
         <h2 class="text-center text-black fw-medium mb-4">Gallery</h2>
         <div class="row">
-            <div class="col-4">
-                <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product" class="img-fluid">
-            </div>
-            <div class="col-4">
-                <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product" class="img-fluid">
-            </div>
-            <div class="col-4">
-                <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product" class="img-fluid">
-            </div>
+            <?php
+            foreach($product->images as $image) { ?>
+                <div class="col-4">
+                    <img src="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" alt="product" class="img-fluid">
+                </div>
+            <?php
+            }
+            ?>
         </div>
     </div>
 </div>

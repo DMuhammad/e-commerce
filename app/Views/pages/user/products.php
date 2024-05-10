@@ -72,17 +72,18 @@
             <h3 class="text-black mb-4">All Products</h3>
 
             <div class="row mb-3">
-                <?php for ($i = 0; $i < 6; $i++) { ?>
+                <?php
+                foreach($products as $product) { ?>
                     <div class="col-6 col-md-4">
-                        <a href="/detail-product">
+                        <a href="/detail-product/<?= $product->id ?>">
                             <div class="card shadow">
                                 <div class="card-content">
-                                    <img src="<?= base_url('assets/static/images/product.png') ?>" class="card-img-top img-fluid" alt="product" />
+                                    <img src="<?= $product->images != null ? base_url('assets/uploads/img-product/' . $product->images->image) : base_url('assets/static/images/product.png') ?>" class="card-img-top img-fluid" alt="product" />
                                     <div class="card-body">
                                         <div class="row justify-content-center align-items-center">
                                             <div class="col-md-9 col-12">
-                                                <h5 class="custom-card-title text-dark fw-semibold">Hair Shampoo Treatment</h5>
-                                                <p><span class="custom-card-title fw-bold text-success">Rp.50.000</span><small class="fw-light">/pcs</small></p>
+                                                <h5 class="custom-card-title text-dark fw-semibold"><?= $product->nama_produk ?></h5>
+                                                <p><span class="custom-card-title fw-bold text-success">Rp.<?= $product->harga ?> </span><small class="fw-light">/pcs</small></p>
                                             </div>
                                             <div class="col-md-3 col-12 text-end">
                                                 <button class="btn btn-custom-success rounded-circle">
@@ -95,7 +96,9 @@
                             </div>
                         </a>
                     </div>
-                <?php } ?>
+                <?php
+                }
+                ?>
 
                 <nav aria-label="Page navigation">
                     <ul class="pagination justify-content-end">

@@ -94,7 +94,7 @@
                                                             <div class="carousel-inner">
                                                                 <?php foreach ($product->images as $index => $image) { ?>
                                                                     <div class="carousel-item <?= $index == 0 ? 'active' : '' ?>">
-                                                                        <img src="<?= base_url('uploads/img-product/' . $image->image) ?>" class="w-100" alt="...">
+                                                                        <img src="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" class="w-100" alt="...">
                                                                     </div>
                                                                 <?php } ?>
                                                             </div>

@@ -40,6 +40,8 @@ class ProductController extends BaseController
             'products' => $products,
             'categories' => $this->categories->findAll(),
         ];
+        // return response()->setJSON($data);
+
         return view('pages/dashboard/products', $data);
     }
 
@@ -66,7 +68,7 @@ class ProductController extends BaseController
             if ($image->isValid() && !$image->hasMoved()) {
                 $imageName = $image->getRandomName();
                 // Move the image to the 'writable/uploads/img-product' directory
-                $image->move(WRITEPATH . 'uploads/img-product', $imageName);
+                $image->move(ROOTPATH . 'public/assets/uploads/img-product', $imageName);
 
                 $this->productImages->insert([
                     'id' => Uuid::uuid4(),
@@ -105,15 +107,16 @@ class ProductController extends BaseController
     $images = $this->request->getFileMultiple('images');
 
     // Check if the product folder exists, if not create it
-    if (!is_dir(WRITEPATH . 'uploads/img-product')) {
-        mkdir(WRITEPATH . 'uploads/img-product', 0777, TRUE);
-    }
+    // if (!is_dir(WRITEPATH . 'uploads/img-product')) {
+    //     mkdir(WRITEPATH . 'uploads/img-product', 0777, TRUE);
+    // }
 
     // Upload the new images
     foreach ($images as $image) {
         if ($image->isValid() && !$image->hasMoved()) {
             $imageName = $image->getRandomName();
-            $image->move(WRITEPATH . 'uploads/img-product', $imageName);
+            // $image->move(WRITEPATH . 'uploads/img-product', $imageName);
+            $image->move(ROOTPATH . 'public/assets/uploads/img-product', $imageName);
 
             $this->productImages->insert([
                 'id' => Uuid::uuid4(),
