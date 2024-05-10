@@ -12,7 +12,7 @@ class CompanyProfileModel extends Model
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id', 'nama', 'deskripsi', 'image', 'alamat', 'email', 'kontak', 'bank', 'no_rek'];
+    protected $allowedFields    = ['id', 'nama', 'deskripsi', 'visi', 'misi', 'alamat', 'email', 'kontak', 'bank', 'no_rek'];
 
     protected bool $allowEmptyInserts = false;
 

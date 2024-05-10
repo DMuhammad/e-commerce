@@ -10,6 +10,7 @@ use App\Controllers\DashboardController;
 use App\Controllers\WebSocketController;
 use App\Controllers\TransactionController;
 use App\Controllers\CompanyImageController;
+use App\Controllers\CompanyProfileController;
 
 /**
  * @var RouteCollection $routes
@@ -38,6 +39,11 @@ $routes->group('dashboard/products', ['filter' => 'admin'], function ($routes) {
     $routes->post('delete/(:segment)', [ProductController::class, 'delete']);
 });
 
+$routes->group('dashboard/company-profile', ['filter' => 'admin'], function ($routes) {
+    $routes->get('/', [CompanyProfileController::class, 'index']);
+    $routes->post('update/(:segment)', [CompanyProfileController::class, 'update']);
+});
+
 $routes->group('dashboard/company-images', ['filter' => 'admin'], function ($routes) {
     $routes->get('/', [CompanyImageController::class, 'index']);
     $routes->post('create', [CompanyImageController::class, 'store']);
@@ -53,7 +59,6 @@ $routes->group('dashboard/transactions', ['filter' => 'admin'], function ($route
 
 $routes->get('/dashboard/transactions', 'TransactionController::index');
 $routes->get('/dashboard/chats', 'ChatController::index');
-$routes->get('/dashboard/company-profile', 'CompanyProfileController::index');
 $routes->get('/dashboard/reports', 'ReportController::index');
 
 $routes->get('/', [Home::class, 'index'], ['filter' => 'auth']);

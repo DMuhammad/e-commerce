@@ -34,7 +34,7 @@
                     </div>
                     <div class="col-md-4 col-2">
                         <div class="d-flex justify-content-end">
-                            <a href="#" data-bs-toggle="modal" data-bs-target="#edit" class="btn btn-success">
+                            <a href="#" data-bs-toggle="modal" data-bs-target="#edit<?= $company->id ?>" class="btn btn-success">
                                 + <span class="d-none d-md-inline">Edit Profile</span>
                             </a>
                         </div>
@@ -45,25 +45,20 @@
             <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Company Name</div>
-                    <div class="col-lg-8 fw-medium">PT. Abadi Jaya</div>
+                    <div class="col-lg-8 fw-medium"><?= $company->nama ?></div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Description</div>
-                    <div class="col-lg-8 fw-medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi.</div>
+                    <div class="col-lg-8 fw-medium"><?= $company->deskripsi ?></div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Visi</div>
-                    <div class="col-lg-8 fw-medium">Menjadi perusahaan terbaik di Indonesia</div>
+                    <div class="col-lg-8 fw-medium"><?= $company->visi ?></div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Misi</div>
                     <div class="col-lg-8 fw-medium">
-                        <ol>
-                            <li>Menyediakan produk berkualitas</li>
-                            <li>Memberikan pelayanan terbaik</li>
-                            <li>Menjaga kepercayaan pelanggan</li>
-                            <li>Menjadi perusahaan yang berkelanjutan</li>
-                        </ol>
+                        <?= $company->misi ?>
                     </div>
                 </div>
 
@@ -71,38 +66,39 @@
 
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Address</div>
-                    <div class="col-lg-8 fw-medium">Jl. Raya No. 123, Jakarta, Indonesia</div>
+                    <div class="col-lg-8 fw-medium"><?= $company->alamat ?></div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Email</div>
-                    <div class="col-lg-8 fw-medium">royhandf@gmail.com </div>
+                    <div class="col-lg-8 fw-medium"><?= $company->email ?></div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Phone</div>
-                    <div class="col-lg-8 fw-medium">+62 812-3456-7890</div>
+                    <div class="col-lg-8 fw-medium"><?= $company->kontak ?></div>
                 </div>
 
                 <hr>
 
                 <div class="row mb-4">
-                    <div class="col-lg-4 fw-semibold text-dark fw-regular">Logo</div>
+                    <div class="col-lg-4 fw-semibold text-dark fw-regular">Logo Bank</div>
                     <div class="col-lg-8 fw-medium">
-                        <!-- cek kondisi payment -->
-                        <!-- if 1 = /bri.png : 2 = /bri.png : 3 = mandiri.png : 4 = bsi.png  -->
-                        <img src="<?= base_url('assets/static/images/bri.png') ?>" alt="logo" class="img-thumbnail" width="100">
+                        <?php
+                        $bank = ($company->bank == 'BCA') ? 'bca.png' : (($company->bank == 'MANDIRI') ? 'mandiri.png' : (($company->bank == 'BRI') ? 'bri.png' : (($company->bank == 'BSI') ? 'bsi.png' : '')));
+                        ?>
+                        <img src="<?= base_url('assets/static/images/' . $bank) ?>" alt="<?= $bank ?>" class="img-thumbnail" width="100">
                     </div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Payment Method</div>
-                    <div class="col-lg-8 fw-medium">BCA</div>
+                    <div class="col-lg-8 fw-medium"><?= $company->bank ?></div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Account Number</div>
-                    <div class="col-lg-8 fw-medium">1234 5678 9012 3456</div>
+                    <div class="col-lg-8 fw-medium"><?= $company->no_rek ?></div>
                 </div>
             </div>
 
-            <div class="modal fade" id="edit" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+            <div class="modal fade" id="edit<?= $company->id ?>" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -110,56 +106,53 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form method="post">
+                            <form method="POST" action="<?= base_url('dashboard/company-profile/update/') . $company->id ?>">
                                 <div class="form-body">
                                     <div class="col-md-12 form-group">
-                                        <label for="company-name">Company Name</label>
-                                        <input type="text" class="form-control" name="company-name" id="company-name" value="PT. Abadi Jaya" required />
+                                        <label for="name">Company Name</label>
+                                        <input type="text" class="form-control" name="name" id="name" value="<?= $company->nama ?>" required />
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label for="description">Description</label>
-                                        <div class="summernote"></div>
+                                        <textarea name="description" class="custom-summernote" id="summernote-description-<?= $company->id ?>" required><?= htmlspecialchars(($company->deskripsi)) ?></textarea>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <label for="visi">Visi</label>
-                                        <input type="text" class="form-control" name="visi" id="visi" required />
+                                        <label for="vision">Vision</label>
+                                        <input type="text" class="form-control" name="vision" id="vision" value="<?= $company->visi ?>" required />
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <label for="misi">Misi</label>
-                                        <small id="misi" class="form-text text-danger align-text-top">
-                                            * Apabila ada lebih dari satu misi, pisahkan dengan tanda titik koma (;)
-                                        </small>
-                                        <div class="summernote" aria-describedby="misi"></div>
+                                        <label for="mission">Mission</label>
+                                        <textarea name="mission" class="custom-summernote" id="summernote-mission-<?= $company->id ?>" required><?= htmlspecialchars(($company->misi)) ?></textarea>
                                     </div>
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label for="address">Address</label>
-                                    <input type="text" class="form-control" name="address" id="address" value="Jl. Raya No. 123, Jakarta, Indonesia" required />
+                                    <input type="text" class="form-control" name="address" id="address" value="<?= $company->alamat ?>" required />
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" value="royhandf@gmail.com" required />
+                                    <input type="email" class="form-control" name="email" id="email" value="<?= $company->email ?>" required />
                                 </div>
                                 <div class="col-md-12 form-group">
-                                    <label for="phone">Phone</label>
-                                    <input type="text" class="form-control" name="phone" id="phone" value="+62 812-3456-7890" required />
+                                    <label for="contact">contact</label>
+                                    <input type="tel" class="form-control" name="contact" id="contact" value="<?= $company->kontak ?>" required />
                                 </div>
                                 <div class="col-md-12 form-group">
-                                    <label for="payment-method">Payment Method</label>
-                                    <select class="form-select" name="payment-method" id="payment-method" required>
-                                        <option selected disabled>Select Payment Method</option>
-                                        <option value="1">BCA</option>
-                                        <option value="2">BRI</option>
-                                        <option value="3">MANDIRI</option>
-                                        <option value="4">BSI</option>
+                                    <label for="bank">Payment Method</label>
+                                    <select class="form-select" name="bank" id="bank" required>
+                                        <option value="BCA" <?= $company->bank == 'BCA' ? 'selected' : '' ?>>BCA</option>
+                                        <option value="MANDIRI" <?= $company->bank == 'MANDIRI' ? 'selected' : '' ?>>MANDIRI</option>
+                                        <option value="BRI" <?= $company->bank == 'BRI' ? 'selected' : '' ?>>BRI</option>
+                                        <option value="BSI" <?= $company->bank == 'BSI' ? 'selected' : '' ?>>BSI</option>
                                     </select>
                                 </div>
                                 <div class="col-md-12 form-group">
-                                    <label for="account-number">Account Number</label>
-                                    <input type="text" class="form-control" name="account-number" id="account-number" value="1234-5678-9012-3456" required />
+                                    <label for="account_number">Account Number</label>
+                                    <input type="text" class="form-control" name="account_number" id="account_number" value="<?= $company->no_rek ?>" required />
                                 </div>
                                 <div class="col-sm-12 d-flex justify-content-end">
-                                    <button type="submit" name="submit" class="btn btn-custom-success me-1 mb-1">Submit</button>
+                                    <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+                                    <button type="submit" name="submit" class="btn btn-custom-success me-1 mb-1">Edit</button>
                                 </div>
                             </form>
                         </div>

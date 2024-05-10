@@ -19,7 +19,7 @@ $("#hint").summernote({
   },
 });
 
-$(".summernote-product").summernote({
+$(".custom-summernote").summernote({
   toolbar: [
     ["style", ["style"]],
     ["font", ["bold", "underline", "clear"]],

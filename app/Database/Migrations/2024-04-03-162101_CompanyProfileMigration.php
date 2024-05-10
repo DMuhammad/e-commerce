@@ -20,6 +20,12 @@ class CompanyProfileMigration extends Migration
             'deskripsi' => [
                 'type' => 'TEXT',
             ],
+            'visi' => [
+                'type' => 'TEXT',
+            ],
+            'misi' => [
+                'type' => 'TEXT',
+            ],
             'alamat' => [
                 'type' => 'TEXT',
             ],
@@ -33,7 +39,7 @@ class CompanyProfileMigration extends Migration
             ],
             'bank' => [
                 'type' => 'ENUM',
-                'constraint' => ["BCA", "BNI", "BRI", "BSI"],
+                'constraint' => ["BCA", "MANDIRI", "BRI", "BSI"],
             ],
             'no_rek' => [
                 'type' => 'VARCHAR',

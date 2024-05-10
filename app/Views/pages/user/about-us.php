@@ -14,26 +14,20 @@
     <div class="row my-5">
         <div class="col-lg-6">
             <h2 class="text-black">Welcome To PT Persada Jayaraya Abadi</h2>
-            <p class="text-black pe-4">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+            <p class="text-black pe-4"><?= $company->deskripsi ?></p>
         </div>
-        <div class="col-lg-6 bg-success rounded-4 p-5 d-flex flex-column justify-content-between">
+        <div class="col-lg-6 bg-success rounded-4 p-5 d-flex flex-column justify-content-start">
             <div>
                 <h1 class="text-white">VISION</h1>
                 <p class="text-white">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    <?= $company->visi ?>
                 </p>
             </div>
             <div>
-                <h1 class="text-white">MISION</h1>
-                <ul class="text-white">
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, excepturi?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, excepturi?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, excepturi?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, excepturi?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, excepturi?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, excepturi?</li>
-                    <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit, excepturi?</li>
-                </ul>
+                <h1 class="text-white">MISSION</h1>
+                <span class="text-white">
+                    <?= $company->misi ?>
+                </span>
             </div>
         </div>
     </div>

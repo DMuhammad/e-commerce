@@ -10,6 +10,7 @@ use App\Models\CategoryModel;
 use App\Models\TransactionModel;
 use App\Models\ProductImagesModel;
 use App\Models\DetailTransactionModel;
+use App\Models\CompanyProfileModel;
 
 class Home extends BaseController
 {
@@ -20,6 +21,8 @@ class Home extends BaseController
     protected $cart;
     protected $transaction;
     protected $detailTransaction;
+    protected $company;
+    protected $companyImages;
 
     public function __construct()
     {
@@ -30,6 +33,7 @@ class Home extends BaseController
         $this->cart = new CartModel();
         $this->transaction = new TransactionModel();
         $this->detailTransaction = new DetailTransactionModel();
+        $this->company = new CompanyProfileModel();
     }
 
     public function index(): string
@@ -37,20 +41,20 @@ class Home extends BaseController
         $productIds = $this->products->select('MIN(products.id) as product_id')
             ->groupBy('nama_produk') // Group by product name
             ->findAll();
-    
+
         $productIds = array_column($productIds, 'product_id');
-    
+
         $products = $this->products->select('products.*, categories.nama_kategori')
             ->whereIn('products.id', $productIds)
             ->join('categories', 'categories.id = products.category_id', 'left')
             ->findAll();
-    
+
         foreach ($products as $key => $product) {
             $products[$key]->images = $this->productImages->select('image')
                 ->where('product_id', $product->id)
                 ->findAll();
         }
-    
+
         $data = [
             'user' => session()->get('nama_lengkap'),
             'role' => session()->get('role'),
@@ -58,7 +62,7 @@ class Home extends BaseController
             'products' => $products,
             'title' => 'Homepage',
         ];
-    
+
         return view('pages/user/homepage', $data);
     }
 
@@ -88,10 +92,13 @@ class Home extends BaseController
 
     public function aboutUs(): string
     {
+        $company = $this->company->first();
+
         $data = [
             'user' => session()->get('nama_lengkap'),
             'role' => session()->get('role'),
             'title' => 'About Us',
+            'company' => $company,
         ];
 
         return view('pages/user/about-us', $data);
@@ -110,8 +117,8 @@ class Home extends BaseController
 
         // Get all variants of the product with the same name
         $variants = $this->products->select('id, variant')
-        ->where('nama_produk', $product->nama_produk)
-        ->findAll();
+            ->where('nama_produk', $product->nama_produk)
+            ->findAll();
 
         $data = [
             'user' => session()->get('nama_lengkap'),
@@ -129,16 +136,16 @@ class Home extends BaseController
         // Get the POST data
         $variantId = $this->request->getPost('variant');
         $qty = $this->request->getPost('qty');
-    
+
         // Get the variant details
         $variant = $this->products->find($variantId);
-    
+
         // Calculate the total price
         $totalHarga = $variant->harga * $qty;
-    
+
         // Get the user ID from the session
         $userId = session()->get('id');
-    
+
         // Prepare the data to be inserted
         $data = [
             'id' => Uuid::uuid4(),
@@ -147,13 +154,13 @@ class Home extends BaseController
             'qty' => $qty,
             'total_harga' => $totalHarga,
         ];
-    
+
         // Insert the data into the cart table
         $this->cart->insert($data);
-    
+
         // Set a flash message
         session()->setFlashdata('success', 'Product added to cart!');
-    
+
         // Redirect the user back to the product detail page
         return redirect()->to('/detail-product/' . $variant->id);
     }
@@ -162,7 +169,7 @@ class Home extends BaseController
     {
         $userId = session()->get('id');
         $carts = $this->cart->where('user_id', $userId)->findAll();
-    
+
         // Retrieve product details for each cart item
         foreach ($carts as $cart) {
             $cart->product = $this->products->find($cart->product_id);
@@ -184,7 +191,7 @@ class Home extends BaseController
             'tax' => $tax,
             'total' => $total,
         ];
-    
+
         return view('pages/user/cart', $data);
     }
 
@@ -192,19 +199,19 @@ class Home extends BaseController
     {
         $cartId = $id;
         $qty = $this->request->getPost('qty');
-    
+
         $cart = $this->cart->find($cartId);
         $variant = $this->products->find($cart->product_id);
-    
+
         $totalHarga = $variant->harga * $qty;
-    
+
         $this->cart->update($cartId, [
             'qty' => $qty,
             'total_harga' => $totalHarga,
         ]);
-    
+
         session()->setFlashdata('success', 'Product updated!');
-    
+
         return redirect()->to('/cart');
     }
 
@@ -220,7 +227,7 @@ class Home extends BaseController
     {
         $userId = session()->get('id');
         $carts = $this->cart->where('user_id', $userId)->findAll();
-    
+
         if (empty($carts)) {
             session()->setFlashdata('error', 'Cart is empty!');
             return redirect()->to('/cart');
@@ -265,7 +272,7 @@ class Home extends BaseController
     {
         $userId = session()->get('id');
         $carts = $this->cart->where('user_id', $userId)->findAll();
-    
+
         if (empty($carts)) {
             session()->setFlashdata('error', 'Cart is empty!');
             return redirect()->to('/cart');
@@ -299,8 +306,8 @@ class Home extends BaseController
         $data = [
             'id' => Uuid::uuid4(),
             'user_id' => $userId,
-            'kode_transaksi' => 'INV/' . date('Ymd') . '/' . date('his'). '/' . rand(100, 999),
-            'note'=> $note,
+            'kode_transaksi' => 'INV/' . date('Ymd') . '/' . date('his') . '/' . rand(100, 999),
+            'note' => $note,
             'total_bayar' => $total,
             'status' => 'pending',
         ];
@@ -371,7 +378,7 @@ class Home extends BaseController
         $transactions = $this->transaction->where('user_id', $id)->findAll();
 
         $data = [
-            'user'=> $user,
+            'user' => $user,
             'transactions' => $transactions,
             'title' => 'Account',
         ];
@@ -472,6 +479,6 @@ class Home extends BaseController
         $whatsappUrl = "https://wa.me/$phoneNumber?text=$message";
 
         // Redirect to the WhatsApp URL
-        return redirect()->to($whatsappUrl);  
+        return redirect()->to($whatsappUrl);
     }
 }
