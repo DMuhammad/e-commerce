@@ -11,6 +11,9 @@
                 <h4 class="text-black mb-4">Contact</h4>
                 <p><i class="fa-solid fa-building text-success me-2"></i> PT Persada Jayaraya Abadi</p>
                 <p><i class="fa-solid fa-location-dot text-success me-2"></i> Kahuripan Avenue no 23 Sidoarjo, Jawa Timur, Indonesia</p>
+                <p>
+                    <a href="mailto:persada@gmail.com" style="color:#6D7C84"><i class="fa-solid fa-envelope text-success me-2"></i> persada@gmail.com</a>
+                </p>
                 <p class="mb-0"><i class="fa-solid fa-phone text-success me-1"></i> +62 812-8363-5368</p>
             </div>
         </div>
