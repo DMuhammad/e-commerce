@@ -14,18 +14,19 @@
             </div>
         </div>
         <div class="col-md-8 col-12">
-            <div class="m-2">
-                <form action="<?= base_url('/add-to-cart') ?>" method="POST">
-                    <h1 class="text-black fw-medium custom-title"><?= $product->nama_produk ?></h1>
-                    <h1 class="custom-color-primary custom-title">Rp. <?= $product->harga ?></h1>
-                    <p>Select Variation:</p>
-                    <div class="d-flex gap-3 mb-4">
-                        <!-- Display all variants -->
-                        <?php foreach ($variants as $variant): ?>
-                            <label class="btn btn-outline-success variant-label" for="variant<?= $variant->id ?>"><?= $variant->variant ?></label>
-                            <input type="radio" class="btn-check variant-radio" name="variant" id="variant<?= $variant->id ?>" value="<?= $variant->id ?>" autocomplete="off">
-                        <?php endforeach; ?>
-                    </div>
+            <<div class="m-2">
+    <form action="<?= base_url('/add-to-cart') ?>" method="POST">
+        <h1 class="text-black fw-medium custom-title"><?= $product->nama_produk ?></h1>
+        <h1 class="custom-color-primary custom-title">Rp. <?= $product->harga ?></h1>
+        <p>Select Variation:</p>
+        <div class="variants-container d-flex gap-3 mb-4">
+    <!-- Display all variants -->
+    <?php foreach ($variants as $variant): ?>
+        <label class="btn btn-outline-success variant-label <?= $variant->id == $product->id ? 'active' : '' ?>" for="variant<?= $variant->id ?>"><?= $variant->variant ?></label>
+        <input type="radio" class="btn-check variant-radio" name="variant" id="variant<?= $variant->id ?>" value="<?= $variant->id ?>" <?= $variant->id == $product->id ? 'checked' : '' ?> autocomplete="off">
+    <?php endforeach; ?>
+</div>
+        <p>Stok: <?= $product->stok ?> </span></p>
                     <hr class="mb-4">
                     <div class="row mb-4 gy-2">
                         <div class="col-md-3 col-5">

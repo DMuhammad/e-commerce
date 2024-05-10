@@ -1,15 +1,19 @@
 <?php
 
 namespace App\Controllers;
+use App\Models\ProductModel;
 use App\Models\TransactionModel;
 
 class TransactionController extends BaseController
 {
     protected $transaction;
+    protected $product;
 
     public function __construct()
     {
         $this->transaction = new TransactionModel();
+        $this->product = new ProductModel();
+
     }
 
     public function index()
@@ -37,10 +41,26 @@ class TransactionController extends BaseController
     {
         $status = $this->request->getPost('status');
         $this->transaction->update($id, ['status' => $status]);
-
+    
+        // if status is canceled, then update the stock of the product from detail transaction
+        if ($status == 'canceled') {
+            $detailTransaction = $this->transaction->select('detailtransactions.product_id, detailtransactions.qty')
+                ->join('detailtransactions', 'detailtransactions.transaction_id = transactions.id')
+                ->where('transactions.id', $id)
+                ->findAll();
+    
+            foreach ($detailTransaction as $detail) {
+                $product = $this->product->select('stok')
+                    ->where('id', $detail->product_id)
+                    ->first();
+    
+                $this->product->update($detail->product_id, ['stok' => $product->stok + $detail->qty]);
+            }
+        }
+    
         // set flashdata
         session()->setFlashdata('success', 'Transaction status has been updated');
-
+    
         return redirect()->back();
     }
 
