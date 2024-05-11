@@ -45,11 +45,11 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <?php 
-                                                            $no = 1;
-                                foreach ($transactions as $transaction) : ?>
-                                    
+                            <?php
+                            $no = 1;
+                            foreach ($transactions as $transaction) : ?>
+                                <tr>
+
                                     <td><?= $no++ ?></td>
                                     <td><?= $transaction->kode_transaksi ?></td>
                                     <td><?= $transaction->created_at ?></td>
@@ -66,7 +66,7 @@
                                     </td>
                                     <td>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#edit<?= $transaction->id ?>" class="btn btn-warning btn-sm edit-button"">
-                                            <i class="fa-regular fa-pen-to-square"></i>
+                                            <i class=" fa-regular fa-pen-to-square"></i>
                                         </a>
                                         <div class="modal fade" id="edit<?= $transaction->id ?>" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -77,14 +77,14 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                        <form class="form form-horizontal" id="form-product" method="post"  action="<?= base_url('dashboard/transactions/update/') . $transaction->id ?>">
+                                                        <form class="form form-horizontal" id="form-product" method="post" action="<?= base_url('dashboard/transactions/update/') . $transaction->id ?>">
                                                             <div class="form-body">
                                                                 <div class="col-md-12 form-group">
                                                                     <label for="category">Status</label>
                                                                     <select class="form-control" name="status" required>
                                                                         <?php foreach ($statuses as $status) { ?>
                                                                             <option value="<?= $status ?>" <?= ($status == $transaction->status) ? 'selected' : '' ?>><?= $status ?></option>
-                                                                        <?php }?>
+                                                                        <?php } ?>
                                                                     </select>
                                                                 </div>
                                                                 <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
@@ -105,7 +105,7 @@
                                         </form>
                                     </td>
                                 </tr>
-                        <?php endforeach; ?>
+                            <?php endforeach; ?>
                         </tbody>
                     </table>
                 </div>
