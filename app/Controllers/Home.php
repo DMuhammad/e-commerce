@@ -92,6 +92,7 @@ class Home extends BaseController
 
     public function aboutUs(): string
     {
+        $admin = $this->userModel->where('role', 'admin')->first();
         $company = $this->company->first();
 
         $data = [
@@ -99,6 +100,7 @@ class Home extends BaseController
             'role' => session()->get('role'),
             'title' => 'About Us',
             'company' => $company,
+            'admin' => $admin,
         ];
 
         return view('pages/user/about-us', $data);
@@ -127,8 +129,6 @@ class Home extends BaseController
             'variants' => $variants,
             'title' => 'Detail Product',
         ];
-
-        // return response()->setJSON($data);
 
         return view('pages/user/detail-product', $data);
     }
@@ -211,6 +211,11 @@ class Home extends BaseController
 
         $cart = $this->cart->find($cartId);
         $variant = $this->products->find($cart->product_id);
+
+        if ($qty > $variant->stok) {
+            session()->setFlashdata('error', 'Stock is not enough!');
+            return redirect()->to('/cart');
+        }
 
         $totalHarga = $variant->harga * $qty;
 
@@ -352,12 +357,19 @@ class Home extends BaseController
         return redirect()->to('/payment');
     }
 
-    public function payment(): string
+    public function payment()
     {
+        $company = $this->company->first();
         $admin = $this->userModel->where('role', 'admin')->first();
         $userId = session()->get('id');
         $user = $this->userModel->where('id', $userId)->first();
+
         $transaction = $this->transaction->where('user_id', $userId)->orderBy('created_at', 'DESC')->first();
+        if ($transaction == null) {
+            session()->setFlashdata('error', 'No transaction found!');
+            return redirect()->to('/cart');
+        }
+
         $detail = $this->detailTransaction->where('transaction_id', $transaction->id)->findAll();
 
         foreach ($detail as $item) {
@@ -378,6 +390,7 @@ class Home extends BaseController
             'admin' => $admin,
             'user' => $user,
             'tax' => $tax,
+            'company' => $company,
         ];
 
         return view('pages/user/payment', $data);

@@ -32,6 +32,8 @@
     <script src="<?= base_url('assets/extensions/daterangepicker/daterangepicker.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.js') ?>"></script>
 
+    <script src="<?= base_url('assets/extensions/lightbox-bs5/lightbox.js') ?>"></script>
+
     <?php if (session()->getFlashdata('success')): ?>
     <script>
         Swal.fire({

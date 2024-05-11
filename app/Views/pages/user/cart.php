@@ -15,6 +15,13 @@
     </div>
     <div class="row justify-content-md-between justify-content-center">
         <div class="col-md-8 col-11">
+            <?php if (!$carts) : ?>
+                <div class="text-center">
+                    <h1 class="text-black
+                    ">Cart is empty</h1>
+                    <a href="<?= base_url('/products') ?>" class="btn btn-custom-success">Shop Now</a>
+                </div>
+            <?php endif; ?>
             <?php foreach ($carts as $cart) { ?>
                 <form action="<?= base_url('/cart/update/') . $cart->id ?>" method="POST">
                     <div class="d-flex flex-column mb-5">

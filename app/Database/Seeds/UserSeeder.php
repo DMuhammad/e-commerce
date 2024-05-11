@@ -10,12 +10,12 @@ class UserSeeder extends Seeder
         $data = [
             [
                 'id' => Uuid::uuid4(),
-                'nama_lengkap' => 'Admin',
-                'email' => 'admin@gmail.com',
+                'nama_lengkap' => 'PT. Persada Jayaraya Abadi',
+                'email' => 'persada@gmail.com',
                 'password' => password_hash('admin', PASSWORD_DEFAULT),
                 'role' => 'Admin',
-                'alamat' => 'Jl. Admin No. 1',
-                'no_telp' => '6281234567890',
+                'alamat' => 'Kahuripan Avenue no 23 Sidoarjo, Jawa Timur, Indonesia',
+                'no_telp' => '6281283635368',
                 'created_at' => date('Y-m-d H:i:s'),
                 'updated_at' => date('Y-m-d H:i:s'),
             ],

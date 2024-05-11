@@ -13,7 +13,7 @@
 <div class="container">
     <div class="row my-5">
         <div class="col-lg-6">
-            <h2 class="text-black">Welcome To PT Persada Jayaraya Abadi</h2>
+            <h2 class="text-black">Welcome To <?= $admin->nama_lengkap ?></h2>
             <p class="text-black pe-4"><?= $company->deskripsi ?></p>
         </div>
         <div class="col-lg-6 bg-success rounded-4 p-5 d-flex flex-column justify-content-start">
@@ -55,19 +55,29 @@
             <div class="splide__track">
                 <ul class="splide__list">
                     <li class="splide__slide">
-                        <img src="<?= base_url('assets/static/images/gallery.avif') ?>" alt="gallery company">
+                        <a href="<?= base_url('assets/static/images/gallery.avif') ?>" data-toggle="lightbox">
+                        <img src="<?= base_url('assets/static/images/gallery.avif') ?>" alt="gallery company" class="img-fluid">
+                        </a>
                     </li>
                     <li class="splide__slide">
-                        <img src="<?= base_url('assets/static/images/gallery2.avif') ?>" alt="gallery company">
+                    <a href="<?= base_url('assets/static/images/gallery2.avif') ?>" data-toggle="lightbox">
+                        <img src="<?= base_url('assets/static/images/gallery2.avif') ?>" alt="gallery company" class="img-fluid">
+                        </a>
                     </li>
                     <li class="splide__slide">
-                        <img src="<?= base_url('assets/static/images/gallery3.avif') ?>" alt="gallery company">
+                    <a href="<?= base_url('assets/static/images/gallery3.avif') ?>" data-toggle="lightbox">
+                        <img src="<?= base_url('assets/static/images/gallery3.avif') ?>" alt="gallery company" class="img-fluid">
+                        </a>
                     </li>
                     <li class="splide__slide">
-                        <img src="<?= base_url('assets/static/images/gallery4.avif') ?>" alt="gallery company">
+                    <a href="<?= base_url('assets/static/images/gallery4.avif') ?>" data-toggle="lightbox">
+                        <img src="<?= base_url('assets/static/images/gallery4.avif') ?>" alt="gallery company" class="img-fluid">
+                        </a>
                     </li>
                     <li class="splide__slide">
-                        <img src="<?= base_url('assets/static/images/gallery5.avif') ?>" alt="gallery company">
+                    <a href="<?= base_url('assets/static/images/gallery5.avif') ?>" data-toggle="lightbox">
+                        <img src="<?= base_url('assets/static/images/gallery5.avif') ?>" alt="gallery company" class="img-fluid">
+                        </a>
                     </li>
                 </ul>
             </div>

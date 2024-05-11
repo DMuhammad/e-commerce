@@ -55,8 +55,6 @@
                         <h5 class="text-black fw-medium"><?= $user->nama_lengkap ?></h5>
                         <p class="text-black mb-2"><?= $user->alamat ?></p>
                         <p class="text-black mb-2"><?= $user->no_telp ?></p>
-                        <!-- <p class="fw-semibold text-black mt-3 mb-1">Payment Date</p>
-                        <input type="text" name="payment-date" id="payment-date"> -->
                     </div>
                 </div>
             </div>
@@ -98,17 +96,32 @@
         <div class="col-xl-3 col-md-4 col-11">
             <div class="p-4 rounded-3 shadow">
                 <div class="text-center mb-4">
+                    <?php if ($company->bank == 'BCA') : ?>
+                        <img src="<?= base_url('assets/static/images/bca.png') ?>" alt="bca" class="">
+                    <?php elseif ($company->bank == 'BRI') : ?>
+                        <img src="<?= base_url('assets/static/images/bri.png') ?>" alt="bri" class="">
+                    <?php elseif ($company->bank == 'MANDIRI') : ?>
+                        <img src="<?= base_url('assets/static/images/mandiri.png') ?>" alt="mandiri" class="">
+                    <?php elseif ($company->bank == 'BSI') : ?>
                     <img src="<?= base_url('assets/static/images/bsi.png') ?>" alt="bsi" class="">
-
+                    <?php endif; ?>
                 </div>
+                <?php if ($company->bank == 'BCA') : ?>
+                    <h5 class="fw-medium text-black mb-4">Bank Central Asia</h5>
+                <?php elseif ($company->bank == 'BRI') : ?>
+                    <h5 class="fw-medium text-black mb-4">Bank Rakyat Indonesia</h5>
+                <?php elseif ($company->bank == 'MANDIRI') : ?>
+                    <h5 class="fw-medium text-black mb-4">Bank Mandiri</h5>
+                <?php elseif ($company->bank == 'BSI') : ?>
                 <h5 class="fw-medium text-black mb-4">Bank Syariah Indonesia</h5>
+                <?php endif; ?>
                 <div>
                     <h5 class="fw-medium text-black">Nomor Rekening</h5>
-                    <p class="text-black fw-regular">6012 1234 5678 9012</p>
+                    <p class="text-black fw-regular"><?= $company->no_rek ?></p>
                 </div>
                 <div>
                     <h5 class="fw-medium text-black">Rekening Atas Nama</h5>
-                    <p class="text-black fw-regular">Agus Subaya</p>
+                    <p class="text-black fw-regular"><?= $user->nama_lengkap ?></p>
                 </div>
                 <?php if ($transaction->status == 'pending') : ?>
                     <a href="<?= base_url('/verify-payment') ?>" class="btn btn-custom-success d-block mt-4">

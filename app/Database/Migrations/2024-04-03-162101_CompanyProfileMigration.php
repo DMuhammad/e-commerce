@@ -13,10 +13,6 @@ class CompanyProfileMigration extends Migration
                 'type' => 'VARCHAR',
                 'constraint' => 32,
             ],
-            'nama' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255
-            ],
             'deskripsi' => [
                 'type' => 'TEXT',
             ],
@@ -25,17 +21,6 @@ class CompanyProfileMigration extends Migration
             ],
             'misi' => [
                 'type' => 'TEXT',
-            ],
-            'alamat' => [
-                'type' => 'TEXT',
-            ],
-            'email' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255
-            ],
-            'kontak' => [
-                'type' => 'VARCHAR',
-                'constraint' => 100
             ],
             'bank' => [
                 'type' => 'ENUM',

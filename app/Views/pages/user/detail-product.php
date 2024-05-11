@@ -8,7 +8,11 @@
             <div style="background-color: #f5f5f5;">
                 <div class="row justify-content-center">
                     <div class="col-md-12 col-5">
-                        <img src="<?= base_url('assets/uploads/img-product/' . $product->images[1]->image) ?>" alt="product" class="img-fluid">
+                        <?php if (!empty($product->images) && $product->images[0]) : ?>
+                            <img src="<?= base_url('assets/uploads/img-product/' . $product->images[0]->image) ?>" alt="product" class="img-fluid">
+                        <?php else : ?>
+                            <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product" class="img-fluid">
+                        <?php endif; ?>
                     </div>
                 </div>
             </div>
@@ -56,15 +60,22 @@
     <div class="mb-5">
         <h2 class="text-center text-black fw-medium mb-4">Gallery</h2>
         <div class="row">
-            <?php
-            foreach($product->images as $image) { ?>
-                <div class="col-4">
-                    <img src="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" alt="product" class="img-fluid">
-                </div>
-            <?php
-            }
-            ?>
+    <?php if (!empty($product->images)) : ?>
+        <?php foreach ($product->images as $image) : ?>
+            <div class="col-4">
+                <a href="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" data-toggle="lightbox">
+                <img src="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" alt="product" class="img-fluid">
+                </a>
+            </div>
+        <?php endforeach; ?>
+    <?php else : ?>
+        <div class="col-4">
+            <a href="<?= base_url('assets/static/images/product.png') ?>" data-toggle="lightbox">
+            <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product" class="img-fluid">
+            </a>
         </div>
+    <?php endif; ?>
+</div>
     </div>
 </div>
 
