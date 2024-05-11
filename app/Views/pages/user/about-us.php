@@ -54,31 +54,36 @@
         <div id="gallery-company" class="splide text-center">
             <div class="splide__track">
                 <ul class="splide__list">
-                    <li class="splide__slide">
-                        <a href="<?= base_url('assets/static/images/gallery.avif') ?>" data-toggle="lightbox">
-                        <img src="<?= base_url('assets/static/images/gallery.avif') ?>" alt="gallery company" class="img-fluid">
-                        </a>
-                    </li>
-                    <li class="splide__slide">
-                    <a href="<?= base_url('assets/static/images/gallery2.avif') ?>" data-toggle="lightbox">
-                        <img src="<?= base_url('assets/static/images/gallery2.avif') ?>" alt="gallery company" class="img-fluid">
-                        </a>
-                    </li>
-                    <li class="splide__slide">
-                    <a href="<?= base_url('assets/static/images/gallery3.avif') ?>" data-toggle="lightbox">
-                        <img src="<?= base_url('assets/static/images/gallery3.avif') ?>" alt="gallery company" class="img-fluid">
-                        </a>
-                    </li>
-                    <li class="splide__slide">
-                    <a href="<?= base_url('assets/static/images/gallery4.avif') ?>" data-toggle="lightbox">
-                        <img src="<?= base_url('assets/static/images/gallery4.avif') ?>" alt="gallery company" class="img-fluid">
-                        </a>
-                    </li>
-                    <li class="splide__slide">
-                    <a href="<?= base_url('assets/static/images/gallery5.avif') ?>" data-toggle="lightbox">
-                        <img src="<?= base_url('assets/static/images/gallery5.avif') ?>" alt="gallery company" class="img-fluid">
-                        </a>
-                    </li>
+                    <?php if (empty($company->images)) : ?>
+                        <li class="splide__slide">
+                            <a href="<?= base_url('assets/static/images/gallery.avif') ?>" data-toggle="lightbox">
+                                <img src="<?= base_url('assets/static/images/gallery.avif') ?>" alt="gallery company" class="img-fluid">
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="<?= base_url('assets/static/images/gallery2.avif') ?>" data-toggle="lightbox">
+                                <img src="<?= base_url('assets/static/images/gallery2.avif') ?>" alt="gallery company" class="img-fluid">
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="<?= base_url('assets/static/images/gallery3.avif') ?>" data-toggle="lightbox">
+                                <img src="<?= base_url('assets/static/images/gallery3.avif') ?>" alt="gallery company" class="img-fluid">
+                            </a>
+                        </li>
+                        <li class="splide__slide">
+                            <a href="<?= base_url('assets/static/images/gallery4.avif') ?>" data-toggle="lightbox">
+                                <img src="<?= base_url('assets/static/images/gallery4.avif') ?>" alt="gallery company" class="img-fluid">
+                            </a>
+                        </li>
+                    <?php else : ?>
+                        <?php foreach ($company->images as $image) : ?>
+                            <li class="splide__slide">
+                                <a href="<?= base_url('assets/uploads/img-company/' . $image->image) ?>" data-toggle="lightbox">
+                                    <img src="<?= base_url('assets/uploads/img-company/' . $image->image) ?>" alt="gallery company" class="img-fluid">
+                                </a>
+                            </li>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </ul>
             </div>
         </div>

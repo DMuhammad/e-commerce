@@ -61,8 +61,8 @@
                                 <tr>
                                     <td> <?= $no++ ?> </td>
                                     <td>
-                                        <a href="<?= base_url('uploads/img-company/' . $companyimage->image) ?>" data-toggle="lightbox">
-                                            <img width="50" src="<?= base_url('uploads/img-company/' . $companyimage->image) ?>" alt="...">
+                                        <a href="<?= base_url('assets/uploads/img-company/' . $companyimage->image) ?>" data-toggle="lightbox">
+                                            <img width="50" src="<?= base_url('assets/uploads/img-company/' . $companyimage->image) ?>" alt="...">
                                         </a>
                                     </td>
                                     <td>
@@ -78,33 +78,33 @@
                                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
                                                     <div class="modal-body">
-                                                    <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('dashboard/company-images/update/') . $companyimage->id ?>">
-                                                        <div class="form-body">
-                                                            <!-- Image Edit Section -->
-                                                            <div class="col-md-12 form-group">
-                                                                <label for="first-name-column">Edit Image</label>
-                                                                <!-- Hidden field to store the old image -->
-                                                                <input type="hidden" name="oldImage" value="<?= $companyimage->image ?>">
-                                                                <?php 
-                                                                // If there is an existing image, display it
-                                                                if ($companyimage->image) { ?>
-                                                                    <img src="<?= base_url('uploads/img-company/' . $companyimage->image) ?>" class="img-preview mb-3 img-fluid col-sm-5 d-block">
-                                                                <?php } else { 
-                                                                // If there is no existing image, display a placeholder
-                                                                ?>
-                                                                    <img class="img-preview img-fluid mb-3 col-sm-5">
-                                                                <?php } ?>
-                                                                <!-- File input to upload a new image -->
-                                                                <input class="form-control" type="file" id="image" name="image" onchange="previewImages()">
+                                                        <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('dashboard/company-images/update/') . $companyimage->id ?>">
+                                                            <div class="form-body">
+                                                                <!-- Image Edit Section -->
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="first-name-column">Edit Image</label>
+                                                                    <!-- Hidden field to store the old image -->
+                                                                    <input type="hidden" name="oldImage" value="<?= $companyimage->image ?>">
+                                                                    <?php
+                                                                    // If there is an existing image, display it
+                                                                    if ($companyimage->image) { ?>
+                                                                        <img src="<?= base_url('assets/uploads/img-company/' . $companyimage->image) ?>" class="img-preview mb-3 img-fluid col-sm-5 d-block">
+                                                                    <?php } else {
+                                                                        // If there is no existing image, display a placeholder
+                                                                    ?>
+                                                                        <img class="img-preview img-fluid mb-3 col-sm-5">
+                                                                    <?php } ?>
+                                                                    <!-- File input to upload a new image -->
+                                                                    <input class="form-control" type="file" id="image" name="image" onchange="previewImages()">
+                                                                </div>
+                                                                <!-- CSRF Token -->
+                                                                <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+                                                                <!-- Submit Button -->
+                                                                <div class="col-sm-12 d-flex justify-content-end">
+                                                                    <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
+                                                                </div>
                                                             </div>
-                                                            <!-- CSRF Token -->
-                                                            <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
-                                                            <!-- Submit Button -->
-                                                            <div class="col-sm-12 d-flex justify-content-end">
-                                                                <button type="submit" name="submit" class="btn btn-primary me-1 mb-1">Submit</button>
-                                                            </div>
-                                                        </div>
-                                                    </form>
+                                                        </form>
                                                     </div>
                                                 </div>
                                             </div>

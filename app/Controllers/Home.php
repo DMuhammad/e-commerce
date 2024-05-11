@@ -11,6 +11,7 @@ use App\Models\TransactionModel;
 use App\Models\ProductImagesModel;
 use App\Models\DetailTransactionModel;
 use App\Models\CompanyProfileModel;
+use App\Models\CompanyImagesModel;
 
 class Home extends BaseController
 {
@@ -34,6 +35,7 @@ class Home extends BaseController
         $this->transaction = new TransactionModel();
         $this->detailTransaction = new DetailTransactionModel();
         $this->company = new CompanyProfileModel();
+        $this->companyImages = new CompanyImagesModel();
     }
 
     public function index(): string
@@ -94,6 +96,8 @@ class Home extends BaseController
     {
         $admin = $this->userModel->where('role', 'admin')->first();
         $company = $this->company->first();
+        $company->images = $this->companyImages->select('image')->findAll();
+
 
         $data = [
             'user' => session()->get('nama_lengkap'),
@@ -103,6 +107,7 @@ class Home extends BaseController
             'admin' => $admin,
         ];
 
+        // dd($data);
         return view('pages/user/about-us', $data);
     }
 

@@ -34,72 +34,72 @@
 
     <script src="<?= base_url('assets/extensions/lightbox-bs5/lightbox.js') ?>"></script>
 
-    <?php if (session()->getFlashdata('success')): ?>
-    <script>
-        Swal.fire({
-            icon: "success",
-            title: "Success!",
-            text: "<?= session()->getFlashdata('success') ?>",
-            confirmButtonText: 'OK'
-        });
-    </script>
+    <?php if (session()->getFlashdata('success')) : ?>
+        <script>
+            Swal.fire({
+                icon: "success",
+                title: "Success!",
+                text: "<?= session()->getFlashdata('success') ?>",
+                confirmButtonText: 'OK'
+            });
+        </script>
     <?php endif; ?>
 
 
-    <?php if (session()->getFlashdata('error')): ?>
-    <script>
-        Swal.fire({
-            icon: "error",
-            title: "Error!",
-            text: "<?= session()->getFlashdata('error') ?>",
-            confirmButtonText: 'OK'
-        });
-    </script>
+    <?php if (session()->getFlashdata('error')) : ?>
+        <script>
+            Swal.fire({
+                icon: "error",
+                title: "Error!",
+                text: "<?= session()->getFlashdata('error') ?>",
+                confirmButtonText: 'OK'
+            });
+        </script>
     <?php endif; ?>
 
     <script>
-    // Function to reset all labels to default color
-    function resetLabels() {
-        document.querySelectorAll('.variant-label').forEach(function(label) {
-            label.style.backgroundColor = '#f8f9fa';
-            label.style.color = '#198754';
-        });
-    }
-
-    // Get all variant radio buttons
-    var radios = document.querySelectorAll('.variant-radio');
-
-    // Add a change event listener to each radio button
-    radios.forEach(function(radio) {
-        radio.addEventListener('change', function() {
-            // Reset the color of all labels
-            resetLabels();
-
-            // Change the color of the selected label
-            if (this.checked) {
-                var label = document.querySelector('label[for="' + this.id + '"]');
-                label.style.backgroundColor = '#198754';
-                label.style.color = '#fff';
-                
-                // Redirect to the detail page of the selected variant
-                window.location.href = '/detail-product/' + this.value;
-            }
-        });
-    });
-
-    // Check the radio button of the current variant and change the color of its label
-    var currentVariantId = window.location.pathname.split('/').pop();
-    var selectedVariant = document.querySelector('.variant-radio[value="' + currentVariantId + '"]');
-    if (selectedVariant) {
-        selectedVariant.checked = true;
-        resetLabels(); // Reset all labels before setting the selected one
-        var selectedLabel = document.querySelector('label[for="' + selectedVariant.id + '"]');
-        if (selectedLabel) {
-            selectedLabel.style.backgroundColor = '#198754';
-            selectedLabel.style.color = '#fff';
+        // Function to reset all labels to default color
+        function resetLabels() {
+            document.querySelectorAll('.variant-label').forEach(function(label) {
+                label.style.backgroundColor = '#f8f9fa';
+                label.style.color = '#198754';
+            });
         }
-    }
-</script>
+
+        // Get all variant radio buttons
+        var radios = document.querySelectorAll('.variant-radio');
+
+        // Add a change event listener to each radio button
+        radios.forEach(function(radio) {
+            radio.addEventListener('change', function() {
+                // Reset the color of all labels
+                resetLabels();
+
+                // Change the color of the selected label
+                if (this.checked) {
+                    var label = document.querySelector('label[for="' + this.id + '"]');
+                    label.style.backgroundColor = '#198754';
+                    label.style.color = '#fff';
+
+                    // Redirect to the detail page of the selected variant
+                    window.location.href = '/detail-product/' + this.value;
+                }
+            });
+        });
+
+        // Check the radio button of the current variant and change the color of its label
+        var currentVariantId = window.location.pathname.split('/').pop();
+        var selectedVariant = document.querySelector('.variant-radio[value="' + currentVariantId + '"]');
+        if (selectedVariant) {
+            selectedVariant.checked = true;
+            resetLabels(); // Reset all labels before setting the selected one
+            var selectedLabel = document.querySelector('label[for="' + selectedVariant.id + '"]');
+            if (selectedLabel) {
+                selectedLabel.style.backgroundColor = '#198754';
+                selectedLabel.style.color = '#fff';
+            }
+        }
+    </script>
 
 
     <script>
@@ -144,9 +144,9 @@
             const base_url = `<?= base_url() ?>`
             const chat_body = $("#chat-body");
             const ws_url = base_url.replace(/http:\/\/|https:\/\//g, "ws://").replace(/\/$/, '');
-            
+
             var conn = new WebSocket(`ws://localhost:8282?userId=<?= $_SESSION['id'] ?>`);
-            
+
             conn.onopen = function(e) {
                 console.log(e);
                 console.log("Connection established!");
@@ -156,7 +156,7 @@
                 getChat(base_url);
                 console.log("Received message: ", e.data);
             };
-            
+
             $(function() {
                 getChat(base_url);
             })
@@ -228,7 +228,7 @@
                         chat_body.append(new_message);
                         message.val('')
                         chat_body.scrollTop(chat_body[0].scrollHeight - chat_body[0].clientHeight);
-                        
+
                         sendWebSocketMessage(message_from, message_to, message.val());
                     },
                     error: function(response) {
@@ -261,6 +261,7 @@
             const gallery = new Splide('#reference-products', {
                 type: 'loop',
                 perPage: 4,
+                perMove: 1,
                 gap: 20,
                 autoplay: true,
                 pagination: false,
@@ -280,6 +281,7 @@
             const gallery = new Splide('#gallery-company', {
                 type: 'loop',
                 perPage: 4,
+                perMove: 1,
                 autoplay: true,
                 pagination: false,
                 breakpoints: {
