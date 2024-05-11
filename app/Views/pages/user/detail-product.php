@@ -18,7 +18,7 @@
             </div>
         </div>
         <div class="col-md-8 col-12">
-            <<div class="m-2">
+            <div class="m-2">
     <form action="<?= base_url('/add-to-cart') ?>" method="POST">
         <h1 class="text-black fw-medium custom-title"><?= $product->nama_produk ?></h1>
         <h1 class="custom-color-primary custom-title">Rp. <?= $product->harga ?></h1>

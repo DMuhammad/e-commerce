@@ -106,7 +106,7 @@ class Home extends BaseController
         return view('pages/user/about-us', $data);
     }
 
-    public function detailProduct($id)
+    public function detailProduct($id): string
     {
         $product = $this->products->select('products.*, categories.nama_kategori')
             ->join('categories', 'categories.id = products.category_id')
@@ -174,7 +174,7 @@ class Home extends BaseController
         return redirect()->to('/detail-product/' . $variant->id);
     }
 
-    public function cart(): string
+    public function cart()
     {
         $userId = session()->get('id');
         $carts = $this->cart->where('user_id', $userId)->findAll();
@@ -182,6 +182,7 @@ class Home extends BaseController
         // Retrieve product details for each cart item
         foreach ($carts as $cart) {
             $cart->product = $this->products->find($cart->product_id);
+            $cart->image = $this->productImages->select('image')->where('product_id', $cart->product_id)->first();
         }
 
         $subTotal = 0;
@@ -200,6 +201,8 @@ class Home extends BaseController
             'tax' => $tax,
             'total' => $total,
         ];
+
+        // return response()->setJSON($data);
 
         return view('pages/user/cart', $data);
     }
@@ -392,6 +395,8 @@ class Home extends BaseController
             'tax' => $tax,
             'company' => $company,
         ];
+
+        return response()->setJSON($data);
 
         return view('pages/user/payment', $data);
     }

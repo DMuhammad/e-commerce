@@ -27,7 +27,7 @@
                     <div class="d-flex flex-column mb-5">
                         <div class="row justify-content-between">
                             <div class="col-md-2 col-3">
-                                <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product" height="200">
+                                <img src="<?= $cart->image != null ? base_url('assets/uploads/img-product/' . $cart->image->image) : base_url('assets/static/images/product.png') ?>" alt="product" height="200" />
                             </div>
                             <div class="col-md-9 col-7">
                                 <h5 class="text-black"><?= $cart->product->nama_produk ?></h5>

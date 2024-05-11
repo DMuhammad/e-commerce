@@ -45,7 +45,7 @@
             <div class="card-body">
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Company Name</div>
-                    <div class="col-lg-8 fw-medium"><?= $company->nama ?></div>
+                    <div class="col-lg-8 fw-medium"><?= $admin->nama_lengkap ?></div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Description</div>
@@ -66,15 +66,15 @@
 
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Address</div>
-                    <div class="col-lg-8 fw-medium"><?= $company->alamat ?></div>
+                    <div class="col-lg-8 fw-medium"><?= $admin->alamat ?></div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Email</div>
-                    <div class="col-lg-8 fw-medium"><?= $company->email ?></div>
+                    <div class="col-lg-8 fw-medium"><?= $admin->email ?></div>
                 </div>
                 <div class="row mb-4">
                     <div class="col-lg-4 fw-semibold text-dark fw-regular">Phone</div>
-                    <div class="col-lg-8 fw-medium"><?= $company->kontak ?></div>
+                    <div class="col-lg-8 fw-medium"><?= $admin->no_telp ?></div>
                 </div>
 
                 <hr>
@@ -110,7 +110,7 @@
                                 <div class="form-body">
                                     <div class="col-md-12 form-group">
                                         <label for="name">Company Name</label>
-                                        <input type="text" class="form-control" name="name" id="name" value="<?= $company->nama ?>" required />
+                                        <input type="text" class="form-control" name="name" id="name" value="<?= $admin->nama_lengkap ?>" required />
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label for="description">Description</label>
@@ -127,15 +127,15 @@
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label for="address">Address</label>
-                                    <input type="text" class="form-control" name="address" id="address" value="<?= $company->alamat ?>" required />
+                                    <input type="text" class="form-control" name="address" id="address" value="<?= $admin->alamat ?>" required />
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label for="email">Email</label>
-                                    <input type="email" class="form-control" name="email" id="email" value="<?= $company->email ?>" required />
+                                    <input type="email" class="form-control" name="email" id="email" value="<?= $admin->email ?>" required />
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label for="contact">contact</label>
-                                    <input type="tel" class="form-control" name="contact" id="contact" value="<?= $company->kontak ?>" required />
+                                    <input type="tel" class="form-control" name="contact" id="contact" value="<?= $admin->no_telp ?>" required />
                                 </div>
                                 <div class="col-md-12 form-group">
                                     <label for="bank">Payment Method</label>
@@ -152,6 +152,7 @@
                                 </div>
                                 <div class="col-sm-12 d-flex justify-content-end">
                                     <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+                                    <input type="hidden" name="admin" value="<?= $admin->id ?>" />
                                     <button type="submit" name="submit" class="btn btn-custom-success me-1 mb-1">Edit</button>
                                 </div>
                             </form>
