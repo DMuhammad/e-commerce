@@ -31,10 +31,7 @@ class Filters extends BaseConfig
         'secureheaders' => SecureHeaders::class,
         'auth' => Auth::class,
         'islogin' => IsLogin::class,
-        'admin' => [
-            IsAdmin::class,
-            // IsOwner::class,
-        ],
+        'admin' => IsAdmin::class,
         'customer' => IsCustomer::class,
         'owner' => IsOwner::class,
     ];
