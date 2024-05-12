@@ -12,7 +12,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#!" class="nav-link">Royhan</a>
+                            <a href="#!" class="nav-link">PT. Persada Jayaraya Abadi</a>
                         </li>
                     </ul>
                     <ul class="navbar-nav ms-auto">
@@ -23,22 +23,6 @@
                 </div>
             </div>
             <div class="card-body p-4" id="chat-body" style="overflow: auto; background-color:#f5f5f5;">
-                <div class="d-flex flex-column align-items-end mb-4">
-                    <div class="chat-right p-2 px-3 m-1">Hi, are you available to chat?</div>
-                </div>
-
-                <div class="d-flex flex-column align-items-start  justify-content-end mb-4">
-                    <div class="chat-left p-2 px-3 m-1">Sure</div>
-                    <div class="chat-left p-2 px-3 m-1 ">Let me know when you're available? </div>
-                </div>
-
-                <div class="d-flex flex-column align-items-end mb-4">
-                    <div class="chat-right p-2 px-3 m-1">3:00pm??</div>
-                </div>
-
-                <div class="d-flex flex-column align-items-start  justify-content-end mb-4">
-                    <div class="chat-left p-2 px-3 m-1">Cool</div>
-                </div>
             </div>
             <div class="card-footer m-0 p-1">
                 <div class="input-group ps-2">

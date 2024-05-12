@@ -177,6 +177,7 @@
                     method: 'get',
                     dataType: 'json',
                     success: function(response) {
+                        chat_body.empty();
                         response.chats.map(chat => {
                             const user_message = `
                                 <div class="d-flex flex-column align-items-end text-end justify-content-end mb-4">
