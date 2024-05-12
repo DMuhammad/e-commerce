@@ -258,7 +258,7 @@
     </script>
     <script>
         if (window.location.pathname == "/detail-product") {
-            const gallery = new Splide('#reference-products', {
+            const gallery = new Splide('.products', {
                 type: 'loop',
                 perPage: 4,
                 perMove: 1,
@@ -307,6 +307,11 @@
                 maxYear: parseInt(moment().format('YYYY'), 10)
             });
         });
+    </script>
+    <script>
+        function deleteItem() {
+            document.querySelector('.delete-form').submit();
+        }
     </script>
 </body>
 

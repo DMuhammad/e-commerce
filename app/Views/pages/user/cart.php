@@ -17,8 +17,7 @@
         <div class="col-md-8 col-11">
             <?php if (!$carts) : ?>
                 <div class="text-center">
-                    <h1 class="text-black
-                    ">Cart is empty</h1>
+                    <h3 class="text-black fw-semibold mb-3">Cart is empty</h3>
                     <a href="<?= base_url('/products') ?>" class="btn btn-custom-success">Shop Now</a>
                 </div>
             <?php endif; ?>
@@ -26,14 +25,14 @@
                 <form action="<?= base_url('/cart/update/') . $cart->id ?>" method="POST">
                     <div class="d-flex flex-column mb-5">
                         <div class="row justify-content-between">
-                            <div class="col-md-2 col-3">
-                                <img src="<?= $cart->image != null ? base_url('assets/uploads/img-product/' . $cart->image->image) : base_url('assets/static/images/product.png') ?>" alt="product" height="200" />
+                            <div class="col-xl-3 col-md-4 col-5">
+                                <img src="<?= $cart->image != null ? base_url('assets/uploads/img-product/' . $cart->image->image) : base_url('assets/static/images/product.png') ?>" alt="product" class="img-fluid" />
                             </div>
-                            <div class="col-md-9 col-7">
+                            <div class="col-xl-9 col-md-8 col-7">
                                 <h5 class="text-black"><?= $cart->product->nama_produk ?></h5>
-                                <p><?=  $cart->product->detail ?></p>
-                                <p class="text-black"><span class="text-muted">Variation: </span> <?=  $cart->product->variant ?></p>
-                                <h2 class="custom-color-primary">Rp. <?=  $cart->product->harga ?></h2>
+                                <p><?= $cart->product->detail ?></p>
+                                <p class="text-black"><span class="text-muted">Variation: </span> <?= $cart->product->variant ?></p>
+                                <h2 class="custom-color-primary custom-subtitle">Rp. <?= $cart->product->harga ?></h2>
                             </div>
                         </div>
 
@@ -50,24 +49,25 @@
                                     </span>
                                 </div>
                             </div>
-                            <div class="col-md-3 col-4">
+                            <div class="col-md-3 col-4 text-end">
                                 <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
-                                <button type="submit" name="submit" class="btn btn-custom-success">Save</button>
-                            </div>
-                </form>
-                <form action="<?= base_url('/cart/delete/') . $cart->id ?>" method="POST">
-                    <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
-                        <div class="col-md-3 col-4">
-                            <button type="submit" name="submit" class="btn btn-outline-danger mx-1">
-                                <i class="fa-regular fa-trash-can"></i>
-                            </button>
-                        </div>
-                </form>
-                    </div>
-                </div>
-            <?php }?>
-        </div>
+                                <button type="submit" name="submit" class="btn btn-outline-success">
+                                    <i class="fa-solid fa-check"></i>
+                                </button>
 
+                                <!-- delete disini -->
+                                <button type="button" name="submit" class="btn btn-outline-danger mx-1" onclick="deleteItem()">
+                                    <i class="fa-regular fa-trash-can"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                <form action="<?= base_url('/cart/delete/') . $cart->id ?>" method="POST" class="delete-form">
+                    <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+                </form>
+            <?php } ?>
+        </div>
         <div class="col-xl-3 col-md-4 col-11">
             <div class="p-4 rounded-3" style="background-color: #f5f5f5;">
                 <h5 class="fw-medium mb-3">Order Summary</h5>
@@ -90,5 +90,6 @@
         </div>
     </div>
 </div>
+
 
 <?= $this->endSection(); ?>
