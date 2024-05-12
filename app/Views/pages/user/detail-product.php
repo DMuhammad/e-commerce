@@ -19,18 +19,18 @@
         </div>
         <div class="col-md-8 col-12">
             <div class="m-2">
-    <form action="<?= base_url('/add-to-cart') ?>" method="POST">
-        <h1 class="text-black fw-medium custom-title"><?= $product->nama_produk ?></h1>
-        <h1 class="custom-color-primary custom-title">Rp. <?= $product->harga ?></h1>
-        <p>Select Variation:</p>
-        <div class="variants-container d-flex gap-3 mb-4">
-    <!-- Display all variants -->
-    <?php foreach ($variants as $variant): ?>
-        <label class="btn btn-outline-success variant-label <?= $variant->id == $product->id ? 'active' : '' ?>" for="variant<?= $variant->id ?>"><?= $variant->variant ?></label>
-        <input type="radio" class="btn-check variant-radio" name="variant" id="variant<?= $variant->id ?>" value="<?= $variant->id ?>" <?= $variant->id == $product->id ? 'checked' : '' ?> autocomplete="off">
-    <?php endforeach; ?>
-</div>
-        <p>Stok: <?= $product->stok ?> </span></p>
+                <form action="<?= base_url('/add-to-cart') ?>" method="POST">
+                    <h1 class="text-black fw-medium custom-title"><?= $product->nama_produk ?></h1>
+                    <h1 class="custom-color-primary custom-title">Rp. <?= $product->harga ?></h1>
+                    <p>Select Variation:</p>
+                    <div class="variants-container d-flex gap-3 mb-4">
+                        <!-- Display all variants -->
+                        <?php foreach ($variants as $variant) : ?>
+                            <label class="btn btn-outline-success variant-label <?= $variant->id == $product->id ? 'active' : '' ?>" for="variant<?= $variant->id ?>"><?= $variant->variant ?></label>
+                            <input type="radio" class="btn-check variant-radio" name="variant" id="variant<?= $variant->id ?>" value="<?= $variant->id ?>" <?= $variant->id == $product->id ? 'checked' : '' ?> autocomplete="off">
+                        <?php endforeach; ?>
+                    </div>
+                    <p>Stok: <?= $product->stok ?> </span></p>
                     <hr class="mb-4">
                     <div class="row mb-4 gy-2">
                         <div class="col-md-3 col-5">
@@ -45,9 +45,9 @@
                             </div>
                         </div>
                         <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
-                            <div class="col-md-9 col-7">
-                                <button type="submit" name="submit" class="btn btn-custom-success w-100">Add to Cart</button>
-                            </div>
+                        <div class="col-md-9 col-7">
+                            <button type="submit" name="submit" class="btn btn-custom-success w-100">Add to Cart</button>
+                        </div>
                     </div>
                 </form>
                 <h5>Description</h5>
@@ -59,30 +59,36 @@
 
     <div class="mb-5">
         <h2 class="text-center text-black fw-medium mb-4">Gallery</h2>
-        <div class="row">
-    <?php if (!empty($product->images)) : ?>
-        <?php foreach ($product->images as $image) : ?>
-            <div class="col-4">
-                <a href="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" data-toggle="lightbox">
-                <img src="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" alt="product" class="img-fluid">
-                </a>
-            </div>
-        <?php endforeach; ?>
-    <?php else : ?>
-        <div class="col-4">
-            <a href="<?= base_url('assets/static/images/product.png') ?>" data-toggle="lightbox">
-            <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product" class="img-fluid">
-            </a>
+        <div class="row justify-content-start">
+            <?php if (!empty($product->images)) : ?>
+                <div class="splide products text-center" id="bom">
+                    <div class="splide__track">
+                        <ul class="splide__list">
+                            <?php foreach ($product->images as $image) : ?>
+                                <li class="splide__slide">
+                                    <a href="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" data-toggle="lightbox">
+                                        <img src="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" alt="product" class="img-fluid">
+                                    </a>
+                                </li>
+                            <?php endforeach; ?>
+                        </ul>
+                    </div>
+                </div>
+            <?php else : ?>
+                <div class="col-4">
+                    <a href="<?= base_url('assets/static/images/product.png') ?>" data-toggle="lightbox">
+                        <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product" class="img-fluid">
+                    </a>
+                </div>
+            <?php endif; ?>
         </div>
-    <?php endif; ?>
-</div>
     </div>
 </div>
 
 <div class="container-fluid mb-5" style="background-color: #f5f5f5">
     <div class="container p-4">
         <h3 class="text-start text-black mt-3 mb-4 fw-medium">You may also like</h3>
-        <div class="splide" id="reference-products">
+        <div class="splide products">
             <div class="splide__track">
                 <div class="splide__list">
                     <?php for ($i = 0; $i < 4; $i++) { ?>

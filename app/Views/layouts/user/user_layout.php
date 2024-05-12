@@ -258,26 +258,6 @@
         });
     </script>
     <script>
-        if (window.location.pathname == "/detail-product") {
-            const gallery = new Splide('#reference-products', {
-                type: 'loop',
-                perPage: 4,
-                perMove: 1,
-                gap: 20,
-                autoplay: true,
-                pagination: false,
-                breakpoints: {
-                    576: {
-                        perPage: 2,
-                        gap: 10,
-                    },
-                    768: {
-                        perPage: 3,
-                    }
-                },
-            }).mount();
-        }
-
         if (window.location.pathname == "/about-us") {
             const gallery = new Splide('#gallery-company', {
                 type: 'loop',
@@ -297,6 +277,33 @@
                     }
                 }
             }).mount();
+        } else {
+            let element = document.querySelectorAll('.products');
+
+            element.forEach((el) => {
+                new Splide(el, {
+                    type: 'loop',
+                    perPage: 4,
+                    perMove: 1,
+                    autoplay: true,
+                    trimSpace: false,
+                    gap: 20,
+                    pagination: false,
+                    breakpoints: {
+                        576: {
+                            perPage: 1,
+                        },
+                        768: {
+                            perPage: 2,
+                            gap: 10,
+                        },
+                        992: {
+                            perPage: 3,
+                        }
+
+                    },
+                }).mount();
+            });
         }
     </script>
     <script>
@@ -308,6 +315,11 @@
                 maxYear: parseInt(moment().format('YYYY'), 10)
             });
         });
+    </script>
+    <script>
+        function deleteItem() {
+            document.querySelector('.delete-form').submit();
+        }
     </script>
 </body>
 

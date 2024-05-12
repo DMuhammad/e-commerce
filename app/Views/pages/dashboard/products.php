@@ -61,7 +61,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                        <?php
+                            <?php
                             $no = 1;
                             foreach ($products as $product) { ?>
                                 <tr>
@@ -137,7 +137,7 @@
                                                                         <?php foreach ($categories as $category) { ?>
                                                                             <option value="<?= $category->id ?>" selected="<?= $category->id == $product->category_id ? true : false ?>">
                                                                                 <?= $category->nama_kategori ?></option>
-                                                                        <?php }?>
+                                                                        <?php } ?>
                                                                     </select>
                                                                 </div>
                                                                 <div class="col-md-12 form-group">
@@ -191,8 +191,8 @@
                                         </form>
                                     </td>
                                 </tr>
-                            <?php 
-                        }?>
+                            <?php
+                            } ?>
                         </tbody>
                     </table>
                 </div>
@@ -226,7 +226,7 @@
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label for="detail">Detail Product</label>
-                                        <textarea name="detail" class="summernote-product"></textarea>
+                                        <textarea name="detail" class="summernote-product custom-summernote"></textarea>
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label for="stock">Stock</label>
