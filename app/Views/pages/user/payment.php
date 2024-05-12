@@ -121,7 +121,7 @@
                 </div>
                 <div>
                     <h5 class="fw-medium text-black">Rekening Atas Nama</h5>
-                    <p class="text-black fw-regular"><?= $user->nama_lengkap ?></p>
+                    <p class="text-black fw-regular"><?= $admin->nama_lengkap ?></p>
                 </div>
                 <?php if ($transaction->status == 'pending') : ?>
                     <a href="<?= base_url('/verify-payment') ?>" class="btn btn-custom-success d-block mt-4">

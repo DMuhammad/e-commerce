@@ -415,8 +415,6 @@ class Home extends BaseController
             'company' => $company,
         ];
 
-        return response()->setJSON($data);
-
         return view('pages/user/payment', $data);
     }
 

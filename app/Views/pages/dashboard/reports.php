@@ -54,29 +54,18 @@
                             </tr>
                         </thead>
                         <tbody>
+                        <?php
+                            $no = 1;
+                            foreach ($transactions as $transaction) { ?>
                             <tr>
-                                <td>1</td>
-                                <td>2021-10-10</td>
-                                <td>001</td>
-                                <td>18</td>
-                                <td>Rp. 1.800.000</td>
+                                <td> <?= $no++ ?></td>
+                                <td><?= $transaction->date ?></td>
+                                <td><?= $transaction->kode_transaksi ?></td>
+                                <td><?= $transaction->total_qty?></td>
+                                <td><?= $transaction->total_price ?></td>
                             </tr>
-                            <tr>
-                                <td>2</td>
-
-                                <td>2021-10-11</td>
-                                <td>002</td>
-                                <td>20</td>
-                                <td>Rp. 3.000.000</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-
-                                <td>2021-10-12</td>
-                                <td>003</td>
-                                <td>15</td>
-                                <td>Rp. 3.000.000</td>
-                            </tr>
+                            <?php
+                            } ?>
                         </tbody>
                     </table>
                 </div>
@@ -87,28 +76,42 @@
 
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        const start = moment().subtract(29, 'days');
-        const end = moment();
+    let start = moment();
+    let end = moment();
 
-        function cb(start, end) {
-            $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    // Get startDate and endDate from URL parameters if they exist
+    const urlParams = new URLSearchParams(window.location.search);
+    const startDateParam = urlParams.get('startDate');
+    const endDateParam = urlParams.get('endDate');
+
+    if (startDateParam && endDateParam) {
+        start = moment(startDateParam);
+        end = moment(endDateParam);
+    }
+
+    function cb(start, end) {
+        $('#reportrange span').html(start.format('MMMM D, YYYY') + ' - ' + end.format('MMMM D, YYYY'));
+    }
+
+    $('#reportrange').daterangepicker({
+        startDate: start,
+        endDate: end,
+        ranges: {
+            'Today': [moment(), moment()],
+            'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
+            'Last 7 Days': [moment().subtract(6, 'days'), moment()],
+            'Last 30 Days': [moment().subtract(29, 'days'), moment()],
+            'This Month': [moment().startOf('month'), moment().endOf('month')],
+            'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
         }
+    }, cb);
 
-        $('#reportrange').daterangepicker({
-            startDate: start,
-            endDate: end,
-            ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')],
-                'Last 7 Days': [moment().subtract(6, 'days'), moment()],
-                'Last 30 Days': [moment().subtract(29, 'days'), moment()],
-                'This Month': [moment().startOf('month'), moment().endOf('month')],
-                'Last Month': [moment().subtract(1, 'month').startOf('month'), moment().subtract(1, 'month').endOf('month')]
-            }
-        }, cb);
+    $('#reportrange').on('apply.daterangepicker', function(ev, picker) {
+        window.location.href = '/dashboard/reports?startDate=' + picker.startDate.format('YYYY-MM-DD') + '&endDate=' + picker.endDate.format('YYYY-MM-DD');
+    });
 
-        cb(start, end);
-    })
+    cb(start, end);
+});
 </script>
 
 <?= $this->endSection(); ?>
