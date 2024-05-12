@@ -142,20 +142,7 @@
                                                                 </div>
                                                                 <div class="col-md-12 form-group">
                                                                     <label for="detail">Detail Product</label>
-                                                                    <textarea name="detail" id="summernote-product-<?= $product->id ?>" class="summernote-product"></textarea>
-                                                                    <script>
-                                                                        $('.edit-button').click(function() {
-                                                                            var detail = $(this).data('detail');
-                                                                            var target = $(this).data('bs-target');
-                                                                            $(target).on('shown.bs.modal', function() {
-                                                                                var summernoteElement = $(target).find('.summernote-product');
-                                                                                summernoteElement.summernote({
-                                                                                    // Your Summernote options here...
-                                                                                });
-                                                                                summernoteElement.summernote('code', detail);
-                                                                            });
-                                                                        });
-                                                                    </script>
+                                                                    <textarea name="detail" id="summernote-product-<?= $product->id ?>" class="summernote-product custom-summernote"><?= htmlspecialchars(($product->detail)) ?></textarea>
                                                                 </div>
                                                                 <div class="col-md-12 form-group">
                                                                     <label for="stock">Stock</label>
