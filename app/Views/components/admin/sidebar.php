@@ -60,11 +60,11 @@ $auth = $role;
                         </a>
                     </li>
                 <?php endif; ?>
-                <li class="sidebar-item <?= ($currentUrl == '/dashboard/reports') ? 'active' : '' ?>">
-                    <a href="/dashboard/reports" class="sidebar-link fw-medium text-dark">
-                        <i class="fa-solid fa-file-lines mx-1"></i> <span>Reports</span>
-                    </a>
-                </li>
+                <li class="sidebar-item <?= (strpos($_SERVER['REQUEST_URI'], '/dashboard/reports') !== false) ? 'active' : '' ?>">
+    <a href="/dashboard/reports" class="sidebar-link fw-medium text-dark">
+        <i class="fa-solid fa-file-lines mx-1"></i> <span>Reports</span>
+    </a>
+</li>
                 <hr>
                 <li class="sidebar-item">
                     <a href="/logout" class="sidebar-link fw-medium text-dark">
