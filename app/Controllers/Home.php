@@ -121,18 +121,18 @@ class Home extends BaseController
         $product->images = $this->productImages->select('image')
             ->where('product_id', $product->id)
             ->findAll();
-            
-        $relatedProducts = $this->products->select('products.*, categories.nama_kategori')
-        ->join('categories', 'categories.id = products.category_id')
-        ->where('categories.nama_kategori', $product->nama_kategori)
-        ->findAll();
 
-        foreach ($relatedProducts as $key => $product) {
+        $relatedProducts = $this->products->select('products.*, categories.nama_kategori')
+            ->join('categories', 'categories.id = products.category_id')
+            ->where('categories.nama_kategori', $product->nama_kategori)
+            ->findAll();
+
+        foreach ($relatedProducts as $key => $related) {
             $relatedProducts[$key]->image = $this->productImages->select('image')
-                ->where('product_id', $product->id)
+                ->where('product_id', $related->id)
                 ->first();
         }
-            
+
         // Get all variants of the product with the same name
         $variants = $this->products->select('id, variant')
             ->where('nama_produk', $product->nama_produk)
@@ -146,6 +146,8 @@ class Home extends BaseController
             'variants' => $variants,
             'title' => 'Detail Product',
         ];
+
+        // dd($data);
 
         return view('pages/user/detail-product', $data);
     }

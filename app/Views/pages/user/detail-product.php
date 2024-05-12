@@ -24,7 +24,6 @@
                     <h1 class="custom-color-primary custom-title">Rp. <?= $product->harga ?></h1>
                     <p>Select Variation:</p>
                     <div class="variants-container d-flex gap-3 mb-4">
-                        <!-- Display all variants -->
                         <?php foreach ($variants as $variant) : ?>
                             <label class="btn btn-outline-success variant-label <?= $variant->id == $product->id ? 'active' : '' ?>" for="variant<?= $variant->id ?>"><?= $variant->variant ?></label>
                             <input type="radio" class="btn-check variant-radio" name="variant" id="variant<?= $variant->id ?>" value="<?= $variant->id ?>" <?= $variant->id == $product->id ? 'checked' : '' ?> autocomplete="off">
@@ -56,7 +55,6 @@
             </div>
         </div>
     </div>
-
     <div class="mb-5">
         <h2 class="text-center text-black fw-medium mb-4">Gallery</h2>
         <div class="row justify-content-start">
@@ -100,7 +98,7 @@
                                         <div class="card-body">
                                             <div class="row justify-content-center align-items-center">
                                                 <div class="col-md-9 col-12">
-                                                    <h5 class="custom-card-title text-dark fw-semibold"><?= $related->nama_produk ?>  <?= $related->variant ?></h5>
+                                                    <h5 class="custom-card-title text-dark fw-semibold text-truncate"><?= $related->nama_produk ?> <?= $related->variant ?></h5>
                                                     <p><span class="custom-card-title fw-bold text-success">Rp.<?= $related->harga ?></span><small class="fw-light">/pcs</small></p>
                                                 </div>
                                                 <div class="col-md-3 col-12 text-end">
