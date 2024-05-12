@@ -41,16 +41,25 @@ $auth = $role;
                         </ul>
                     </li>
                 <?php endif; ?>
-                <li class="sidebar-item <?= ($currentUrl == '/dashboard/chats') ? 'active' : '' ?>">
-                    <a href="/dashboard/chats" class="sidebar-link fw-medium text-dark">
-                        <i class="fa-solid fa-comment-dots"></i><span>Chat</span>
-                    </a>
-                </li>
-                <li class="sidebar-item <?= ($currentUrl == '/dashboard/transactions') ? 'active' : '' ?>">
-                    <a href="/dashboard/transactions" class="sidebar-link fw-medium text-dark">
-                        <i class="fa-solid fa-credit-card"></i> <span>Transactions</span>
-                    </a>
-                </li>
+                <?php if ($auth == 'Owner') : ?>
+                    <li class="sidebar-item <?= ($currentUrl == '/dashboard/products') ? 'active' : '' ?>">
+                        <a href="/dashboard/products" class="sidebar-link fw-medium text-dark">
+                            <i class="fa-solid fa-box"></i><span>Products</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
+                <?php if ($auth == 'Admin') : ?>
+                    <li class="sidebar-item <?= ($currentUrl == '/dashboard/chats') ? 'active' : '' ?>">
+                        <a href="/dashboard/chats" class="sidebar-link fw-medium text-dark">
+                            <i class="fa-solid fa-comment-dots"></i><span>Chat</span>
+                        </a>
+                    </li>
+                    <li class="sidebar-item <?= ($currentUrl == '/dashboard/transactions') ? 'active' : '' ?>">
+                        <a href="/dashboard/transactions" class="sidebar-link fw-medium text-dark">
+                            <i class="fa-solid fa-credit-card"></i> <span>Transactions</span>
+                        </a>
+                    </li>
+                <?php endif; ?>
                 <li class="sidebar-item <?= ($currentUrl == '/dashboard/reports') ? 'active' : '' ?>">
                     <a href="/dashboard/reports" class="sidebar-link fw-medium text-dark">
                         <i class="fa-solid fa-file-lines mx-1"></i> <span>Reports</span>

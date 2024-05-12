@@ -15,13 +15,13 @@ class IsCustomer implements FilterInterface
             return redirect()->to('/login');
         }
         // If user is already logged in and has a role Customer
-        if (session()->get('id') && session()->get('role') == 'Customer') {
+        if (session()->get('id') && session()->get('role') == 'User') {
             // then continue to the next request
             return;
         }
 
         // If user is already logged in but has no role Customer
-        if (session()->get('id') && session()->get('role') != 'Customer') {
+        if (session()->get('id') && session()->get('role') != 'User') {
             // then redirect him to the dashboard page
             return redirect()->back();
         }

@@ -7,6 +7,7 @@ use App\Filters\IsAdmin;
 use App\Filters\IsLogin;
 use App\Filters\IsOwner;
 use App\Filters\IsCustomer;
+use App\Filters\IsOwnerOrAdmin;
 use CodeIgniter\Filters\CSRF;
 use CodeIgniter\Filters\Honeypot;
 use CodeIgniter\Config\BaseConfig;
@@ -33,7 +34,7 @@ class Filters extends BaseConfig
         'islogin' => IsLogin::class,
         'admin' => IsAdmin::class,
         'customer' => IsCustomer::class,
-        'owner' => IsOwner::class,
+        'oa' => IsOwnerOrAdmin::class,
     ];
 
     /**
