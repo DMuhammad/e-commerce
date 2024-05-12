@@ -145,7 +145,7 @@
             const chat_body = $("#chat-body");
             const ws_url = base_url.replace(/http:\/\/|https:\/\//g, "ws://").replace(/\/$/, '');
 
-            var conn = new WebSocket(`ws://localhost:8282?userId=<?= $_SESSION['id'] ?>`);
+            var conn = new WebSocket(`ws://localhost:8282?userId=<?= session()->id ?>`);
 
             conn.onopen = function(e) {
                 console.log(e);

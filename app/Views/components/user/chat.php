@@ -28,7 +28,11 @@
                 <div class="input-group ps-2">
                     <input type="text" class="form-control border-0" placeholder="Write a message..." name="message">
                     <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" id="csrf" />
+                    <?php if (empty($_SESSION['id'])) : ?>
+                        <input type="hidden" name="from" value="guest" />
+                    <?php else : ?>
                     <input type="hidden" name="from" value="<?= $_SESSION['id'] ?>" />
+                    <?php endif; ?>
                     <input type="hidden" name="to" value="admin" />
 
                     <div class="input-group-text bg-transparent border-0">

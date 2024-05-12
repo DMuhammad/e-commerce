@@ -81,16 +81,20 @@ class ProductController extends BaseController
     }
 
     public function update($id)
-    {
-        $this->products->update($id, [
-            'nama_produk' => $this->request->getPost('name'),
-            'category_id' => $this->request->getPost('category'),
-            'detail' => stripHtmlTags($this->request->getPost('detail')),
-            'stok' => $this->request->getPost('stock'),
-            'variant' => $this->request->getPost('variant'),
-            'harga' => stripRpAndComma($this->request->getPost('price'))
-        ]);
+{
+    $this->products->update($id, [
+        'nama_produk' => $this->request->getPost('name'),
+        'category_id' => $this->request->getPost('category'),
+        'detail' => stripHtmlTags($this->request->getPost('detail')),
+        'stok' => $this->request->getPost('stock'),
+        'variant' => $this->request->getPost('variant'),
+        'harga' => stripRpAndComma($this->request->getPost('price'))
+    ]);
 
+    $images = $this->request->getFileMultiple('images');
+
+    // Only proceed if images are uploaded
+    if (!empty($images[0]->getName())) {
         // Get the old images
         $oldImages = $this->productImages->where('product_id', $id)->findAll();
 
@@ -104,18 +108,10 @@ class ProductController extends BaseController
         // Delete the old images from the database
         $this->productImages->where('product_id', $id)->delete();
 
-        $images = $this->request->getFileMultiple('images');
-
-        // Check if the product folder exists, if not create it
-        // if (!is_dir(WRITEPATH . 'uploads/img-product')) {
-        //     mkdir(WRITEPATH . 'uploads/img-product', 0777, TRUE);
-        // }
-
         // Upload the new images
         foreach ($images as $image) {
             if ($image->isValid() && !$image->hasMoved()) {
                 $imageName = $image->getRandomName();
-                // $image->move(WRITEPATH . 'uploads/img-product', $imageName);
                 $image->move(ROOTPATH . 'public/assets/uploads/img-product', $imageName);
 
                 $this->productImages->insert([
@@ -125,9 +121,10 @@ class ProductController extends BaseController
                 ]);
             }
         }
-
-        return redirect()->back();
     }
+
+    return redirect()->back();
+}
 
     public function delete($id)
     {

@@ -135,8 +135,9 @@
                                                                     <label for="category">Category</label>
                                                                     <select class="form-control" name="category" id="category" required>
                                                                         <?php foreach ($categories as $category) { ?>
-                                                                            <option value="<?= $category->id ?>" selected="<?= $category->id == $product->category_id ? true : false ?>">
-                                                                                <?= $category->nama_kategori ?></option>
+                                                                            <option value="<?= $category->id ?>" <?= $category->id == $product->category_id ? 'selected="selected"' : '' ?>>
+                                                                                <?= $category->nama_kategori ?>
+                                                                            </option>
                                                                         <?php } ?>
                                                                     </select>
                                                                 </div>
