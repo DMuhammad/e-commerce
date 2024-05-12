@@ -321,6 +321,24 @@
             document.querySelector('.delete-form').submit();
         }
     </script>
+
+    <script>
+        const input = document.getElementById('input-search');
+        input.addEventListener('input', function() {
+            event.preventDefault();
+            const search = input.value.toLowerCase();
+
+            const items = document.querySelectorAll('.list-products');
+            items.forEach(item => {
+                const title = item.querySelector('.custom-card-title').textContent.toLowerCase();
+                if (title.includes(search)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>

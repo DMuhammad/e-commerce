@@ -34,12 +34,14 @@ $currentUrl = $_SERVER['REQUEST_URI'];
                 </ul>
             </div>
             <div class="d-flex">
-                <form class="d-md-flex d-block me-2" role="search" action="">
-                    <div class="form-group has-search mb-0">
-                        <span class="fa fa-search form-control-feedback"></span>
-                        <input type="text" class="form-control bg-transparent" placeholder="Search">
-                    </div>
-                </form>
+                <?php if ($title == 'Products') : ?>
+                    <form class="d-md-flex d-block me-2" role="search" action="">
+                        <div class="form-group has-search mb-0">
+                            <span class="fa fa-search form-control-feedback"></span>
+                            <input type="text" class="form-control bg-transparent" placeholder="Search" id="input-search">
+                        </div>
+                    </form>
+                <?php endif; ?>
                 <ul class="navbar-nav d-md-flex justify-content-between d-none">
                     <li class="nav-item me-2">
                         <a class="nav-link" href="<?= base_url('/cart') ?>"><i class="fa-solid fa-cart-shopping"></i></a>

@@ -49,7 +49,7 @@
             <div class="row mb-3">
                 <?php
                 foreach ($products as $product) { ?>
-                    <div class="col-6 col-md-4">
+                    <div class="col-6 col-md-4 list-products">
                         <a href="/detail-product/<?= $product->id ?>">
                             <div class="card shadow">
                                 <div class="card-content">
