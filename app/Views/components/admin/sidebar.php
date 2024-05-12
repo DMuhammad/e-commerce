@@ -44,7 +44,7 @@ $auth = $role;
                 <?php if ($auth == 'Owner') : ?>
                     <li class="sidebar-item <?= ($currentUrl == '/dashboard/products') ? 'active' : '' ?>">
                         <a href="/dashboard/products" class="sidebar-link fw-medium text-dark">
-                            <i class="fa-solid fa-box"></i><span>Products</span>
+                            <i class="fa-solid fa-box mx-1"></i><span>Products</span>
                         </a>
                     </li>
                 <?php endif; ?>

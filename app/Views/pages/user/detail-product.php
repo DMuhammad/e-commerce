@@ -91,17 +91,17 @@
         <div class="splide products">
             <div class="splide__track">
                 <div class="splide__list">
-                    <?php for ($i = 0; $i < 4; $i++) { ?>
+                    <?php foreach ($relatedProducts as $related) { ?>
                         <div class="splide__slide">
-                            <a href="/detail-product">
+                            <a href="/detail-product/<?= $related->id ?>">
                                 <div class="card shadow">
                                     <div class="card-content">
-                                        <img src="<?= base_url('assets/static/images/product.png') ?>" class="card-img-top" alt="product" />
+                                        <img src="<?= $related->image != null ? base_url('assets/uploads/img-product/' . $related->image->image) : base_url('assets/static/images/product.png') ?>" class="card-img-top" alt="product" />
                                         <div class="card-body">
                                             <div class="row justify-content-center align-items-center">
                                                 <div class="col-md-9 col-12">
-                                                    <h5 class="custom-card-title text-dark fw-semibold">Be Single Minded</h5>
-                                                    <p><span class="custom-card-title fw-bold text-success">Rp.50.000</span><small class="fw-light">/pcs</small></p>
+                                                    <h5 class="custom-card-title text-dark fw-semibold"><?= $related->nama_produk ?>  <?= $related->variant ?></h5>
+                                                    <p><span class="custom-card-title fw-bold text-success">Rp.<?= $related->harga ?></span><small class="fw-light">/pcs</small></p>
                                                 </div>
                                                 <div class="col-md-3 col-12 text-end">
                                                     <button class="btn btn-custom-success rounded-circle">
