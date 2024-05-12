@@ -31,21 +31,23 @@
             </div>
         </div>
     </div>
-    <div class="row justify-content-end mb-5 position-relative">
-        <div class="custom-card shadow">
+    <div class="row justify-content-center mb-5 position-relative gy-3">
+        <div class="custom-card shadow d-md-block d-none">
             <h1 class="lh-base text-black fw-semibold m-4">We are nice people with a lot of experience</h1>
         </div>
-        <div class="col-8">
+        <div class="col-md-8 col-12">
             <img src="<?= base_url('assets/static/images/background.png') ?>" alt="background" class="img-fluid">
         </div>
-        <div class="col-3 d-flex flex-column justify-content-start">
-            <div class="bg-success rounded-3 p-3 mb-3">
-                <h1 class="text-white">19 +</h1>
-                <p class="text-white">Years of Experience</p>
-            </div>
-            <div class="bg-success rounded-3 p-3">
-                <h1 class="text-white">100%</h1>
-                <p class="text-white">Succesfull</p>
+        <div class="col-md-3 col-12">
+            <div class="row flex-md-column flex-row justify-content-evenly">
+                <div class="bg-success rounded-3 p-3 mb-3 col-md-12 col-5">
+                    <h2 class="text-white">19 +</h2>
+                    <p class="text-white">Years of Experience</p>
+                </div>
+                <div class="bg-success rounded-3 p-3 mb-3 col-md-12 col-5">
+                    <h2 class="text-white">100%</h2>
+                    <p class="text-white">Succesfull</p>
+                </div>
             </div>
         </div>
     </div>
