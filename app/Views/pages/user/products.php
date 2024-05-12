@@ -30,41 +30,16 @@
                     <button class="btn btn-outline-light btn-block text-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePrice" aria-expanded="false" aria-controls="collapsePrice">
                         Price
                     </button>
-                    <ul id="collapsePrice" class="collapse list-unstyled mt-2">
-                        <?php
-                        foreach ($categories as $category) { ?>
-                            <li>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="<?= $category->id ?>" id="<?= $category->id ?>">
-                                    <label class="form-check-label" for="<?= $category->id ?>">
-                                        <?= $category->nama_kategori ?>
-                                    </label>
-                                </div>
-                            </li>
-                        <?php
-                        }
-                        ?>
-                    </ul>
-                </div>
-                <div class="dropdown">
-                    <button class="btn btn-outline-light btn-block text-start" type="button" data-bs-toggle="collapse" data-bs-target="#collapseVariation" aria-expanded="false" aria-controls="collapseVariation">
-                        Variation
-                    </button>
-                    <ul id="collapseVariation" class="collapse list-unstyled mt-2">
-                        <?php
-                        foreach ($categories as $category) { ?>
-                            <li>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="<?= $category->id ?>" id="<?= $category->id ?>">
-                                    <label class="form-check-label" for="<?= $category->id ?>">
-                                        <?= $category->nama_kategori ?>
-                                    </label>
-                                </div>
-                            </li>
-                        <?php
-                        }
-                        ?>
-                    </ul>
+                    <div id="collapsePrice" class="collapse mt-2">
+                        <div class="input-group input-group-sm flex-nowrap mb-2">
+                            <span class="input-group-text" id="price-minimum">Rp</span>
+                            <input type="text" class="form-control" placeholder="Harga Minimum">
+                        </div>
+                        <div class="input-group input-group-sm flex-nowrap mb-2">
+                            <span class="input-group-text" id="price-maximum">Rp</span>
+                            <input type="text" class="form-control" placeholder="Harga Maksimum">
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -73,7 +48,7 @@
 
             <div class="row mb-3">
                 <?php
-                foreach($products as $product) { ?>
+                foreach ($products as $product) { ?>
                     <div class="col-6 col-md-4">
                         <a href="/detail-product/<?= $product->id ?>">
                             <div class="card shadow">
@@ -82,7 +57,7 @@
                                     <div class="card-body">
                                         <div class="row justify-content-center align-items-center">
                                             <div class="col-md-9 col-12">
-                                                <h5 class="custom-card-title text-dark fw-semibold"><?= $product->nama_produk ?></h5>
+                                                <h5 class="custom-card-title text-dark fw-semibold text-truncate"><?= $product->nama_produk ?></h5>
                                                 <p><span class="custom-card-title fw-bold text-success">Rp.<?= $product->harga ?> </span><small class="fw-light">/pcs</small></p>
                                             </div>
                                             <div class="col-md-3 col-12 text-end">
@@ -108,8 +83,8 @@
                                 Prev
                             </a>
                         </li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link active bg-success" href="#">2</a></li>
+                        <li class="page-item"><a class="page-link active bg-success" href="#">1</a></li>
+                        <li class="page-item"><a class="page-link " href="#">2</a></li>
                         <li class="page-item"><a class="page-link" href="#">3</a></li>
                         <li class="page-item">
                             <a class="page-link" href="#" aria-label="Next">
