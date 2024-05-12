@@ -49,7 +49,7 @@ class Home extends BaseController
         $products = $this->products->select('products.*, categories.nama_kategori')
             ->whereIn('products.id', $productIds)
             ->join('categories', 'categories.id = products.category_id', 'left')
-            ->findAll();
+            ->findAll(8);
 
         foreach ($products as $key => $product) {
             $products[$key]->images = $this->productImages->select('image')
