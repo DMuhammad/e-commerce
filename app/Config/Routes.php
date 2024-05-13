@@ -61,9 +61,10 @@ $routes->get('/dashboard/transactions', 'TransactionController::index');
 $routes->get('/dashboard/chats', 'ChatController::index');
 $routes->get('/dashboard/reports', [ReportController::class, 'index'], ['filter' => 'oa']);
 
+$routes->get('/', [Home::class, 'index'], ['filter' => 'customer']);
 $routes->group('/', ['filter' => 'customer'], function ($routes) {
-    $routes->get('/', [Home::class, 'index']);
     $routes->get('products', [Home::class, 'products']);
+    $routes->get('productFilter', [Home::class, 'productFilters']);
     $routes->get('about-us', [Home::class, 'aboutUs']);
     $routes->get('detail-product/(:segment)', [Home::class, 'detailProduct']);
     $routes->post('add-to-cart', [Home::class, 'addToCart']);

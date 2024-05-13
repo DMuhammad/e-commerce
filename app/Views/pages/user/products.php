@@ -15,7 +15,7 @@
                         foreach ($categories as $category) { ?>
                             <li>
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="<?= $category->id ?>" id="<?= $category->id ?>">
+                                    <input class="form-check-input" type="radio" name="category" value="<?= $category->id ?>" id="<?= $category->id ?>">
                                     <label class="form-check-label" for="<?= $category->id ?>">
                                         <?= $category->nama_kategori ?>
                                     </label>
@@ -33,20 +33,25 @@
                     <div id="collapsePrice" class="collapse mt-2">
                         <div class="input-group input-group-sm flex-nowrap mb-2">
                             <span class="input-group-text" id="price-minimum">Rp</span>
-                            <input type="text" class="form-control" placeholder="Harga Minimum">
+                            <input type="text" class="form-control" name="price-minimum" placeholder="Harga Minimum">
                         </div>
                         <div class="input-group input-group-sm flex-nowrap mb-2">
                             <span class="input-group-text" id="price-maximum">Rp</span>
-                            <input type="text" class="form-control" placeholder="Harga Maksimum">
+                            <input type="text" class="form-control" name="price-maximum" placeholder="Harga Maksimum">
                         </div>
                     </div>
+                </div>
+                <div class="mb-3">
+                    <button class="btn btn-outline-success btn-block text-start" type="button" id="apply">
+                        Apply Filter
+                    </button>
                 </div>
             </div>
         </div>
         <div class="col-lg-9">
             <h3 class="text-black mb-4">All Products</h3>
 
-            <div class="row mb-3">
+            <div class="row mb-3" id="product-body">
                 <?php
                 foreach ($products as $product) { ?>
                     <div class="col-6 col-md-4 list-products">

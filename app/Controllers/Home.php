@@ -92,6 +92,37 @@ class Home extends BaseController
         return view('pages/user/products', $data);
     }
 
+    public function productFilters()
+    {
+        $category = $this->request->getVar('category');
+        $priceMin = $this->request->getVar('price_min');
+        $priceMax = $this->request->getVar('price_max');
+
+        $query = $this->products->select('products.*');
+        
+        if (!empty($category)) {
+            $query = $query->where('products.category_id', $category);
+        }
+
+        if ($priceMin !== null && $priceMax !== null) {
+            $query = $query->where('products.harga >=', $priceMin)
+                           ->where('products.harga <=', $priceMax);
+        }
+
+        $products = $query->findAll();
+
+        foreach ($products as $key => $product) {
+            $products[$key]->images = $this->productImages->select('image')
+                ->where('product_id', $product->id)
+                ->first();
+        }
+        $data = [
+            'products' => $products,
+        ];
+
+        return response()->setJSON($data);
+    }
+
     public function aboutUs(): string
     {
         $admin = $this->userModel->where('role', 'admin')->first();

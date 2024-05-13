@@ -339,6 +339,86 @@
             });
         });
     </script>
+    <script>
+        $(document).ready(function() {
+            const rupiahToNumeric = (rupiah) => {
+                const numericString = rupiah.replace(/[^\d]/g, '');
+                const numericValue = parseFloat(numericString);
+
+                return numericValue;
+            }
+
+            $('#collapsePrice').on('input', 'input[type="text"]', function(e) {
+                const input = $(this).val()
+                const numericValue = rupiahToNumeric(input)
+                $(this).val(`${numericValue.toLocaleString('id-ID')}`)
+                if (isNaN(numericValue)) {
+                    $(this).val('0')
+                }
+            })
+
+            $('#apply').click(function (e) {
+                e.preventDefault()
+                const base_url = `<?= base_url() ?>`
+                const url = `${base_url}productFilter`
+                const category = $('#collapseCategories input[type="radio"]:checked').val();
+                const minimum = rupiahToNumeric($('input[name="price-minimum"]').val());
+                const maximum = rupiahToNumeric($('input[name="price-maximum"]').val());
+
+                
+                if (category && minimum && maximum) {
+                    $.ajax({
+                        url: url,
+                        type: 'GET',
+                        dataType: 'json',
+                        data: {
+                            category,
+                            price_min: minimum,
+                            price_max: maximum
+                        },
+                        success: function(response) {
+                            const newProducts = (product) => {
+                                return `
+                                <div class="col-6 col-md-4 list-products">
+                                    <a href="/detail-product/${product.id}">
+                                        <div class="card shadow">
+                                            <div class="card-content">
+                                                <img src="${product.images != null ? '<?= base_url('assets/uploads/img-product/') ?>' . product.images.image : '<?= base_url('assets/static/images/product.png') ?>'}" class="card-img-top img-fluid" alt="product" />
+                                                <div class="card-body">
+                                                    <div class="row justify-content-center align-items-center">
+                                                        <div class="col-md-9 col-12">
+                                                            <h5 class="custom-card-title text-dark fw-semibold text-truncate">${product.nama_produk}</h5>
+                                                            <p><span class="custom-card-title fw-bold text-success">Rp.${product.harga} </span><small class="fw-light">/pcs</small></p>
+                                                        </div>
+                                                        <div class="col-md-3 col-12 text-end">
+                                                            <button class="btn btn-custom-success rounded-circle">
+                                                                <i class="fa-solid fa-cart-shopping"></i>
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                                `
+                            }
+                            if (response.products.length == 0) {
+                                $('#product-body').empty();
+                            }
+                            $('.list-products').empty();
+                            response.products.forEach((product, index) => {
+                                $('#product-body').prepend(newProducts(product))
+                            })
+                        },
+                        error: function(xhr, status, error) {
+                            console.error(error);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 
 </html>
