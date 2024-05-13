@@ -6,7 +6,7 @@
     <h3 class="text-black fw-medium mb-3">Detail Transaction</h3>
     <div class="row justify-content-md-between justify-content-center gy-3">
         <div class="col-md-8 col-11">
-        <?php if ($transaction->status == 'success') : ?>
+            <?php if ($transaction->status == 'success') : ?>
                 <div class="alert alert-success d-flex align-items-center text-white" role="alert">
                     <i class="fa-solid fa-circle-check fs-3"></i>
                     <div class="d-flex flex-column ms-3">
@@ -82,19 +82,17 @@
         <div class="col-xl-3 col-md-4 col-11">
             <h5 class="fw-medium text-black mb-3">Order Summary</h5>
             <?php foreach ($details as $detail) { ?>
-                    <div class="row justify-content-start gap-2 mb-3">
-                        <div class="col-xl-1 col-md-2 col-3">
-                            <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product"
-                                class="border border-2 rounded-3 " height="90">
-                        </div>
-                        <div class="col-7">
-                            <p class="text-black mb-1"><?= $detail->product->nama_produk ?></p>
-                            <span style="font-size: 14px;"><?= $detail->product->variant ?></span>
-                            <p class="custom-color-primary mb-0">Rp. <?= $detail->product->harga ?><small
-                                    class="text-black align-top"> x<?= $detail->qty ?></small></p>
-                        </div>
+                <div class="row justify-content-start mb-3">
+                    <div class="col-md-4 col-sm-3 col-4">
+                        <img src="<?= $detail->image != null ? base_url('assets/uploads/img-product/' . $detail->image->image) : base_url('assets/static/images/product.png') ?>" alt="product" class="border rounded-3 " height="90">
                     </div>
-                    <?php }?>
+                    <div class="col-7">
+                        <p class="text-black mb-1"><?= $detail->product->nama_produk ?></p>
+                        <span style="font-size: 14px;"><?= $detail->product->variant ?></span>
+                        <p class="custom-color-primary mb-0">Rp. <?= $detail->product->harga ?><small class="text-black align-top"> x<?= $detail->qty ?></small></p>
+                    </div>
+                </div>
+            <?php } ?>
         </div>
     </div>
 </div>

@@ -281,6 +281,7 @@ class Home extends BaseController
         // Retrieve product details for each cart item
         foreach ($carts as $cart) {
             $cart->product = $this->products->find($cart->product_id);
+            $cart->image = $this->productImages->select('image')->where('product_id', $cart->product_id)->first();
         }
 
         $subtotal = 0;
@@ -308,7 +309,7 @@ class Home extends BaseController
     {
         $userId = session()->get('id');
         $carts = $this->cart->where('user_id', $userId)->findAll();
-
+        dd($carts);
         if (empty($carts)) {
             session()->setFlashdata('error', 'Cart is empty!');
             return redirect()->to('/cart');
@@ -500,6 +501,7 @@ class Home extends BaseController
 
         foreach ($details as $detail) {
             $detail->product = $this->products->find($detail->product_id);
+            $detail->image = $this->productImages->select('image')->where('product_id', $detail->product_id)->first();
         }
 
         $tax = 0;

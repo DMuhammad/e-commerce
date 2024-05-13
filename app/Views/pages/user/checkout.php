@@ -22,38 +22,35 @@
                         <div class="col-md-6">
                             <h5 class="text-black fw-medium"><?= $user->nama_lengkap ?></h5>
                             <?php if ($user->alamat) : ?>
-                            <p class="text-black"><?= $user->alamat ?></p>
+                                <p class="text-black"><?= $user->alamat ?></p>
                             <?php else : ?>
-                            <p class="text-black">Address not set</p>
+                                <p class="text-black">Address not set</p>
                             <?php endif; ?>
                             <?php if ($user->no_telp) : ?>
-                            <p class="text-black"><?= $user->no_telp ?></p>
+                                <p class="text-black"><?= $user->no_telp ?></p>
                             <?php else : ?>
-                            <p class="text-black">Phone number not set</p>
+                                <p class="text-black">Phone number not set</p>
                             <?php endif; ?>
                         </div>
                         <div class="col-md-6">
                             <p class="fw-semibold text-black">Note</p>
-                            <input type="text" name="note" id="note"
-                                class="w-100 rounded-3 form-control border-secondary" placeholder="Tulis pesan...">
+                            <input type="text" name="note" id="note" class="w-100 rounded-3 form-control border-secondary" placeholder="Tulis pesan...">
                         </div>
                     </div>
 
                     <h5 class="fw-medium text-black mb-3">Order Summary</h5>
                     <?php foreach ($carts as $cart) { ?>
-                    <div class="row justify-content-start gap-2 mb-3">
-                        <div class="col-xl-1 col-md-2 col-3">
-                            <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product"
-                                class="border border-2 rounded-3 " height="90">
+                        <div class="row justify-content-start mb-3">
+                            <div class="col-xl-2 col-3">
+                                <img src="<?= $cart->image != null ? base_url('assets/uploads/img-product/' . $cart->image->image) : base_url('assets/static/images/product.png') ?>" alt="product" class="border rounded-3 " height="90">
+                            </div>
+                            <div class="col-7">
+                                <p class="text-black mb-1"><?= $cart->product->nama_produk ?></p>
+                                <span style="font-size: 14px;"><?= $cart->product->variant ?></span>
+                                <p class="custom-color-primary mb-0">Rp. <?= $cart->product->harga ?><small class="text-black align-top"> x<?= $cart->qty ?></small></p>
+                            </div>
                         </div>
-                        <div class="col-7">
-                            <p class="text-black mb-1"><?= $cart->product->nama_produk ?></p>
-                            <span style="font-size: 14px;"><?= $cart->product->variant ?></span>
-                            <p class="custom-color-primary mb-0">Rp. <?= $cart->product->harga ?><small
-                                    class="text-black align-top"> x<?= $cart->qty ?></small></p>
-                        </div>
-                    </div>
-                    <?php }?>
+                    <?php } ?>
                 </div>
             </div>
 
@@ -61,8 +58,7 @@
                 <div class="p-4 rounded-3" style="background-color: #f5f5f5;">
                     <div class="my-2 py-3 bg-white rounded-3">
                         <div class="text-center">
-                            <img src="<?= base_url('assets/static/images/ekspedisi.png') ?>" alt="ekspedisi"
-                                class="mb-3">
+                            <img src="<?= base_url('assets/static/images/ekspedisi.png') ?>" alt="ekspedisi" class="mb-3">
                         </div>
                         <p class="text-muted mb-2">Ekspedisi</p>
                         <p class="text-black fw-medium mb-2">VAR Express</p>
