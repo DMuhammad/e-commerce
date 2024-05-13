@@ -18,7 +18,7 @@
                         </div>
                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                             <h6 class="text-muted font-semibold">Categories</h6>
-                            <h6 class="fw-bold text-dark mb-0">112.000</h6>
+                            <h6 class="fw-bold text-dark mb-0"><?= $total_categories ?></h6>
                         </div>
                     </div>
                 </div>
@@ -35,7 +35,7 @@
                         </div>
                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                             <h6 class="text-muted font-semibold">Products</h6>
-                            <h6 class="fw-bold text-dark mb-0">112</h6>
+                            <h6 class="fw-bold text-dark mb-0"><?= $total_products ?></h6>
                         </div>
                     </div>
                 </div>
@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                             <h6 class="text-muted font-semibold">Orders</h6>
-                            <h6 class="fw-bold text-dark mb-0">183.000</h6>
+                            <h6 class="fw-bold text-dark mb-0"><?= $total_transactions ?></h6>
                         </div>
                     </div>
                 </div>
@@ -69,13 +69,12 @@
                         </div>
                         <div class="col-md-8 col-lg-12 col-xl-12 col-xxl-7">
                             <h6 class="text-muted font-semibold">Customers</h6>
-                            <h6 class="fw-bold text-dark mb-0">80.000</h6>
+                            <h6 class="fw-bold text-dark mb-0"><?= $total_users ?></h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-
     </div>
 
     <div class="row">
@@ -117,39 +116,24 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <td>1</td>
-                                    <td>INV-20210403-001</td>
-                                    <td>Customer 1</td>
-                                    <td>2021-04-03</td>
-                                    <td>Rp. 100.000</td>
-                                    <td>
-                                        <span class="badge bg-warning">Pending</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>INV-20210403-002</td>
-                                    <td>Customer 2</td>
-                                    <td>2021-04-03</td>
-                                    <td>Rp. 200.000</td>
-                                    <td>
-                                        <span class="badge bg-info">Process</span>
-                                    </td>
-                                </tr>
-                                <!-- AMBIL 5 DATA TRANSAKSI TERAKHIR -->
-                                <?php for ($i = 0; $i < 3; $i++) {  ?>
+                                <?php foreach ($transactions as $key => $transaction) : ?>
                                     <tr>
-                                        <td>3</td>
-                                        <td>INV-20210403-003</td>
-                                        <td>Customer 3</td>
-                                        <td>2021-04-03</td>
-                                        <td>Rp. 300.000</td>
+                                        <td><?php $key ?></td>
+                                        <td><?= $transaction->kode_transaksi ?></td>
+                                        <td><?= $transaction->nama_lengkap ?></td>
+                                        <td><?= $transaction->created_at ?></td>
+                                        <td><?= $transaction->total_bayar ?></td>
                                         <td>
-                                            <span class="badge bg-success">Success</span>
+                                            <?php if ($transaction->status == 'pending') : ?>
+                                                <span class="badge bg-warning">Pending</span>
+                                            <?php elseif ($transaction->status == 'canceled') : ?>
+                                                <span class="badge bg-danger">Canceled</span>
+                                            <?php elseif ($transaction->status == 'success') : ?>
+                                                <span class="badge bg-success">Success</span>
+                                            <?php endif; ?>
                                         </td>
                                     </tr>
-                                <?php } ?>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
@@ -157,7 +141,99 @@
             </div>
         </div>
     </div>
-
 </div>
+
+<script src="<?= base_url('assets/extensions/chart.js/chart.umd.js') ?>"></script>
+<script>
+    let productNames = <?= json_encode(array_column($top_sales, 'nama_produk')) ?>;
+    let productSales = <?= json_encode(array_column($top_sales, 'total_qty')) ?>;
+
+    const donut = document.getElementById("donut").getContext("2d");
+    const myDonut = new Chart(donut, {
+        type: "doughnut",
+        data: {
+            labels: [...productNames],
+            datasets: [{
+                backgroundColor: [
+                    "#FFC107",
+                    "#28A745",
+                    "#007BFF",
+                    "#DC3545",
+                    "#17A2B8",
+                ],
+                data: [...productSales],
+            }, ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            title: {
+                display: false,
+            },
+            tooltips: {
+                mode: "index",
+                intersect: false,
+            },
+        },
+    });
+
+    let salesPerMonth = <?= json_encode($sales_per_month) ?>;
+    let months = salesPerMonth.map((item) => {
+        return `${item.year}-${item.month}`;
+    });
+
+    let sales = salesPerMonth.map((item) => {
+        return item.total_qty;
+    });
+
+    const line = document.getElementById("line").getContext("2d");
+    const myLine = new Chart(line, {
+        type: "line",
+        data: {
+            labels: [...months],
+            datasets: [{
+                label: "Sales",
+                data: [...sales],
+                borderColor: "#007BFF",
+                backgroundColor: "rgba(0, 123, 255, 0.1)",
+                pointBackgroundColor: "#007BFF",
+                pointBorderColor: "#007BFF",
+                pointHoverBackgroundColor: "#007BFF",
+                pointHoverBorderColor: "#007BFF",
+                pointRadius: 4,
+                pointBorderWidth: 2,
+                pointHoverRadius: 6,
+                pointHoverBorderWidth: 2,
+            }, ],
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: true,
+            title: {
+                display: false,
+            },
+            tooltips: {
+                mode: "index",
+                intersect: false,
+            },
+            scales: {
+                x: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Month",
+                    },
+                },
+                y: {
+                    display: true,
+                    title: {
+                        display: true,
+                        text: "Sales",
+                    },
+                },
+            },
+        },
+    });
+</script>
 
 <?= $this->endSection(); ?>

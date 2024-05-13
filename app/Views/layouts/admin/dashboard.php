@@ -73,10 +73,6 @@
     <script src="<?= base_url('assets/extensions/moment/moment.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/daterangepicker/daterangepicker.js') ?>"></script>
 
-    <!-- ChartJS -->
-    <script src="<?= base_url('assets/extensions/chart.js/chart.umd.js') ?>"></script>
-    <script src="<?= base_url('assets/static/js/pages/ui-chartjs.js') ?>"></script>
-
     <script src="<?= base_url('assets/extensions/lightbox-bs5/lightbox.js') ?>"></script>
 
     <script>
