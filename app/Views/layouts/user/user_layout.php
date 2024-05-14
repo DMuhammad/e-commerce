@@ -357,7 +357,7 @@
                 }
             })
 
-            $('#apply').click(function (e) {
+            $('#apply').click(function(e) {
                 e.preventDefault()
                 const base_url = `<?= base_url() ?>`
                 const url = `${base_url}productFilter`
@@ -365,7 +365,7 @@
                 const minimum = rupiahToNumeric($('input[name="price-minimum"]').val());
                 const maximum = rupiahToNumeric($('input[name="price-maximum"]').val());
 
-                
+
                 if (category && minimum && maximum) {
                     $.ajax({
                         url: url,
@@ -383,7 +383,7 @@
                                     <a href="/detail-product/${product.id}">
                                         <div class="card shadow">
                                             <div class="card-content">
-                                                <img src="${product.images != null ? '<?= base_url('assets/uploads/img-product/') ?>' . product.images.image : '<?= base_url('assets/static/images/product.png') ?>'}" class="card-img-top img-fluid" alt="product" />
+                                                <img src="${product.images != null ? base_url + 'assets/uploads/img-product/' + product.images.image : base_url + 'assets/static/images/product.png'}" class="card-img-top img-fluid" alt="product" />
                                                 <div class="card-body">
                                                     <div class="row justify-content-center align-items-center">
                                                         <div class="col-md-9 col-12">
