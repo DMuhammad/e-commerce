@@ -71,9 +71,12 @@ class Home extends BaseController
 
     public function products(): string
     {
+
+        $pager = \Config\Services::pager();
+
         $products = $this->products->select('products.*, categories.nama_kategori')
             ->join('categories', 'categories.id = products.category_id')
-            ->findAll();
+            ->paginate(6, 'products');
 
         foreach ($products as $key => $product) {
             $products[$key]->images = $this->productImages->select('image')
@@ -87,6 +90,7 @@ class Home extends BaseController
             'products' => $products,
             'categories' => $this->categories->findAll(),
             'title' => 'Products',
+            'pager' => $pager,
         ];
 
         return view('pages/user/products', $data);
@@ -99,14 +103,14 @@ class Home extends BaseController
         $priceMax = $this->request->getVar('price_max');
 
         $query = $this->products->select('products.*');
-        
+
         if (!empty($category)) {
             $query = $query->where('products.category_id', $category);
         }
 
         if ($priceMin !== null && $priceMax !== null) {
             $query = $query->where('products.harga >=', $priceMin)
-                           ->where('products.harga <=', $priceMax);
+                ->where('products.harga <=', $priceMax);
         }
 
         $products = $query->findAll();

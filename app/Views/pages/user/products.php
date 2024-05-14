@@ -80,25 +80,35 @@
                 }
                 ?>
 
-                <nav aria-label="Page navigation">
+                <nav>
                     <ul class="pagination justify-content-end">
-                        <li class="page-item disabled">
-                            <a class="page-link text-muted" href="#" aria-label="Previous">
+                        <li class="page-item <?= $pager->getPreviousPageURI('products', 'default') == null ? 'disabled' : '' ?>">
+                            <a class="page-link text-muted" href="<?= $pager->getPreviousPageURI('products', 'default') ?>" aria-label="Previous">
                                 <span aria-hidden="true">&laquo;</span>
                                 Prev
                             </a>
                         </li>
-                        <li class="page-item"><a class="page-link active bg-success" href="#">1</a></li>
-                        <li class="page-item"><a class="page-link " href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item">
-                            <a class="page-link" href="#" aria-label="Next">
+                        <?php for ($i = 1; $i <= $pager->getPageCount('products'); $i++) { ?>
+                            <?php if ($i == $pager->getCurrentPage('products')) { ?>
+                                <li class="page-item active" aria-current="page">
+                                    <a class="page-link" href="#"><?= $i ?></a>
+                                </li>
+                            <?php } else { ?>
+                                <li class="page-item">
+                                    <a class="page-link" href="<?= $pager->getPageURI($i, 'products') ?>"><?= $i ?></a>
+                                </li>
+                            <?php }; ?>
+                        <?php } ?>
+                        <li class="page-item <?= $pager->getNextPageURI('products', 'default') == null ? 'disabled' : '' ?>">
+                            <a class="page-link" href="<?= $pager->getNextPageURI('products', 'default') ?>" aria-label="Next">
                                 Next
                                 <span aria-hidden="true">&raquo;</span>
                             </a>
                         </li>
                     </ul>
                 </nav>
+                <!-- <?= $pager->getNextPageURI('products', 'default') ?> -->
+
             </div>
         </div>
     </div>
