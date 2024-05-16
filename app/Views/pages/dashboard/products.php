@@ -57,7 +57,6 @@
                                 <th>Variant</th>
                                 <th>Price</th>
                                 <th>Images</th>
-                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -117,7 +116,7 @@
                                             <i class="fa-regular fa-pen-to-square"></i>
                                         </a>
                                         <div class="modal fade" id="edit<?= $product->id ?>" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
-                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered" role="document">
                                                 <div class="modal-content">
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" id="exampleModalLabel">Form Edit Product
@@ -185,6 +184,7 @@
                     </table>
                 </div>
             </div>
+
             <div class="modal fade" id="tambah" tabindex="-1" aria-labelledby="tambahLabel" aria-hidden="true">
                 <div class="modal-dialog modal-lg modal-dialog-centered">
                     <div class="modal-content">
