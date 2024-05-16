@@ -72,11 +72,9 @@ class Home extends BaseController
     public function products(): string
     {
 
-        $pager = \Config\Services::pager();
-
         $products = $this->products->select('products.*, categories.nama_kategori')
             ->join('categories', 'categories.id = products.category_id')
-            ->paginate(6, 'products');
+            ->findAll();
 
         foreach ($products as $key => $product) {
             $products[$key]->images = $this->productImages->select('image')
@@ -90,7 +88,6 @@ class Home extends BaseController
             'products' => $products,
             'categories' => $this->categories->findAll(),
             'title' => 'Products',
-            'pager' => $pager,
         ];
 
         return view('pages/user/products', $data);
