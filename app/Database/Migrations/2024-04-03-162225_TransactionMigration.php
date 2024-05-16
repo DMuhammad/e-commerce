@@ -10,25 +10,30 @@ class TransactionMigration extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type' => 'BINARY',
-                'constraint' => 16
+                'type' => 'VARCHAR',
+                'constraint' => 32
             ],
             'user_id' => [
-                'type' => 'BINARY',
-                'constraint' => 16
+                'type' => 'VARCHAR',
+                'constraint' => 32
             ],
             'kode_transaksi' => [
                 'type' => 'VARCHAR',
                 'constraint' => 255
             ],
+            'note'=> [
+                'type' => 'TEXT',
+                'null' => true
+            ],
             'status' => [
                 'type' => 'ENUM',
-                'constraint' => ['pending', 'process', 'success']
+                'constraint' => ['pending', 'success', 'canceled']
             ],
             'total_bayar' => [
                 'type' => 'DOUBLE',
             ],
-            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
+            'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
+            'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'
         ]);
         $this->forge->addPrimaryKey('id');
         $this->forge->addForeignKey('user_id', 'users', 'id');

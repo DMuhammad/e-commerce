@@ -10,8 +10,8 @@ class UserMigration extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type' => "BINARY",
-                'constraint' => 16,
+                'type' => "VARCHAR",
+                'constraint' => 32,
             ],
             'nama_lengkap' => [
                 'type' => 'VARCHAR',
@@ -33,6 +33,10 @@ class UserMigration extends Migration
             'alamat' => [
                 'type' => 'VARCHAR',
                 'constraint'     => 255,
+            ],
+            'no_telp' => [
+                'type' => 'VARCHAR',
+                'constraint'     => 25,
             ],
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP',
             'updated_at DATETIME DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP',

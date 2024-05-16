@@ -10,20 +10,23 @@ class CompanyProfileMigration extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type' => 'BINARY',
-                'constraint' => 16,
+                'type' => 'VARCHAR',
+                'constraint' => 32,
             ],
             'deskripsi' => [
                 'type' => 'TEXT',
             ],
-            'image' => [
-                'type' => 'BLOB'
+            'visi' => [
+                'type' => 'TEXT',
             ],
-            'alamat' => [
-                'type' => 'VARCHAR',
-                'constraint' => 255
+            'misi' => [
+                'type' => 'TEXT',
             ],
-            'kontak' => [
+            'bank' => [
+                'type' => 'ENUM',
+                'constraint' => ["BCA", "MANDIRI", "BRI", "BSI"],
+            ],
+            'no_rek' => [
                 'type' => 'VARCHAR',
                 'constraint' => 100
             ],

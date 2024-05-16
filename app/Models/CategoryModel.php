@@ -8,11 +8,11 @@ class CategoryModel extends Model
 {
     protected $table            = 'categories';
     protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama'];
+    protected $allowedFields    = ['id', 'nama_kategori'];
 
     protected bool $allowEmptyInserts = false;
 

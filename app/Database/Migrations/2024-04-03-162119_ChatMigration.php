@@ -10,12 +10,16 @@ class ChatMigration extends Migration
     {
         $this->forge->addField([
             'id' => [
-                'type' => 'BINARY',
-                'constraint' => 16
+                'type' => 'VARCHAR',
+                'constraint' => 32
             ],
-            'user_id' => [
-                'type' => 'BINARY',
-                'constraint' => 16
+            'from' => [
+                'type' => 'VARCHAR',
+                'constraint' => 32
+            ],
+            'to' => [
+                'type' => 'VARCHAR',
+                'constraint' => 32
             ],
             'pesan' => [
                 'type' => 'TEXT'
@@ -27,7 +31,6 @@ class ChatMigration extends Migration
             'created_at DATETIME DEFAULT CURRENT_TIMESTAMP'
         ]);
         $this->forge->addPrimaryKey('id');
-        $this->forge->addForeignKey('user_id', 'users', 'id');
         $this->forge->createTable('chats', TRUE);
     }
 

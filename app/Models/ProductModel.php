@@ -8,11 +8,11 @@ class ProductModel extends Model
 {
     protected $table            = 'products';
     protected $primaryKey       = 'id';
-    protected $useAutoIncrement = true;
+    protected $useAutoIncrement = false;
     protected $returnType       = 'object';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['nama', 'category_id', 'detail', 'variant', 'harga'];
+    protected $allowedFields    = ['id', 'nama_produk', 'category_id', 'detail', 'stok', 'variant', 'harga'];
 
     protected bool $allowEmptyInserts = false;
 

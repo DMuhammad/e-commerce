@@ -2,10 +2,16 @@
 
 namespace Config;
 
-use CodeIgniter\Config\BaseConfig;
+use App\Filters\Auth;
+use App\Filters\IsAdmin;
+use App\Filters\IsLogin;
+use App\Filters\IsOwner;
+use App\Filters\IsCustomer;
+use App\Filters\IsOwnerOrAdmin;
 use CodeIgniter\Filters\CSRF;
-use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\Honeypot;
+use CodeIgniter\Config\BaseConfig;
+use CodeIgniter\Filters\DebugToolbar;
 use CodeIgniter\Filters\InvalidChars;
 use CodeIgniter\Filters\SecureHeaders;
 
@@ -24,6 +30,11 @@ class Filters extends BaseConfig
         'honeypot'      => Honeypot::class,
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
+        'auth' => Auth::class,
+        'islogin' => IsLogin::class,
+        'admin' => IsAdmin::class,
+        'customer' => IsCustomer::class,
+        'oa' => IsOwnerOrAdmin::class,
     ];
 
     /**
@@ -35,7 +46,7 @@ class Filters extends BaseConfig
     public array $globals = [
         'before' => [
             // 'honeypot',
-            // 'csrf',
+            'csrf',
             // 'invalidchars',
         ],
         'after' => [
