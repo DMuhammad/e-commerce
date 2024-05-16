@@ -104,7 +104,7 @@
                 <div class="card-body">
                     <h6 class="fw-semibold text-dark card-title mb-4">Latest Transactions</h6>
                     <div class="table-responsive">
-                        <table id="table1" class="display table table-striped">
+                        <table class="table table-striped">
                             <thead>
                                 <tr>
                                     <th>No</th>
@@ -116,9 +116,10 @@
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php $no = 1; ?>
                                 <?php foreach ($transactions as $key => $transaction) : ?>
                                     <tr>
-                                        <td><?php $key ?></td>
+                                        <td> <?= $no++ ?> </td>
                                         <td><?= $transaction->kode_transaksi ?></td>
                                         <td><?= $transaction->nama_lengkap ?></td>
                                         <td><?= $transaction->created_at ?></td>
