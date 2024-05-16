@@ -13,8 +13,7 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.css') ?>">
 
-    <link rel="stylesheet" href="<?= base_url('assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') ?>" />
-    <link rel="stylesheet" href="<?= base_url('assets/extensions/datatables.net-bs5/css/responsive.bootstrap5.min.css') ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/extensions/simple-datatables/datatables.css') ?>">
 
     <link rel="stylesheet" href="<?= base_url('assets/extensions/choices.js/public/assets/styles/choices.min.css') ?>">
 
@@ -47,10 +46,7 @@
     <script src="<?= base_url('assets/static/js/pages/swalfire.js') ?>"></script>
 
     <!-- Datatables -->
-    <script src="<?= base_url('assets/extensions/datatables.net/js/dataTables.min.js') ?>"></script>
-    <script src="<?= base_url('assets/extensions/datatables.net/js/dataTables.responsive.min.js') ?>"></script>
-    <script src="<?= base_url('assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js') ?>"></script>
-    <script src="<?= base_url('assets/extensions/datatables.net-bs5/js/responsive.bootstrap5.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/simple-datatables/datatables.js') ?>"></script>
     <script src="<?= base_url('assets/static/js/pages/datatables.js') ?>"></script>
 
     <!-- Choices -->
