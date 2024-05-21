@@ -59,21 +59,31 @@
         <h2 class="text-center text-black fw-medium mb-4">Gallery</h2>
         <div class="row justify-content-start">
             <?php if (!empty($product->images)) : ?>
-                <div class="splide products text-center" id="bom">
-                    <div class="splide__track">
-                        <ul class="splide__list">
-                            <?php foreach ($product->images as $image) : ?>
-                                <li class="splide__slide">
-                                    <a href="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" data-toggle="lightbox">
-                                        <img src="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" alt="product" class="img-fluid">
-                                    </a>
-                                </li>
-                            <?php endforeach; ?>
-                        </ul>
+                <?php if (count($product->images) < 4) : ?>
+                    <?php foreach ($product->images as $image) : ?>
+                        <div class="col-3">
+                            <a href="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" data-toggle="lightbox">
+                                <img src="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" alt="product" class="img-fluid p-2">
+                            </a>
+                        </div>
+                    <?php endforeach; ?>
+                <?php else : ?>
+                    <div class="splide products text-center" id="bom">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <?php foreach ($product->images as $image) : ?>
+                                    <li class="splide__slide">
+                                        <a href="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" data-toggle="lightbox">
+                                            <img src="<?= base_url('assets/uploads/img-product/' . $image->image) ?>" alt="product" class="img-fluid">
+                                        </a>
+                                    </li>
+                                <?php endforeach; ?>
+                            </ul>
+                        </div>
                     </div>
-                </div>
+                <?php endif; ?>
             <?php else : ?>
-                <div class="col-4">
+                <div class="col-3">
                     <a href="<?= base_url('assets/static/images/product.png') ?>" data-toggle="lightbox">
                         <img src="<?= base_url('assets/static/images/product.png') ?>" alt="product" class="img-fluid">
                     </a>
