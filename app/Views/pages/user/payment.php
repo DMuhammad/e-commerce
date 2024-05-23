@@ -76,10 +76,6 @@
                 <p class="text-muted">"<?= $transaction->note ?>"</p>
                 <div class="mt-2 mb-4">
                     <div class="d-flex justify-content-between">
-                        <p class="text-black mb-1">Tax</p>
-                        <p class="custom-color-primary mb-1">Rp <?= $tax ?></p>
-                    </div>
-                    <div class="d-flex justify-content-between">
                         <p class="text-black mb-1">Total Amount</p>
                         <p class="custom-color-primary mb-1">Rp <?= $transaction->total_bayar ?></p>
                     </div>

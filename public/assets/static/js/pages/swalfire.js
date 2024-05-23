@@ -14,7 +14,7 @@ $(document).ready(function () {
       if (result.isConfirmed) {
         Swal.fire({
           title: "Deleted!",
-          text: "Your file has been deleted.",
+          text: "Successfully deleted.",
           icon: "success",
           timer: 2000,
         });

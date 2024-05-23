@@ -29,7 +29,7 @@
                             <input type="radio" class="btn-check variant-radio" name="variant" id="variant<?= $variant->id ?>" value="<?= $variant->id ?>" <?= $variant->id == $product->id ? 'checked' : '' ?> autocomplete="off">
                         <?php endforeach; ?>
                     </div>
-                    <p>Stok: <?= $product->stok ?> </span></p>
+                    <p>Minimum Order: <?= $product->stok ?> </span></p>
                     <hr class="mb-4">
                     <div class="row mb-4 gy-2">
                         <div class="col-md-3 col-5">
@@ -136,7 +136,7 @@
             <h2 class="fw-semibold text-black mb-2">Discover the Essence of Luxury with Our Unique Cosmetic Packaging</h2>
             <p class="fw-regular text-black fs-5 mb-5">PT Persada Jayaraya Abadi</p>
 
-            <button class="btn btn-custom-success px-4 py-3">Shop Now</button>
+            <a href="/products" class="btn btn-custom-success px-4 py-3">Shop Now</a>
         </div>
         <div class="col-md-6 col-10 p-0">
             <img src="<?= base_url('assets/static/images/hair-shampoo.png') ?>" alt="shampoo" class="img-fluid object-fit-cover">
