@@ -566,7 +566,7 @@ class Home extends BaseController
         $transac = $this->transaction->where('user_id', $userId)->orderBy('created_at', 'DESC')->first();
 
         // Prepare the message
-        $message = "Halo Admin,\n\nPesanan $transac->kode_transaksi atas nama $user->nama_lengkap sudah melakukan pembayaran. Mohon dicek dan diproses.\n\nTerima kasih.";
+        $message = "Halo,\n\nPesanan $transac->kode_transaksi atas nama $user->nama_lengkap sudah melakukan pembayaran. Mohon dicek dan diproses.\n\nTerima kasih.";
 
         // URL encode the message
         $message = urlencode($message);
