@@ -97,13 +97,13 @@
             <div class="p-4 rounded-3 shadow">
                 <div class="text-center mb-4">
                     <?php if ($company->bank == 'BCA') : ?>
-                        <img src="<?= base_url('assets/static/images/bca.png') ?>" alt="bca" class="">
+                        <img src="<?= base_url('assets/static/images/bca.png') ?>" alt="bca" class="img-fluid">
                     <?php elseif ($company->bank == 'BRI') : ?>
-                        <img src="<?= base_url('assets/static/images/bri.png') ?>" alt="bri" class="">
+                        <img src="<?= base_url('assets/static/images/bri.png') ?>" alt="bri" class="img-fluid">
                     <?php elseif ($company->bank == 'MANDIRI') : ?>
-                        <img src="<?= base_url('assets/static/images/mandiri.png') ?>" alt="mandiri" class="">
+                        <img src="<?= base_url('assets/static/images/mandiri.png') ?>" alt="mandiri" class="img-fluid">
                     <?php elseif ($company->bank == 'BSI') : ?>
-                    <img src="<?= base_url('assets/static/images/bsi.png') ?>" alt="bsi" class="">
+                        <img src="<?= base_url('assets/static/images/bsi.png') ?>" alt="bsi" class="img-fluid">
                     <?php endif; ?>
                 </div>
                 <?php if ($company->bank == 'BCA') : ?>
@@ -113,7 +113,7 @@
                 <?php elseif ($company->bank == 'MANDIRI') : ?>
                     <h5 class="fw-medium text-black mb-4">Bank Mandiri</h5>
                 <?php elseif ($company->bank == 'BSI') : ?>
-                <h5 class="fw-medium text-black mb-4">Bank Syariah Indonesia</h5>
+                    <h5 class="fw-medium text-black mb-4">Bank Syariah Indonesia</h5>
                 <?php endif; ?>
                 <div>
                     <h5 class="fw-medium text-black">Nomor Rekening</h5>
