@@ -72,14 +72,6 @@
             <div class="p-4 rounded-3" style="background-color: #f5f5f5;">
                 <h5 class="fw-medium mb-3">Order Summary</h5>
                 <div class="d-flex justify-content-between">
-                    <p>Sub Total</p>
-                    <span class="custom-color-primary">Rp. <?= $subTotal ?></span>
-                </div>
-                <div class="d-flex justify-content-between">
-                    <p>Tax</p>
-                    <span class="custom-color-primary">Rp. <?= $tax ?></span>
-                </div>
-                <div class="d-flex justify-content-between">
                     <p>Total</p>
                     <span class="custom-color-primary">Rp. <?= $total ?></span>
                 </div>

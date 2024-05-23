@@ -193,7 +193,7 @@ class Home extends BaseController
         $stok = $this->products->find($variantId)->stok;
 
         if ($qty > $stok) {
-            session()->setFlashdata('error', 'Stock is not enough!');
+            session()->setFlashdata('error', 'Minimum order not enough!');
             return redirect()->to('/detail-product/' . $variantId);
         }
 
@@ -236,24 +236,18 @@ class Home extends BaseController
             $cart->image = $this->productImages->select('image')->where('product_id', $cart->product_id)->first();
         }
 
-        $subTotal = 0;
+        $total = 0;
         foreach ($carts as $cart) {
-            $subTotal += $cart->total_harga;
+            $total += $cart->total_harga;
         }
-        $tax = $subTotal * 0.2;
-        $total = $subTotal + $tax;
 
         $data = [
             'user' => session()->get('nama_lengkap'),
             'role' => session()->get('role'),
             'title' => 'Cart',
             'carts' => $carts,
-            'subTotal' => $subTotal,
-            'tax' => $tax,
             'total' => $total,
         ];
-
-        // return response()->setJSON($data);
 
         return view('pages/user/cart', $data);
     }
@@ -316,13 +310,10 @@ class Home extends BaseController
             $cart->image = $this->productImages->select('image')->where('product_id', $cart->product_id)->first();
         }
 
-        $subtotal = 0;
-        $tax = 0;
+        $total = 0;
         foreach ($carts as $cart) {
-            $subtotal += $cart->total_harga;
-            $tax = $subtotal * 0.2;
+            $total += $cart->total_harga;
         }
-        $total = $subtotal + $tax;
 
         $data = [
             'user' => session()->get('nama_lengkap'),
@@ -330,8 +321,6 @@ class Home extends BaseController
             'title' => 'Checkout',
             'carts' => $carts,
             'user' => $user,
-            'subtotal' => $subtotal,
-            'tax' => $tax,
             'total' => $total,
         ];
         return view('pages/user/checkout', $data);
@@ -363,14 +352,10 @@ class Home extends BaseController
         $carts = $this->cart->where('user_id', $userId)->findAll();
         $note = $this->request->getPost('note');
 
-        $subtotal = 0;
-        $tax = 0;
-
+        $total = 0;
         foreach ($carts as $cart) {
-            $subtotal += $cart->total_harga;
-            $tax = $subtotal * 0.2;
+            $total += $cart->total_harga;
         }
-        $total = $subtotal + $tax;
 
         $data = [
             'id' => Uuid::uuid4(),
@@ -380,18 +365,6 @@ class Home extends BaseController
             'total_bayar' => $total,
             'status' => 'pending',
         ];
-
-        // reduce the stok in the product table based on qty in the cart and check if the stock is still available
-        foreach ($carts as $cart) {
-            $product = $this->products->find($cart->product_id);
-            if ($product->stok < $cart->qty) {
-                session()->setFlashdata('error', 'Stock is not enough!');
-                return redirect()->to('/cart');
-            }
-            $this->products->update($cart->product_id, [
-                'stok' => $product->stok - $cart->qty,
-            ]);
-        }
 
         $this->transaction->insert($data);
 
@@ -431,11 +404,6 @@ class Home extends BaseController
             $item->product = $this->products->find($item->product_id);
         }
 
-        $tax = 0;
-        foreach ($detail as $item) {
-            $tax += $item->product->harga * $item->qty * 0.2;
-        }
-
         $data = [
             'user' => session()->get('nama_lengkap'),
             'role' => session()->get('role'),
@@ -444,7 +412,6 @@ class Home extends BaseController
             'details' => $detail,
             'admin' => $admin,
             'user' => $user,
-            'tax' => $tax,
             'company' => $company,
         ];
 
@@ -456,15 +423,6 @@ class Home extends BaseController
         $this->transaction->update($id, [
             'status' => 'canceled',
         ]);
-
-        // return the stock to the product table
-        $details = $this->detailTransaction->where('transaction_id', $id)->findAll();
-        foreach ($details as $detail) {
-            $product = $this->products->find($detail->product_id);
-            $this->products->update($detail->product_id, [
-                'stok' => $product->stok + $detail->qty,
-            ]);
-        }
         return redirect()->to('/payment');
     }
 
