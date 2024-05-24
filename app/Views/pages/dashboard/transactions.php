@@ -81,17 +81,20 @@
                                                             <div class="col-12">
                                                                 <div class="card">
                                                                     <div class="card-body">
-                                                                        <table class="table table-striped">
-                                                                            <tr>
+                                                                        <table class="table">
+                                                                            <tr style="background-color: #F2F2F2;">
                                                                                 <th>Pembeli</th>
                                                                                 <td><?= $transaction->user->nama_lengkap ?></td>
                                                                             </tr>
                                                                             <tr>
                                                                                 <th>Produk</th>
-                                                                                <?php foreach ($transaction->detailtransactions as $detail) : ?>
-                                                                                    <td><?= $detail->nama_produk ?> <?= $detail->variant ?> x<?= $detail->qty ?> pcs</td>
-                                                                                <?php endforeach; ?>
                                                                             </tr>
+                                                                            <?php foreach ($transaction->detailtransactions as $key => $detail) : ?>
+                                                                                <tr>
+                                                                                    <th><?= $key + 1 ?></th>
+                                                                                    <td><?= $detail->nama_produk ?> <?= $detail->variant ?> x<?= $detail->qty ?> pcs</td>
+                                                                                </tr>
+                                                                            <?php endforeach; ?>
                                                                         </table>
                                                                     </div>
                                                                 </div>
