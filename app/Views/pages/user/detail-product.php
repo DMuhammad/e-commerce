@@ -21,7 +21,7 @@
             <div class="m-2">
                 <form action="<?= base_url('/add-to-cart') ?>" method="POST">
                     <h1 class="text-black fw-medium custom-title"><?= $product->nama_produk ?></h1>
-                    <h1 class="custom-color-primary custom-title">Rp. <?= $product->harga ?></h1>
+                    <h1 class="custom-color-primary custom-title">Rp. <?= number_format($product->harga, 0, ',', '.') ?></h1>
                     <p>Select Variation:</p>
                     <div class="variants-container d-flex gap-3 mb-4">
                         <?php foreach ($variants as $variant) : ?>
@@ -109,7 +109,7 @@
                                             <div class="row justify-content-center align-items-center">
                                                 <div class="col-md-9 col-12">
                                                     <h5 class="custom-card-title text-dark fw-semibold text-truncate"><?= $related->nama_produk ?> <?= $related->variant ?></h5>
-                                                    <p><span class="custom-card-title fw-bold text-success">Rp.<?= $related->harga ?></span><small class="fw-light">/pcs</small></p>
+                                                    <p><span class="custom-card-title fw-bold text-success">Rp. <?= number_format($related->harga, 0, ',', '.') ?></span><small class="fw-light">/pcs</small></p>
                                                 </div>
                                                 <div class="col-md-3 col-12 text-end">
                                                     <button class="btn btn-custom-success rounded-circle">

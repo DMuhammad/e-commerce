@@ -123,7 +123,7 @@
                                         <td><?= $transaction->kode_transaksi ?></td>
                                         <td><?= $transaction->nama_lengkap ?></td>
                                         <td><?= $transaction->created_at ?></td>
-                                        <td><?= $transaction->total_bayar ?></td>
+                                        <td>Rp. <?= number_format($transaction->total_bayar, 0, ',', '.') ?></td>
                                         <td>
                                             <?php if ($transaction->status == 'pending') : ?>
                                                 <span class="badge bg-warning">Pending</span>

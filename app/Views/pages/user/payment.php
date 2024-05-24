@@ -68,7 +68,7 @@
                             <p class="mb-0 text-black "><?= $detail->product->nama_produk ?></p>
                             <small class="text-muted"><?= $detail->product->variant ?> x <?= $detail->qty ?></small>
                         </div>
-                        <span class="custom-color-primary">Rp. <?= $detail->product->harga ?></span>
+                        <span class="custom-color-primary">Rp. <?= number_format($detail->product->harga, 0, ',', '.') ?></span>
                     </div>
                     <hr>
                 <?php } ?>
@@ -77,7 +77,7 @@
                 <div class="mt-2 mb-4">
                     <div class="d-flex justify-content-between">
                         <p class="text-black mb-1">Total Amount</p>
-                        <p class="custom-color-primary mb-1">Rp <?= $transaction->total_bayar ?></p>
+                        <p class="custom-color-primary mb-1">Rp <?= number_format($transaction->total_bayar, 0, ',', '.') ?></p>
                     </div>
                 </div>
                 <?php if ($transaction->status == 'pending') : ?>

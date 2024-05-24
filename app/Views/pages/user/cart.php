@@ -32,7 +32,7 @@
                                 <h5 class="text-black"><?= $cart->product->nama_produk ?></h5>
                                 <p><?= $cart->product->detail ?></p>
                                 <p class="text-black"><span class="text-muted">Variation: </span> <?= $cart->product->variant ?></p>
-                                <h2 class="custom-color-primary custom-subtitle">Rp. <?= $cart->product->harga ?></h2>
+                                <h2 class="custom-color-primary custom-subtitle">Rp. <?= number_format($cart->product->harga, 0, ',', '.') ?></h2>
                             </div>
                         </div>
 
@@ -73,7 +73,7 @@
                 <h5 class="fw-medium mb-3">Order Summary</h5>
                 <div class="d-flex justify-content-between">
                     <p>Total</p>
-                    <span class="custom-color-primary">Rp. <?= $total ?></span>
+                    <span class="custom-color-primary">Rp. <?= number_format($total, 0, ',', '.') ?></span>
                 </div>
                 <?php if ($carts) : ?>
                     <a href="<?= base_url('/check-cart') ?>" class="btn btn-custom-success d-block mt-5">Checkout</a>
