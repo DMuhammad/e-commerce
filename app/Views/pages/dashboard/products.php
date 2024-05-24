@@ -71,7 +71,7 @@
                                     <td><?= word_limiter($product->detail, 5) ?></td>
                                     <td> <?= $product->stok ?> </td>
                                     <td> <?= $product->variant ?> </td>
-                                    <td>Rp. <?= $product->harga ?></td>
+                                    <td>Rp. <?= number_format($product->harga, 0, ',', '.') ?></td>
                                     <td>
                                         <a href="#" class="btn btn-primary btn-sm" data-bs-toggle="modal" data-bs-target="#imagesModal<?= $product->id ?>">
                                             <i class="fa-regular fa-image"></i>

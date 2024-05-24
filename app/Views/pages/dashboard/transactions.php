@@ -54,7 +54,7 @@
                                     <td><?= $transaction->kode_transaksi ?></td>
                                     <td><?= $transaction->created_at ?></td>
                                     <td><?= $transaction->user->nama_lengkap ?></td>
-                                    <td>Rp. <?= $transaction->total_bayar ?></td>
+                                    <td>Rp. <?= number_format($transaction->total_bayar, 0, ',', '.') ?></td>
                                     <td>
                                         <?php if ($transaction->status == 'pending') : ?>
                                             <span class="badge bg-warning">Pending</span>
@@ -66,7 +66,7 @@
                                     </td>
                                     <td>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#detail<?= $transaction->id ?>" class="btn btn-info btn-sm edit-button"">
-                                            <i class="fa-regular fa-eye"></i>
+                                            <i class=" fa-regular fa-eye"></i>
                                         </a>
                                         <div class="modal fade" id="detail<?= $transaction->id ?>" tabindex="-1" aria-labelledby="detailLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-lg modal-dialog-centered">
