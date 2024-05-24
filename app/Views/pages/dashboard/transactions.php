@@ -65,6 +65,42 @@
                                         <?php endif; ?>
                                     </td>
                                     <td>
+                                        <a href="#" data-bs-toggle="modal" data-bs-target="#detail<?= $transaction->id ?>" class="btn btn-info btn-sm edit-button"">
+                                            <i class="fa-regular fa-eye"></i>
+                                        </a>
+                                        <div class="modal fade" id="detail<?= $transaction->id ?>" tabindex="-1" aria-labelledby="detailLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Detail Transaction
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <div class="row">
+                                                            <div class="col-12">
+                                                                <div class="card">
+                                                                    <div class="card-body">
+                                                                        <table class="table table-striped">
+                                                                            <tr>
+                                                                                <th>Pembeli</th>
+                                                                                <td><?= $transaction->user->nama_lengkap ?></td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <th>Produk</th>
+                                                                                <?php foreach ($transaction->detailtransactions as $detail) : ?>
+                                                                                    <td><?= $detail->nama_produk ?> <?= $detail->variant ?> x<?= $detail->qty ?> pcs</td>
+                                                                                <?php endforeach; ?>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
                                         <a href="#" data-bs-toggle="modal" data-bs-target="#edit<?= $transaction->id ?>" class="btn btn-warning btn-sm edit-button"">
                                             <i class=" fa-regular fa-pen-to-square"></i>
                                         </a>

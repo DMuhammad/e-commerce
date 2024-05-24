@@ -25,6 +25,14 @@ class TransactionController extends BaseController
                 ->where('user_id', $transaction->user_id)
                 ->first();
         }
+        // join table detailtransactions and products
+        foreach ($transact as $key => $transaction) {
+            $transact[$key]->detailtransactions = $this->transaction->select('detailtransactions.product_id, products.nama_produk, products.variant, detailtransactions.qty')
+                ->join('detailtransactions', 'detailtransactions.transaction_id = transactions.id')
+                ->join('products', 'products.id = detailtransactions.product_id')
+                ->where('transactions.id', $transaction->id)
+                ->findAll();
+        }
         $status = ['pending', 'success', 'canceled'];
 
         $data = [

@@ -152,7 +152,7 @@
                                                                     </div>
                                                                     <div class="col-md-12 form-group">
                                                                         <label for="variant">Variant</label>
-                                                                        <input type="text" id="variant" class="form-control variant-product" name="variant" required value="<?= $product->variant ?>">
+                                                                        <input type="text" id="variant" class="form-control" name="variant" required value="<?= $product->variant ?>">
                                                                     </div>
                                                                     <div class="col-md-12 form-group">
                                                                         <label for="price">Price</label>
@@ -224,7 +224,7 @@
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label for="variant">Variant</label>
-                                        <input type="text" id="variant" class="form-control variant-product" name="variant" required>
+                                        <input type="text" id="variant" class="form-control" name="variant" required>
                                     </div>
                                     <div class="col-md-12 form-group">
                                         <label for="price">Price</label>
