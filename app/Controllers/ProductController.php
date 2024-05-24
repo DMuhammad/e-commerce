@@ -51,7 +51,7 @@ class ProductController extends BaseController
             'id' => Uuid::uuid4(),
             'nama_produk' => $this->request->getPost('name'),
             'category_id' => $this->request->getPost('category'),
-            'detail' => stripHtmlTags($this->request->getPost('detail')),
+            'detail' => $this->request->getPost('detail'),
             'stok' => $this->request->getPost('stock'),
             'variant' => $this->request->getPost('variant'),
             'harga' => stripRpAndComma($this->request->getPost('price'))
@@ -81,50 +81,50 @@ class ProductController extends BaseController
     }
 
     public function update($id)
-{
-    $this->products->update($id, [
-        'nama_produk' => $this->request->getPost('name'),
-        'category_id' => $this->request->getPost('category'),
-        'detail' => stripHtmlTags($this->request->getPost('detail')),
-        'stok' => $this->request->getPost('stock'),
-        'variant' => $this->request->getPost('variant'),
-        'harga' => stripRpAndComma($this->request->getPost('price'))
-    ]);
+    {
+        $this->products->update($id, [
+            'nama_produk' => $this->request->getPost('name'),
+            'category_id' => $this->request->getPost('category'),
+            'detail' => $this->request->getPost('detail'),
+            'stok' => $this->request->getPost('stock'),
+            'variant' => $this->request->getPost('variant'),
+            'harga' => stripRpAndComma($this->request->getPost('price'))
+        ]);
 
-    $images = $this->request->getFileMultiple('images');
+        $images = $this->request->getFileMultiple('images');
 
-    // Only proceed if images are uploaded
-    if (!empty($images[0]->getName())) {
-        // Get the old images
-        $oldImages = $this->productImages->where('product_id', $id)->findAll();
+        // Only proceed if images are uploaded
+        if (!empty($images[0]->getName())) {
+            // Get the old images
+            $oldImages = $this->productImages->where('product_id', $id)->findAll();
 
-        // Delete the old images from the directory
-        foreach ($oldImages as $oldImage) {
-            if (file_exists(ROOTPATH . 'public/assets/uploads/img-product/' . $oldImage->image)) {
-                unlink(ROOTPATH . 'public/assets/uploads/img-product/' . $oldImage->image);
+            // Delete the old images from the directory
+            foreach ($oldImages as $oldImage) {
+                if (file_exists(ROOTPATH . 'public/assets/uploads/img-product/' . $oldImage->image)) {
+                    unlink(ROOTPATH . 'public/assets/uploads/img-product/' . $oldImage->image);
+                }
+            }
+
+            // Delete the old images from the database
+            $this->productImages->where('product_id', $id)->delete();
+
+            // Upload the new images
+            foreach ($images as $image) {
+                if ($image->isValid() && !$image->hasMoved()) {
+                    $imageName = $image->getRandomName();
+                    $image->move(ROOTPATH . 'public/assets/uploads/img-product', $imageName);
+
+                    $this->productImages->insert([
+                        'id' => Uuid::uuid4(),
+                        'product_id' => $id,
+                        'image' => $imageName
+                    ]);
+                }
             }
         }
 
-        // Delete the old images from the database
-        $this->productImages->where('product_id', $id)->delete();
-
-        // Upload the new images
-        foreach ($images as $image) {
-            if ($image->isValid() && !$image->hasMoved()) {
-                $imageName = $image->getRandomName();
-                $image->move(ROOTPATH . 'public/assets/uploads/img-product', $imageName);
-
-                $this->productImages->insert([
-                    'id' => Uuid::uuid4(),
-                    'product_id' => $id,
-                    'image' => $imageName
-                ]);
-            }
-        }
+        return redirect()->back();
     }
-
-    return redirect()->back();
-}
 
     public function delete($id)
     {
