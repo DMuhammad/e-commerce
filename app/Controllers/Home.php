@@ -145,6 +145,8 @@ class Home extends BaseController
 
     public function detailProduct($id): string
     {
+        $namaProduk = $this->products->where('id', $id)->first()->nama_produk;
+
         $product = $this->products->select('products.*, categories.nama_kategori')
             ->join('categories', 'categories.id = products.category_id')
             ->where('products.id', $id)
@@ -165,9 +167,9 @@ class Home extends BaseController
                 ->first();
         }
 
-        // Get all variants of the product with the same name
+        // Get all variants for the product with the same name
         $variants = $this->products->select('id, variant')
-            ->where('nama_produk', $product->nama_produk)
+            ->where('nama_produk', $namaProduk)
             ->findAll();
 
         $data = [
@@ -178,9 +180,6 @@ class Home extends BaseController
             'variants' => $variants,
             'title' => 'Detail Product',
         ];
-
-        // dd($data);
-
         return view('pages/user/detail-product', $data);
     }
 
