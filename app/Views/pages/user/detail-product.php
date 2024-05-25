@@ -96,36 +96,70 @@
 <div class="container-fluid mb-5" style="background-color: #f5f5f5">
     <div class="container p-4">
         <h3 class="text-start text-black mt-3 mb-4 fw-medium">You may also like</h3>
-        <div class="splide products">
-            <div class="splide__track">
-                <div class="splide__list">
-                    <?php foreach ($relatedProducts as $related) { ?>
-                        <div class="splide__slide">
-                            <a href="/detail-product/<?= $related->id ?>">
-                                <div class="card shadow">
-                                    <div class="card-content">
-                                        <img src="<?= $related->image != null ? base_url('assets/uploads/img-product/' . $related->image->image) : base_url('assets/static/images/product.png') ?>" class="card-img-top" alt="product" />
-                                        <div class="card-body">
-                                            <div class="row justify-content-center align-items-center">
-                                                <div class="col-md-9 col-12">
-                                                    <h5 class="custom-card-title text-dark fw-semibold text-truncate"><?= $related->nama_produk ?> <?= $related->variant ?></h5>
-                                                    <p><span class="custom-card-title fw-bold text-success">Rp. <?= number_format($related->harga, 0, ',', '.') ?></span><small class="fw-light">/pcs</small></p>
-                                                </div>
-                                                <div class="col-md-3 col-12 text-end">
-                                                    <button class="btn btn-custom-success rounded-circle">
-                                                        <i class="fa-solid fa-cart-shopping"></i>
-                                                    </button>
+        <?php
+        if (count($relatedProducts) > 4) { ?>
+            <div class="splide products">
+                <div class="splide__track">
+                    <div class="splide__list">
+                        <?php foreach ($relatedProducts as $related) { ?>
+                            <div class="splide__slide">
+                                <a href="/detail-product/<?= $related->id ?>">
+                                    <div class="card shadow">
+                                        <div class="card-content">
+                                            <img src="<?= $related->image != null ? base_url('assets/uploads/img-product/' . $related->image->image) : base_url('assets/static/images/product.png') ?>" class="card-img-top" alt="product" />
+                                            <div class="card-body">
+                                                <div class="row justify-content-center align-items-center">
+                                                    <div class="col-md-9 col-12">
+                                                        <h5 class="custom-card-title text-dark fw-semibold text-truncate"><?= $related->nama_produk ?> <?= $related->variant ?></h5>
+                                                        <p><span class="custom-card-title fw-bold text-success">Rp. <?= number_format($related->harga, 0, ',', '.') ?></span><small class="fw-light">/pcs</small></p>
+                                                    </div>
+                                                    <div class="col-md-3 col-12 text-end">
+                                                        <button class="btn btn-custom-success rounded-circle">
+                                                            <i class="fa-solid fa-cart-shopping"></i>
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
-                        </div>
-                    <?php } ?>
+                                </a>
+                            </div>
+                        <?php } ?>
+                    </div>
                 </div>
             </div>
-        </div>
+        <?php
+        } else { ?>
+            <div class="row mb-3 justify-content-start">
+                <?php foreach ($relatedProducts as $related) { ?>
+                    <div class="col-6 col-md-4 col-lg-3">
+                        <a href="/detail-product/<?= $related->id ?>">
+                            <div class="card shadow">
+                                <div class="card-content">
+                                    <img src="<?= $related->image != null ? base_url('assets/uploads/img-product/' . $related->image->image) : base_url('assets/static/images/product.png') ?>" class="card-img-top" alt="product" />
+                                    <div class="card-body">
+                                        <div class="row justify-content-center align-items-center">
+                                            <div class="col-md-9 col-12">
+                                                <h5 class="custom-card-title text-dark fw-semibold text-truncate"><?= $related->nama_produk ?></h5>
+                                                <p><span class="custom-card-title fw-bold text-success">Rp. <?= number_format($related->harga, 0, ',', '.') ?></span><small class="fw-light">/pcs</small></p>
+                                            </div>
+                                            <div class="col-md-3 col-12 text-end">
+                                                <button type="button" class="btn btn-custom-success rounded-circle">
+                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                <?php } ?>
+            </div>
+        <?php
+        }
+        ?>
+
     </div>
 </div>
 

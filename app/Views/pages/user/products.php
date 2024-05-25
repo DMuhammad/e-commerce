@@ -63,7 +63,7 @@
                                         <div class="row justify-content-center align-items-center">
                                             <div class="col-md-9 col-12">
                                                 <h5 class="custom-card-title text-dark fw-semibold text-truncate"><?= $product->nama_produk ?> <?= $product->variant ?></h5>
-                                                <p><span class="custom-card-title fw-bold text-success">Rp.<?= $product->harga ?> </span><small class="fw-light">/pcs</small></p>
+                                                <p><span class="custom-card-title fw-bold text-success">Rp.<?= number_format($product->harga, 0, ',', '.') ?> </span><small class="fw-light">/pcs</small></p>
                                             </div>
                                             <div class="col-md-3 col-12 text-end">
                                                 <button class="btn btn-custom-success rounded-circle">
