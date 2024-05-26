@@ -161,7 +161,7 @@
                                                 return `<div class="d-flex flex-column align-items-end">
                                                             <div class="chat-right p-2 px-3 m-1"> ${chat.pesan} </div> 
                                                         </div>`
-                                            })}
+                                            }).join('')}
                                         </div>
                                     </div>
                                     <div class="card-footer py-2 px-4">
