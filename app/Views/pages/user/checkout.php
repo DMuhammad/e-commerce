@@ -81,6 +81,7 @@
                         <span class="custom-color-primary">Rp. <?= number_format($total, 0, ',', '.') ?></span>
                     </div>
                     <p class="text-gray fw-medium mb-0">*Belum termasuk ongkir</p>
+                    <p class="text-gray fw-medium mb-0">*Silakan hubungi admin untuk informasi selengkapnya</p>
                     <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
                     <button type="submit" name="submit" class="btn btn-custom-success d-block w-100 mt-5">Payment</button>
                 </div>

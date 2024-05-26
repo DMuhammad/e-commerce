@@ -53,7 +53,7 @@
                                 <th>Name</th>
                                 <th>Category</th>
                                 <th>Detail</th>
-                                <th>Stok</th>
+                                <th>MOQ</th>
                                 <th>Variant</th>
                                 <th>Price</th>
                                 <th>Images</th>
@@ -147,7 +147,7 @@
                                                                         <textarea name="detail" id="summernote-product-<?= $product->id ?>" class="summernote-product custom-summernote"><?= htmlspecialchars(($product->detail)) ?></textarea>
                                                                     </div>
                                                                     <div class="col-md-12 form-group">
-                                                                        <label for="stock">Stock</label>
+                                                                        <label for="stock">MOQ</label>
                                                                         <input type="int" id="stock" class="form-control" name="stock" required value="<?= $product->stok ?>">
                                                                     </div>
                                                                     <div class="col-md-12 form-group">
@@ -219,7 +219,7 @@
                                         <textarea name="detail" class="summernote-product custom-summernote"></textarea>
                                     </div>
                                     <div class="col-md-12 form-group">
-                                        <label for="stock">Stock</label>
+                                        <label for="stock">MOQ</label>
                                         <input type="int" id="stock" class="form-control" name="stock" required>
                                     </div>
                                     <div class="col-md-12 form-group">
