@@ -125,64 +125,64 @@
                                                 </button>
                                             </form>
                                         </div>
-                                    </td>
-                                </tr>
 
-                                <div class="modal fade" id="edit<?= $product->id ?>" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
-                                    <div class="modal-dialog modal-lg modal-dialog-centered">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h5 class="modal-title" id="exampleModalLabel">Form Edit Product
-                                                </h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('dashboard/products/update/') . $product->id ?>">
-                                                    <div class="form-body">
-                                                        <div class="col-md-12 form-group">
-                                                            <label for="name">Name</label>
-                                                            <input type="text" id="name" class="form-control" name="name" required value="<?= $product->nama_produk ?>">
-                                                        </div>
-                                                        <div class="col-md-12 form-group">
-                                                            <label for="category">Category</label>
-                                                            <select class="form-control" name="category" id="category" required>
-                                                                <?php foreach ($categories as $category) { ?>
-                                                                    <option value="<?= $category->id ?>" <?= $category->id == $product->category_id ? 'selected="selected"' : '' ?>>
-                                                                        <?= $category->nama_kategori ?>
-                                                                    </option>
-                                                                <?php } ?>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-12 form-group">
-                                                            <label for="detail">Detail Product</label>
-                                                            <textarea name="detail" id="summernote-product-<?= $product->id ?>" class="summernote-product custom-summernote"><?= htmlspecialchars(($product->detail)) ?></textarea>
-                                                        </div>
-                                                        <div class="col-md-12 form-group">
-                                                            <label for="stock">MOQ</label>
-                                                            <input type="int" id="stock" class="form-control" name="stock" required value="<?= $product->stok ?>">
-                                                        </div>
-                                                        <div class="col-md-12 form-group">
-                                                            <label for="variant">Variant</label>
-                                                            <input type="text" id="variant" class="form-control" name="variant" required value="<?= $product->variant ?>">
-                                                        </div>
-                                                        <div class="col-md-12 form-group">
-                                                            <label for="price">Price</label>
-                                                            <input type="text" id="price" class="form-control price-product" name="price" placeholder="Rp 100.000" required value="<?= $product->harga ?>">
-                                                        </div>
-                                                        <div class="col-md-12 form-group">
-                                                            <label for="images">Images</label>
-                                                            <input type="file" class="multiple-files-filepond" name="images[]" multiple />
-                                                        </div>
-                                                        <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
-                                                        <div class="col-sm-12 d-flex justify-content-end">
-                                                            <button type="submit" name="submit" class="btn btn-success me-1 mb-1">Submit</button>
-                                                        </div>
+                                        <div class="modal fade" id="edit<?= $product->id ?>" tabindex="-1" aria-labelledby="editLabel" aria-hidden="true">
+                                            <div class="modal-dialog modal-lg modal-dialog-centered">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="exampleModalLabel">Form Edit Product
+                                                        </h5>
+                                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                     </div>
-                                                </form>
+                                                    <div class="modal-body">
+                                                        <form class="form form-horizontal" id="form-product" method="post" enctype="multipart/form-data" action="<?= base_url('dashboard/products/update/') . $product->id ?>">
+                                                            <div class="form-body">
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="name">Name</label>
+                                                                    <input type="text" id="name" class="form-control" name="name" required value="<?= $product->nama_produk ?>">
+                                                                </div>
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="category">Category</label>
+                                                                    <select class="form-control" name="category" id="category" required>
+                                                                        <?php foreach ($categories as $category) { ?>
+                                                                            <option value="<?= $category->id ?>" <?= $category->id == $product->category_id ? 'selected="selected"' : '' ?>>
+                                                                                <?= $category->nama_kategori ?>
+                                                                            </option>
+                                                                        <?php } ?>
+                                                                    </select>
+                                                                </div>
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="detail">Detail Product</label>
+                                                                    <textarea name="detail" id="summernote-product-<?= $product->id ?>" class="summernote-product custom-summernote"><?= htmlspecialchars(($product->detail)) ?></textarea>
+                                                                </div>
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="stock">MOQ</label>
+                                                                    <input type="int" id="stock" class="form-control" name="stock" required value="<?= $product->stok ?>">
+                                                                </div>
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="variant">Variant</label>
+                                                                    <input type="text" id="variant" class="form-control" name="variant" required value="<?= $product->variant ?>">
+                                                                </div>
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="price">Price</label>
+                                                                    <input type="text" id="price" class="form-control price-product" name="price" placeholder="Rp 100.000" required value="<?= $product->harga ?>">
+                                                                </div>
+                                                                <div class="col-md-12 form-group">
+                                                                    <label for="images">Images</label>
+                                                                    <input type="file" class="multiple-files-filepond" name="images[]" multiple />
+                                                                </div>
+                                                                <input type="hidden" name="<?= csrf_token() ?>" value="<?= csrf_hash() ?>" />
+                                                                <div class="col-sm-12 d-flex justify-content-end">
+                                                                    <button type="submit" name="submit" class="btn btn-success me-1 mb-1">Submit</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
+                                    </td>
+                                </tr>
                             <?php
                             } ?>
                         </tbody>

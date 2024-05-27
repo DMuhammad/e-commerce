@@ -13,8 +13,9 @@
 
     <link rel="stylesheet" href="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.css') ?>">
 
-    <link rel="stylesheet" href="<?= base_url('assets/extensions/simple-datatables/datatables.css') ?>">
-
+    <link rel="stylesheet" href="<?= base_url('assets/extensions/datatables.net-bs5/css/dataTables.bootstrap5.min.css') ?>" />
+    <link rel="stylesheet" href="<?= base_url('assets/extensions/datatables.net-bs5/css/responsive.bootstrap5.min.css') ?>" />
+    
     <link rel="stylesheet" href="<?= base_url('assets/extensions/choices.js/public/assets/styles/choices.min.css') ?>">
 
     <link rel="stylesheet" href="<?= base_url('assets/extensions/summernote/summernote-lite.css') ?>">
@@ -45,14 +46,6 @@
     <script src="<?= base_url('assets/extensions/sweetalert2/sweetalert2.min.js') ?>"></script>
     <script src="<?= base_url('assets/static/js/pages/swalfire.js') ?>"></script>
 
-    <!-- Datatables -->
-    <script src="<?= base_url('assets/extensions/simple-datatables/datatables.js') ?>"></script>
-    <script src="<?= base_url('assets/static/js/pages/datatables.js') ?>"></script>
-
-    <!-- Choices -->
-    <script src="<?= base_url('assets/extensions/choices.js/public/assets/scripts/choices.min.js') ?>"></script>
-    <script src="<?= base_url('assets/static/js/pages/choices.js') ?>"></script>
-
     <!-- Summernote -->
     <script src="<?= base_url('assets/extensions/summernote/summernote-lite.min.js') ?>"></script>
     <script src="<?= base_url('assets/static/js/pages/summernote.js') ?>"></script>
@@ -64,6 +57,18 @@
     <script src="<?= base_url('assets/extensions/filepond-plugin-image-exif-orientation/filepond-plugin-image-exif-orientation.min.js') ?>"></script>
     <script src="<?= base_url('assets/extensions/filepond/filepond.js') ?>"></script>
     <script src="<?= base_url('assets/static/js/pages/filepond.js') ?>"></script>
+
+    <!-- Datatables -->
+    <script src="<?= base_url('assets/extensions/datatables.net/js/dataTables.min.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/datatables.net/js/dataTables.responsive.min.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/datatables.net-bs5/js/dataTables.bootstrap5.min.js') ?>"></script>
+    <script src="<?= base_url('assets/extensions/datatables.net-bs5/js/responsive.bootstrap5.js') ?>"></script>
+    
+    <script src="<?= base_url('assets/static/js/pages/datatables.js') ?>"></script>
+
+    <!-- Choices -->
+    <script src="<?= base_url('assets/extensions/choices.js/public/assets/scripts/choices.min.js') ?>"></script>
+    <script src="<?= base_url('assets/static/js/pages/choices.js') ?>"></script>
 
     <!-- Datepicker -->
     <script src="<?= base_url('assets/extensions/moment/moment.min.js') ?>"></script>
